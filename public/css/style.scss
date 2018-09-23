@@ -25,19 +25,19 @@ body
     width:240px;
 
 
-            .sidebar-head
+    .sidebar-head
         {   
 
             margin:5px;
 
-            img
-            {
-                height: 100px;
-                width: 100px;
-                float: left;
-                padding:5px;
-            }
-
+        }
+        
+        img
+        {
+            height: 100px;
+            width: 100px;
+            float: left;
+            padding:5px;
         }
         .active-link
         {
@@ -46,7 +46,7 @@ body
         ul li
         {
             padding:10px;
-            
+            font-family: Raleway-Regular;
         }
         ul li a:hover
         {
@@ -54,14 +54,14 @@ body
         }
         .banner
         {
-            h1{
+            h5{
                 font-family:  Raleway-Bold;
-                font-size: 35px;
+                font-size: 36px;
             }
-            span
+            img
             {
-                font-family: Raleway-Light;
-                font-size:25px;
+                height: 80px;
+                width: 75px; 
             }
         } 
         h5
@@ -101,4 +101,10 @@ body
 .content
 {
     margin-left:250px;
+}
+.container
+{
+    margin:0 auto;
+    width:80%;
+    margin-left: 250px;
 }

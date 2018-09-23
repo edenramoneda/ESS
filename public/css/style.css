@@ -79,7 +79,7 @@ body {
   margin: 5px;
 }
 
-#sidebar .sidebar-head img {
+#sidebar img {
   height: 100px;
   width: 100px;
   float: left;
@@ -93,20 +93,21 @@ body {
 
 #sidebar ul li {
   padding: 10px;
+  font-family: Raleway-Regular;
 }
 
 #sidebar ul li a:hover {
   text-decoration: none;
 }
 
-#sidebar .banner h1 {
+#sidebar .banner h5 {
   font-family: Raleway-Bold;
-  font-size: 35px;
+  font-size: 36px;
 }
 
-#sidebar .banner span {
-  font-family: Raleway-Light;
-  font-size: 25px;
+#sidebar .banner img {
+  height: 80px;
+  width: 75px;
 }
 
 #sidebar h5 {
@@ -139,6 +140,12 @@ body {
 }
 
 .content {
+  margin-left: 250px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 80%;
   margin-left: 250px;
 }
 /*# sourceMappingURL=style.css.map */

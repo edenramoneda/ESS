@@ -10,29 +10,34 @@
             <div class="col-lg-8 col-md-6 col-sm-6" style="padding:0">
 
                 <nav id="sidebar">
-                    <div class="banner text-center text-white p-3">
-                        <h1>Employee<br><span>Self-Service</span></h1>
-                        
-                    </div>
+                    <div class="banner text-center text-white p-2">
+                        <img src="{{ asset('image/aerolink.png') }}"><br><h5>Aerolink</h5>           
+                    </div><br>
                     <div class="sidebar-head text-center hidden-md hidden-sm text-white">
                         <img src="{{ asset('image/cat.jpg') }}"><br>
-                        <h5>Ma. Eden M Ramoneda</h5>
-                    </div><br><br>
+                        <h5>Ma. Eden Ramoneda</h5>
+                    </div><br><br><br>
                     
                     <div class="links">
                         <ul class="list-unstyled">
-                            <li class="active-link"><a href="#" class=" text-white">My Profile</a></li>
-                            <li>
-                                <a href="#" class="text-white sidenav-dropdown">Payslip</i></i></a>
+                            <li class="active-link"><a href="{{ url('/Employee/modules') }}" class=" text-white">
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                    My Profile</a>
                             </li>
                             <li>
-                                <a href="#" class="text-white sidenav-dropdown">DTR</i></i></a>
+                                <a href="#" class="text-white sidenav-dropdown">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    Payslip</a>
                             </li>
                             <li>
-                                <a href="#" class="text-white sidenav-dropdown">Request</i></i></a>
+                                <a href="#" class="text-white sidenav-dropdown">DTR</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white sidenav-dropdown">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    Request</a>
                             </li>
                             <li><a href="#" class="text-white">About</a></li>
-                            <li><a href="#" class="text-white">Logout</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -61,17 +66,13 @@
                                        <img src="{{ asset('image/cat.jpg') }}" height="20" width="20" class="rounded-circle">&ensp; Ma. Eden
                                     </button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <button class="dropdown-item" type="button">Action</button>
-                                            <button class="dropdown-item" type="button">Another action</button>
-                                            <button class="dropdown-item" type="button">Something else here</button>
+                                            <button class="dropdown-item" type="button">Change Password</button>
+                                            <button class="dropdown-item" type="button">Logout</button>
                                         </div>
                                 </div>
                             </li>            
                     </ul>  
-                </nav>
-            
-            </div>
-
-            
+                </nav>           
+            </div>          
     </body>
 </html>

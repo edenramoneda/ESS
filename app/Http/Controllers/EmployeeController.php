@@ -8,6 +8,6 @@ class EmployeeController extends Controller
 {
     public function settings()
     {
-        return view('Employee/modules/settings');
+        return view('Employee/modules/info');
     }
 }
