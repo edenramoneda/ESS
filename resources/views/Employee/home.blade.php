@@ -14,8 +14,8 @@
                         <img src="{{ asset('image/aerolink.png') }}"><br><h5>Aerolink</h5>           
                     </div><br>
                     <div class="sidebar-head text-center hidden-md hidden-sm text-white">
-                        <img src="{{ asset('image/cat.jpg') }}"><br>
-                        <h5>Ma. Eden Ramoneda</h5>
+                        <img src="{{ asset('image/m.jpg') }}"><br>
+                        <h5>Marc Carlos De Leon</h5>
                     </div><br><br><br>
                     
                     <div class="links">

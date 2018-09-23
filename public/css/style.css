@@ -56,6 +56,7 @@
 body {
   padding: 0;
   margin: 0;
+  overflow-y: scroll;
 }
 
 .full-width {
@@ -80,8 +81,8 @@ body {
 }
 
 #sidebar img {
-  height: 100px;
-  width: 100px;
+  height: 105px;
+  width: 105px;
   float: left;
   padding: 5px;
 }
@@ -134,11 +135,6 @@ body {
   display: inline-block;
 }
 
-.img-h-w {
-  width: 80px;
-  height: 80px;
-}
-
 .content {
   margin-left: 250px;
 }
@@ -147,5 +143,21 @@ body {
   margin: 0 auto;
   width: 80%;
   margin-left: 250px;
+  margin-bottom: 30px;
+}
+
+.employee-info {
+  margin: auto auto;
+  width: 80%;
+}
+
+.employee-info .card-header {
+  background-color: #00cc66;
+  font-family: Raleway-Medium;
+  font-size: 18px;
+}
+
+.employee-info .card-body {
+  padding: 15px;
 }
 /*# sourceMappingURL=style.css.map */
