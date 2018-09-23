@@ -1,3 +1,58 @@
+@font-face {
+  src: url("../fonts/Lato-Medium.ttf");
+  font-family: Lato-Medium;
+}
+
+@font-face {
+  src: url("../fonts/Lato-Regular.ttf");
+  font-family: Lato-Regular;
+}
+
+@font-face {
+  src: url("../fonts/Quicksand-Regular.otf");
+  font-family: Quicksand-Regular;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Black.ttf");
+  font-family: Raleway-Black;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Bold.ttf");
+  font-family: Raleway-Bold;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Light.ttf");
+  font-family: Raleway-Light;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Medium.ttf");
+  font-family: Raleway-Medium;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Regular.ttf");
+  font-family: Raleway-Regular;
+}
+
+@font-face {
+  src: url("../fonts/Roboto-Black.ttf");
+  font-family: Roboto-Black;
+}
+
+@font-face {
+  src: url("../fonts/Roboto-Regular.ttf");
+  font-family: Roboto-Regular;
+}
+
+@font-face {
+  src: url("../fonts/Roboto-Thin.ttf");
+  font-family: Roboto-Thin;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -14,40 +69,76 @@ body {
 }
 
 #sidebar {
-  background-color: #141f1f;
+  background-color: #343232;
   height: 100vh;
-  float: left;
+  position: fixed;
+  width: 240px;
 }
 
 #sidebar .sidebar-head {
-  padding: 50px;
+  margin: 5px;
 }
 
 #sidebar .sidebar-head img {
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
+  float: left;
+  padding: 5px;
 }
 
 #sidebar .active-link {
-  background-color: #3d5c5c;
+  background: -webkit-gradient(linear, left top, right top, from(#11998e), to(#38ef7d));
+  background: linear-gradient(to right, #11998e, #38ef7d);
 }
 
 #sidebar ul li {
-  padding: 13px;
+  padding: 10px;
 }
 
 #sidebar ul li a:hover {
   text-decoration: none;
 }
 
+#sidebar .banner h1 {
+  font-family: Raleway-Bold;
+  font-size: 35px;
+}
+
+#sidebar .banner span {
+  font-family: Raleway-Light;
+  font-size: 25px;
+}
+
+#sidebar h5 {
+  font-family: Raleway-Medium;
+  display: inline;
+}
+
+#sidebar .sidenav-dropdown {
+  display: block;
+}
+
 .ess-navigation {
-  padding: 18px;
-  background-color: #00cc66;
+  padding: 8px;
+  background: -webkit-gradient(linear, left top, right top, from(#11998e), to(#38ef7d));
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  margin-left: 240px;
+  height: 70px;
+}
+
+.ess-navigation .btn-custom-c {
+  background-color: #00b359;
+  color: #fff;
+  float: right;
+  display: inline-block;
 }
 
 .img-h-w {
   width: 80px;
   height: 80px;
+}
+
+.content {
+  margin-left: 250px;
 }
 /*# sourceMappingURL=style.css.map */

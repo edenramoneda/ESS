@@ -1,0 +1,55 @@
+@font-face {
+  src: url("../fonts/Lato-Medium.ttf");
+  font-family: Lato-Medium;
+}
+
+@font-face {
+  src: url("../fonts/Lato-Regular.ttf");
+  font-family: Lato-Regular;
+}
+
+@font-face {
+  src: url("../fonts/Quicksand-Regular.otf");
+  font-family: Quicksand-Regular;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Black.ttf");
+  font-family: Raleway-Black;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Bold.ttf");
+  font-family: Raleway-Bold;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Light.ttf");
+  font-family: Raleway-Light;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Medium.ttf");
+  font-family: Raleway-Medium;
+}
+
+@font-face {
+  src: url("../fonts/Raleway-Regular.ttf");
+  font-family: Raleway-Regular;
+}
+
+@font-face {
+  src: url("../fonts/Roboto-Black.ttf");
+  font-family: Roboto-Black;
+}
+
+@font-face {
+  src: url("../fonts/Roboto-Regular.ttf");
+  font-family: Roboto-Regular;
+}
+
+@font-face {
+  src: url("../fonts/Roboto-Thin.ttf");
+  font-family: Roboto-Thin;
+}
+/*# sourceMappingURL=fonts.css.map */

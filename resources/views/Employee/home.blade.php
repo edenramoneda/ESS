@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <title>My ESS</title>
@@ -10,15 +10,27 @@
             <div class="col-lg-8 col-md-6 col-sm-6" style="padding:0">
 
                 <nav id="sidebar">
+                    <div class="banner text-center text-white p-3">
+                        <h1>Employee<br><span>Self-Service</span></h1>
+                        
+                    </div>
                     <div class="sidebar-head text-center hidden-md hidden-sm text-white">
-                        <img src="{{ asset('image/cat.jpg') }}"><br><br>
-                        <strong>Name</strong>
+                        <img src="{{ asset('image/cat.jpg') }}"><br>
+                        <h5>Ma. Eden M Ramoneda</h5>
                     </div><br><br>
                     
                     <div class="links">
                         <ul class="list-unstyled">
-                            <li class="active-link"><a href="#" class=" text-white">My Dashboard</a></li>
-                            <li><a href="{{ url('/Employee/modules') }}" class="text-white">Settings</a></li>
+                            <li class="active-link"><a href="#" class=" text-white">My Profile</a></li>
+                            <li>
+                                <a href="#" class="text-white sidenav-dropdown">Payslip</i></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white sidenav-dropdown">DTR</i></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white sidenav-dropdown">Request</i></i></a>
+                            </li>
                             <li><a href="#" class="text-white">About</a></li>
                             <li><a href="#" class="text-white">Logout</a></li>
                         </ul>
@@ -31,78 +43,35 @@
             <div id="container-fluid"> 
 
                 <nav class="navbar ess-navigation">
+                    <ul>
+                        <a href="#" style="color:white">
+                           <i class="fa fa-bars" id="CollapseSidebar"></i>
+                         </a>
+                    </ul>
                     <ul class="nav">
-                            <a href="#" style="color:white">
-                                <span class="fa fa-bars" id="CollapseSidebar"></span>
-                            </a>
+                            <li>
+                                <button type="button" class="btn btn-custom-c"> 
+                                    <i class="fa fa-bell"></i>
+                                        Notifications <span class="badge badge-light">4</span>
+                                </button>  
+                            </li>&ensp;&ensp;
+                            <li>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-custom-c dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       <img src="{{ asset('image/cat.jpg') }}" height="20" width="20" class="rounded-circle">&ensp; Ma. Eden
+                                    </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <button class="dropdown-item" type="button">Action</button>
+                                            <button class="dropdown-item" type="button">Another action</button>
+                                            <button class="dropdown-item" type="button">Something else here</button>
+                                        </div>
+                                </div>
+                            </li>            
                     </ul>  
                 </nav>
             
             </div>
 
-            <div class="container">
-                    <div class="row mt-5">
-                          <div class="col-md-4 text-center">   
-                            <div class="card">
-                                <div class="card-body">
-                                    <a href=""><p>New Hire on Board</p>
-                                        <img src="{{ asset('image/new_hire_on_board.png') }}" class="img-h-w"> 
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                          <div class="col-md-4 text-center">   
-                            <div class="card">
-                                <div class="card-body">
-                                    <a href=""><p>Timesheet</p>
-                                        <img src="{{ asset('image/Timesheet_300px.png') }}" class="img-h-w"> 
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                          <div class="col-md-4 text-center">   
-                            <div class="card">
-                                <div class="card-body">
-                                    <a href=""><p>Payroll</p></a>
-                                    <img src="{{ asset('image/Payroll_300px.png') }}" class="img-h-w">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row mt-5">
-                          <div class="col-md-4 text-center">   
-                            <div class="card">
-                                <div class="card-body">
-                                  <a href=""><p>Perfomance Management</p></a>   
-                                   <img src="{{ asset('image/performance.png') }}" class="img-h-w">   
-                                </div>
-                            </div>
-                        </div>
-
-                          <div class="col-md-4 text-center">   
-                            <div class="card">
-                                <div class="card-body">
-                                    <a href=""><p>Scheduling</p></a>
-                                      <img src="{{ asset('image/Schedule_300px.png') }}" class="img-h-w">  
-                                </div>
-                            </div>
-                        </div>
-
-                          <div class="col-md-4 text-center">   
-                            <div class="card">
-                                <div class="card-body">
-                                    <a href=""><p>Leave Management</p></a>
-                                     <img src="{{ asset('image/Leave_300px.png') }}" class="img-h-w">  
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-            </div>
+            
     </body>
 </html>

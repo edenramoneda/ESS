@@ -4,7 +4,14 @@
         <title>ESS</title>
             @extends('layouts.header');      
     </head>
-
+    <style>
+    body
+    {
+            background: #11998e; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #11998e, #38ef7d); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #11998e, #38ef7d); 
+    }
+    </style>
     <body>
         <div class="container login-form">
             <div class="card">

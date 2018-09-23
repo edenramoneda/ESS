@@ -1,3 +1,6 @@
+@import 'fonts';
+
+
 body
 {
     padding:0;
@@ -16,47 +19,86 @@ body
 }
 #sidebar
 {
-    background-color:#141f1f;
+    background-color:#343232;
     height:100vh;
-    float:left;
+    position:fixed;
+    width:240px;
 
 
             .sidebar-head
-        {
-            padding:50px;
+        {   
+
+            margin:5px;
 
             img
             {
-                border-radius: 50%;
-                height:150px;
-                width:150px;
+                height: 100px;
+                width: 100px;
+                float: left;
+                padding:5px;
             }
 
         }
         .active-link
         {
-           background-color: #3d5c5c;
+            background: linear-gradient(to right, #11998e, #38ef7d);
         }
         ul li
         {
-            padding:13px;
-            
+            padding:10px;
             
         }
         ul li a:hover
         {
             text-decoration: none;
         }
+        .banner
+        {
+            h1{
+                font-family:  Raleway-Bold;
+                font-size: 35px;
+            }
+            span
+            {
+                font-family: Raleway-Light;
+                font-size:25px;
+            }
+        } 
+        h5
+        {
+            font-family: Raleway-Medium;
+            display: inline;
+        }
+        .sidenav-dropdown
+        {
+            display: block;
+        }
+
 }
 
 .ess-navigation
 {
-    padding:18px;
-    background-color: #00cc66;
+    padding:8px;
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    margin-left:240px;
+    height:70px;
+
+    .btn-custom-c
+    {
+        background-color: #00b359;
+        color: #fff;
+        float: right;
+        display: inline-block;
+    }
 }
 
 .img-h-w
 {
     width:80px;
     height:80px;
+}
+//content
+.content
+{
+    margin-left:250px;
 }
