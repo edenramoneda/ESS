@@ -13,7 +13,7 @@
     }
     </style>
     <body>
-        <div class="container login-form">
+        <div class="login-form">
             <div class="card">
                 <div class="card-header bg-info text-white"><h2>Login Form</h2></div>
                 <div class="card-body">

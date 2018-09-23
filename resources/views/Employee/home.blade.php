@@ -20,9 +20,11 @@
                     
                     <div class="links">
                         <ul class="list-unstyled">
-                            <li class="active-link"><a href="{{ url('/Employee/modules') }}" class=" text-white">
-                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                    My Profile</a>
+                            <li class="active-link"><a href="#myProfile" data-toggle="collapse" aria-expanded="false" class=" text-white dropdown-toggle">My Profile</a>
+                                  <ul class="collapse list-unstyled" id="myProfile">
+                                        <li><a href="" class="text-white">Personal Data Sheet</a></li>
+                                        <li><a href="{{ url('/Employee/modules') }}" class="text-white">Employment</a></li>
+                                  </ul>
                             </li>
                             <li>
                                 <a href="#" class="text-white sidenav-dropdown">
@@ -63,7 +65,7 @@
                             <li>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-custom-c dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       <img src="{{ asset('image/cat.jpg') }}" height="20" width="20" class="rounded-circle">&ensp; Ma. Eden
+                                       <img src="{{ asset('image/m.jpg') }}" height="20" width="20" class="rounded-circle">&ensp; Ma. Eden
                                     </button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <button class="dropdown-item" type="button">Change Password</button>
