@@ -19,4 +19,5 @@ Route::get('/Employee', function () {
     return view("Employee.home");
 });
 
-Route::get('/Employee/modules','EmployeeController@settings');
+Route::get('/Employee/modules/info','EmployeeController@info');
+Route::get('/Employee/modules/pds', 'EmployeeController@pds');

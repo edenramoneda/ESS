@@ -22,8 +22,8 @@
                         <ul class="list-unstyled">
                             <li class="active-link"><a href="#myProfile" data-toggle="collapse" aria-expanded="false" class=" text-white dropdown-toggle">My Profile</a>
                                   <ul class="collapse list-unstyled" id="myProfile">
-                                        <li><a href="" class="text-white">Personal Data Sheet</a></li>
-                                        <li><a href="{{ url('/Employee/modules') }}" class="text-white">Employment</a></li>
+                                        <li><a href="{{ url('/Employee/modules/pds') }}" class="text-white">Personal Data Sheet</a></li>
+                                        <li><a href="{{ url('/Employee/modules/info') }}" class="text-white">Employment</a></li>
                                   </ul>
                             </li>
                             <li>
