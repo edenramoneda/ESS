@@ -55,20 +55,22 @@
             <div id="container-fluid"> 
 
                 <nav class="navbar ess-navigation">
-                    <ul>
-                        <a href="#" style="color:white">
-                           <i class="fa fa-bars" id="CollapseSidebar"></i>
-                         </a>
-                    </ul>
                     <ul class="nav">
-                            <li>
-                                <button type="button" class="btn btn-custom-c"> 
+                        <li class="nav-item">
+                            <a href="#" style="color:white">
+                                <i class="fa fa-bars" id="CollapseSidebar"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                               <button type="button" class="btn btn-custom-c"> 
                                     <i class="fa fa-bell"></i>
                                         Notifications <span class="badge badge-light">4</span>
                                 </button>  
-                            </li>&ensp;&ensp;
-                            <li>
-                                <div class="btn-group">
+                        </li>&ensp;&ensp;
+                        <li class="nav-item">
+                             <div class="btn-group">
                                     <button type="button" class="btn btn-custom-c dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                        <img src="{{ asset('image/m.jpg') }}" height="20" width="20" class="rounded-circle">&ensp; Ma. Eden
                                     </button>
@@ -77,8 +79,9 @@
                                             <button class="dropdown-item" type="button">Logout</button>
                                         </div>
                                 </div>
-                            </li>            
-                    </ul>  
+                        </li>
+                    </ul>
+                  
                 </nav>           
             </div>          
     </body>
