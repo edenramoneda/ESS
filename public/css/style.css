@@ -146,6 +146,10 @@ body {
   margin-bottom: 30px;
 }
 
+.card {
+  border: 1px solid #adad85 !important;
+}
+
 .employee-info {
   margin: auto auto;
   width: 80%;

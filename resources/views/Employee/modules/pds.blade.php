@@ -22,41 +22,74 @@
                                 <div class="col-sm-12 col-md-12 col-lg-12">
                                     <div class="form-group">
                                         <div class="custom-file mb-3">
-                                                    <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                                    <input type="file" class="custom-file-input" id="customFile" name="browse_photo">
                                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                             </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="col-sm-4 col-md-4 col-lg-4">
                                     <div class="form-group">
-                                        <label>Job Position:</label>
-                                        <input type="text" class="form-control" name="job_position">
+                                        <label>Last Name:</label>
+                                        <input type="text" class="form-control" name="lastname">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>First Name:</label>
+                                        <input type="text" class="form-control" name="firstname">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>Middle Name:</label>
+                                        <input type="text" class="form-control" name="middlename">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label>Section:</label>
-                                        <input type="text" class="form-control" name="section">
+                                        <label>Date of Birth:</label>
+                                        <input type="date" class="form-control" name="date_of_birth">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label>Date Hired:</label>
-                                        <input type="date" class="form-control" name="date_hired">
+                                        <label>Birthplace:</label>
+                                        <input type="text" class="form-control" name="birthplace">
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label>Division:</label>
-                                        <input type="text" class="form-control" name="division">
-                                    </div>
+                                   <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>Gender:</label>
+                                            <select name="gender" class="custom-select">
+                                                <option value="Male" selected>Male</option>
+                                                <option value="Female" selected>Female</option>
+                                            </select>
+                                        </div>
                                 </div>
-                                <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label>Employee Type:</label>
-                                        <input type="text" class="form-control" name="employee_type">
-                                    </div>
+                                  <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>Height:</label>
+                                             <input type="text" class="form-control" name="height">
+                                        </div>
                                 </div>
+                                  <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>Weight:</label>
+                                             <input type="text" class="form-control" name="weight">
+                                        </div>
+                                </div>  
+                                  <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Nationality:</label>
+                                             <input type="text" class="form-control" name="nationality">
+                                        </div>
+                                </div> 
+                                   <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Religion:</label>
+                                             <input type="text" class="form-control" name="religion">
+                                        </div>
+                                </div>      
                             </div> 
                     </form>                                  
                 </div>
