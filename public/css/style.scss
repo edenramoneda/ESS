@@ -117,9 +117,31 @@ body
         background-color: #00cc66;
         font-family: Raleway-Medium;
         font-size: 18px;
+        
+        button
+        {
+            background-color:#00994d;
+            float: right;
+            color: #fff;
+            margin:0 5px;
+        }
     }
     .card-body
     {
         padding:15px;
+        line-height:30px;
+        span
+        {
+            float:right;
+            font-family: Raleway-Regular;
+        }
+        b
+        {
+            float: left;
+            font-family: Lato-Medium;
+
+        }
+
     }
+
 }

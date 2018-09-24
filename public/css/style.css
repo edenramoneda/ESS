@@ -160,7 +160,25 @@ body {
   font-size: 18px;
 }
 
+.employee-info .card-header button {
+  background-color: #00994d;
+  float: right;
+  color: #fff;
+  margin: 0 5px;
+}
+
 .employee-info .card-body {
   padding: 15px;
+  line-height: 30px;
+}
+
+.employee-info .card-body span {
+  float: right;
+  font-family: Raleway-Regular;
+}
+
+.employee-info .card-body b {
+  float: left;
+  font-family: Lato-Medium;
 }
 /*# sourceMappingURL=style.css.map */
