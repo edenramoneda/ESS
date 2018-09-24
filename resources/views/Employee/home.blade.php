@@ -27,12 +27,17 @@
                                   </ul>
                             </li>
                             <li>
-                                <a href="#" class="text-white sidenav-dropdown">
+                                <a href="{{ url('/Employee/modules/payslip') }}" class="text-white sidenav-dropdown">
                                     <i class="fa fa-money" aria-hidden="true"></i>
                                     Payslip</a>
                             </li>
+                             <li>
+                                <a href="{{ url('/Employee/modules/payslip') }}" class="text-white sidenav-dropdown">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    My Schedule</a>
+                            </li>
                             <li>
-                                <a href="#" class="text-white sidenav-dropdown">DTR</a>
+                                <a href="#" class="text-white sidenav-dropdown">Daily Time Record</a>
                             </li>
                             <li>
                                 <a href="#" class="text-white sidenav-dropdown">

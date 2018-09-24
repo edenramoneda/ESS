@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('/Employee', function () {
     return view("Employee.home");
 });
-
+//Employee Profile
 Route::get('/Employee/modules/info','EmployeeController@info');
 Route::get('/Employee/modules/pds', 'EmployeeController@pds');
+//Employee Payslip
+Route::get('Employee/modules/payslip', 'payslip@emp_payslip');
