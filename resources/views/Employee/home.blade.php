@@ -22,31 +22,60 @@
                     <div class="links">
                         <ul class="list-unstyled">
                             <li class="active-link"><a href="#myProfile" data-toggle="collapse" aria-expanded="false" class=" text-white dropdown-toggle">
-                            My Profile</a>
+                            <i class="fa fa-user"></i>&ensp; My Profile</a>
                                   <ul class="collapse list-unstyled" id="myProfile">
-                                        <li><a href="{{ url('/Employee/modules/pds') }}" class="text-white">Personal Data Sheet</a></li>
-                                        <li><a href="{{ url('/Employee/modules/info') }}" class="text-white">Employment</a></li>
+                                        <li><a href="{{ url('/Employee/modules/pds') }}" class="text-white">
+                                            <i class="fas fa-address-card"></i>&ensp;
+                                            Personal Data Sheet</a>
+                                        </li>
+                                        <li><a href="{{ url('/Employee/modules/info') }}" class="text-white">
+                                            <i class="fas fa-briefcase"></i>&ensp;
+                                            Employment</a>
+                                        </li>
                                   </ul>
                             </li>
                             <li>
                                 <a href="{{ url('/Employee/modules/payslip') }}" class="text-white sidenav-dropdown">
-                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    <i class="fas fa-money-bill"></i>&ensp;
                                     Payslip</a>
                             </li>
                              <li>
                                 <a href="{{ url('/Employee/modules/payslip') }}" class="text-white sidenav-dropdown">
-                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    <i class="fas fa-business-time"></i>&ensp;
                                     My Schedule</a>
                             </li>
                             <li>
-                                <a href="#" class="text-white sidenav-dropdown">Daily Time Record</a>
+                                <a href="#" class="text-white sidenav-dropdown">
+                                <i class="fas fa-user-clock"></i>&ensp;
+                                Daily Time Record</a>
                             </li>
                             <li>
-                                <a href="#" class="text-white sidenav-dropdown">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <a href="#myRequest" class="text-white sidenav-dropdown dropdown-toggle" data-toggle="collapse" aria-expanded="false">
+                                    <i class="fa fa-envelope"></i>&ensp;
                                     Request</a>
+
+                                    <ul class="collapse list-unstyled" id="myRequest">
+                                        <li><a href="{{ url('/Employee/modules/pds') }}" class="text-white">
+                                            <i class="fas fa-chalkboard-teacher"></i>&ensp;
+                                            Leave</a>
+                                        </li>
+                                        <li><a href="{{ url('/Employee/modules/info') }}" class="text-white">
+                                            <i class="fas fa-share-square"></i>&ensp;
+                                            Schedule/Shift</a>
+                                        </li>
+                                         <li><a href="{{ url('/Employee/modules/info') }}" class="text-white">
+                                            <i class="fas fa-clock"></i>&ensp;
+                                            Overtime/Undertime</a>
+                                        </li>
+                                          <li><a href="{{ url('/Employee/modules/info') }}" class="text-white">
+                                            <i class="fas fa-money-check-alt"></i>&ensp;
+                                            Reimbursing</a>
+                                        </li>
+                                  </ul>
                             </li>
-                            <li><a href="#" class="text-white">About</a></li>
+                            <li><a href="#" class="text-white">
+                                <i class="fas fa-info-circle"></i>&ensp;
+                                About</a></li>
                         </ul>
                     </div>
                 </nav>

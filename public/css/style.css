@@ -77,7 +77,7 @@ body {
 }
 
 #sidebar .sidebar-head {
-  margin: 5px;
+  margin: 3px;
 }
 
 #sidebar img {
@@ -93,8 +93,10 @@ body {
 }
 
 #sidebar ul li {
-  padding: 10px;
+  padding: 8px;
   font-family: Raleway-Regular;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 #sidebar ul li a:hover {

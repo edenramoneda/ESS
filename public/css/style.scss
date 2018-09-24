@@ -29,8 +29,7 @@ body
     .sidebar-head
         {   
 
-            margin:5px;
-
+            margin:3px;
         }
         
         img
@@ -46,8 +45,10 @@ body
         }
         ul li
         {
-            padding:10px;
+            padding:8px;
             font-family: Raleway-Regular;
+            font-size: 14px;
+            line-height:20px;
         }
         ul li a:hover
         {
