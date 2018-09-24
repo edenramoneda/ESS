@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My ESS</title>
+        <title>Aerolink | ESS </title>
+        <link rel="icon" href="{{ asset('image/aerolink.png') }}">
         @extends('/layouts.header')
     </head>
     <body>
