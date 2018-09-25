@@ -5,6 +5,13 @@
         <link rel="icon" href="{{ asset('image/aerolink.png') }}">
         @extends('/layouts.header')
     </head>
+    <style>
+        body
+        {
+           background-color: #f5f5f0!important;
+        }
+
+    </style>
     <body>
       
         <div class="wrapper">
@@ -15,8 +22,8 @@
                         <img src="{{ asset('image/aerolink.png') }}"><br><h5>Aerolink</h5>           
                     </div><br>
                     <div class="sidebar-head text-center hidden-md hidden-sm text-white">
-                        <img src="{{ asset('image/m.jpg') }}"><br>
-                        <h5>Marc Carlos De Leon</h5>
+                        <img src="{{ asset('image/ariel.jpg') }}"><br>
+                        <h5>Ariel Calio Lecias</h5>
                     </div><br><br><br>
                     
                     <div class="links">
@@ -103,7 +110,7 @@
                         <li class="nav-item">
                              <div class="btn-group">
                                     <button type="button" class="btn btn-custom-c dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       <img src="{{ asset('image/m.jpg') }}" height="20" width="20" class="rounded-circle"> Ma. Eden
+                                       <img src="{{ asset('image/ariel.jpg') }}" height="20" width="20" class="rounded-circle"> Ma. Eden
                                     </button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <button class="dropdown-item" type="button">Change Password</button>

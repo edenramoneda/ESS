@@ -64,9 +64,47 @@ body {
 }
 
 .login-form {
+  z-index: 10;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.login-form .card {
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 20px;
   width: 50%;
+}
+
+.login-form .card-header {
+  background-color: #f2f2f2;
+}
+
+.login-form .card-header img {
+  width: 60px;
+  height: 60px;
+  float: left;
+}
+
+.login-form .card-header h2 {
+  float: left;
+  padding: 5px;
+  line-height: 25px;
+  font-family: Raleway-Medium;
+  font-size: 35px;
+}
+
+.login-form .card-header span {
+  font-family: Raleway-Light;
+  font-size: 20px;
+}
+
+.login-form h1, .login-form p {
+  color: #333;
+  font-family: Lato-Regular;
 }
 
 #sidebar {

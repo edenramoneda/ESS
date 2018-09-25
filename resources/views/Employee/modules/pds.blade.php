@@ -12,9 +12,9 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12">
                                     <div class="form-group">
-                                       <center><img src="{{ asset('image/m.jpg') }}" height="120" width="120"></center>
+                                       <center><img src="{{ asset('image/ariel.jpg') }}" height="120" width="120"></center>
                                         <center>
-                                            <h5>Marc Carlos De Leon</h5>
+                                            <h5>Ariel Calio Lecias</h5>
                                             <h6>I.T. Manager</h6>
                                         </center>
                                     </div>
