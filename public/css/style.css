@@ -221,4 +221,10 @@ body {
   float: left;
   font-family: Lato-Medium;
 }
+
+@media screen and (max-width: 800px) {
+  .login-form .card {
+    width: 100%;
+  }
+}
 /*# sourceMappingURL=style.css.map */
