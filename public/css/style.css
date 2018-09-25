@@ -75,8 +75,8 @@ body {
 
 .login-form .card {
   margin: 0 auto;
-  margin-top: 20px;
-  width: 50%;
+  margin-top: 40px;
+  width: 40%;
 }
 
 .login-form .card-header {
@@ -102,7 +102,7 @@ body {
   font-size: 20px;
 }
 
-.login-form h1, .login-form p {
+.login-form h1, .login-form p, .login-form b {
   color: #333;
   font-family: Lato-Regular;
 }
@@ -119,10 +119,11 @@ body {
 }
 
 #sidebar img {
-  height: 105px;
-  width: 105px;
+  height: 100px;
+  width: 100px;
   float: left;
   padding: 5px;
+  border-radius: 50%;
 }
 
 #sidebar .active-link {
@@ -172,7 +173,6 @@ body {
   background-color: #00b359;
   color: #fff;
   float: right;
-  display: inline-block;
 }
 
 .content {

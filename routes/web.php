@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('/Employee', function () {
     return view("Employee.home");
 });
+Route::get('/forgot-password', 'forgot_password@fp');
+
 //Employee Profile
 Route::get('/Employee/modules/info','EmployeeController@info');
 Route::get('/Employee/modules/pds', 'EmployeeController@pds');

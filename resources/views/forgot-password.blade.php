@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Aerolink | ESS Login</title>
+        <title>Aerolink | Forgot Password</title>
         <link rel="icon" href="{{ asset('image/aerolink.png') }}">   
          @extends('layouts.page')       
     </head>
@@ -19,25 +19,22 @@
                                 
                             </div>
                             <div class="card-body">
-                                 <center><h5>Welcome to our ESS!</h5></center>
-                                <p>Kindly Please enter your provided username and password and press login button.
-                                    If you need assistance with logging in. Please contact your Human Resources
+                                 <center><h5>Forgot Password!</h5></center>
+                                <p>Please enter your Email Address below and wait for the Message regarding to your 
+                                    forgot password.<br><br>
+                                    <b>Note: </b> Please enter the Email Address you used when you applied
+                                    on the company. If that Email Address was lost. Kindly please contact your Human Resource 
                                     Department. Thank You!
                                 </p>
                                 <form action="">
                                     <div class="form-group">
-                                        <label for="Username">Username</label>
+                                        <label for="Username">Email</label>
                                         <input type="text" class="form-control">
-                                    </div>  
-
-                                    <div class="form-group">
-                                        <label for="Password">Password</label>
-                                        <input type="password" class="form-control">
                                     </div>
 
                                     <div class="form-group text-center">
-                                        <button type="Submit" class="btn btn-success full-width">Login</button><br>
-                                        <a href="{{ url('forgot-password')}}">Forgot Password?</a>
+                                        <button type="Submit" class="btn btn-success full-width">Submit</button><br>
+                                        <a href="{{ url('/')}}">Back to Login Page</a>
                                     </div>  
                                 </form>
                             </div>

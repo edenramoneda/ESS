@@ -79,7 +79,7 @@
                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label>Contact Number</label>
-                                        <input type="number" class="form-control" name="contact_no">
+                                        <input type="text" class="form-control" name="contact_no">
                                     </div>
                                 </div>
                         </div>

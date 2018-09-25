@@ -21,12 +21,13 @@ body
     left: 0; 
     bottom: 0; 
     right: 0;
-    
+
     .card
     {   
         margin:0 auto;
-        margin-top:20px;
-        width:50%;
+        margin-top:40px;
+        width:40%;
+        
     }
     .card-header
     {
@@ -50,7 +51,7 @@ body
             font-size: 20px;
         }
     }
-    h1, p
+    h1, p, b
     {
         color:#333;
         font-family: Lato-Regular;
@@ -72,10 +73,11 @@ body
         
         img
         {
-            height: 105px;
-            width: 105px;
+            height:100px;
+            width:100px;
             float: left;
             padding:5px;
+            border-radius: 50%;
         }
         .active-link
         {
@@ -128,7 +130,6 @@ body
         background-color: #00b359;
         color: #fff;
         float: right;
-        display: inline-block;
     }
 }
 
