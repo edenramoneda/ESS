@@ -14,8 +14,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $table = "ess_users";
     protected $fillable = [
-        'name', 'email', 'password',
+        'username','employee_code','password','remember_token',
     ];
 
     /**

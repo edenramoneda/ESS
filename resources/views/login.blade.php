@@ -24,20 +24,44 @@
                                     If you need assistance with logging in. Please contact your Human Resources
                                     Department. Thank You!
                                 </p>
-                                <form action="">
+
+                                @if(isset(Auth::user()->username))
+                                    <script>window.location = "/successlogin"</script>
+                                @endif
+
+
+                                @if($message = Session::get('error'))
+                                    <div class="alert alert-danger alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @endif
+
+                               {{-- displays validation --}}
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </div>
+                                @endif
+
+
+                                <form action="{{ url('/checklogin')}}" method="post">
+                                    {{ csrf_field() }}
                                     <div class="form-group">
-                                        <label for="Username">Username</label>
-                                        <input type="text" class="form-control">
+                                        <label>Username</label>
+                                        <input type="username" class="form-control" name="username">
                                     </div>  
 
                                     <div class="form-group">
-                                        <label for="Password">Password</label>
-                                        <input type="password" class="form-control">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="password">
                                     </div>
 
                                     <div class="form-group text-center">
                                         <button type="Submit" class="btn btn-success full-width">Login</button><br>
-                                        <a href="{{ url('forgot-password')}}">Forgot Password?</a>
+                                        <a href="{{ url('/forgot-password')}}">Forgot Password?</a>
                                     </div>  
                                 </form>
                             </div>

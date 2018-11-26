@@ -11,17 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view("login");
-});
-
-Route::get('/Employee', function () {
-    return view("Employee.home");
-});
+Route::get('/', 'LoginController@index');
+Route::post('/checklogin', 'LoginController@checkLogin');
+Route::get('/Employee', 'LoginController@successLogin');
+Route::get('/logout' , 'LoginController@logout');
+Route::get('Employee/home', 'EmployeeController@index');
 Route::get('/forgot-password', 'forgot_password@fp');
 
+Route::group(['prefix' => '/Employee/modules/'],function(){
+    Route::get('dashboard','Dashboard@index');
+    Route::get('info','EmployeeController@info');
+    Route::get('pds','EmployeeController@pds');
+    Route::get('schedule','EmployeeSchedule@index');
+    Route::get('dtr','EmployeeDTR@index');
+    Route::get('payslip','payslip@emp_payslip');
+});
+//Employee Dashboard
+//Route::get('/Employee/modules/dashboard', 'Dashboard@index');
 //Employee Profile
-Route::get('/Employee/modules/info','EmployeeController@info');
-Route::get('/Employee/modules/pds', 'EmployeeController@pds');
+//Route::get('/Employee/modules/info','EmployeeController@info');
+//Route::get('/Employee/modules/pds', 'EmployeeController@pds');
 //Employee Payslip
-Route::get('Employee/modules/payslip', 'payslip@emp_payslip');
+//Route::get('Employee/modules/payslip', 'payslip@emp_payslip');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -26,15 +26,16 @@
                                     on the company. If that Email Address was lost. Kindly please contact your Human Resource 
                                     Department. Thank You!
                                 </p>
-                                <form action="">
+                                <form action="" method="post">
+                                    {{ csrf_field() }}
                                     <div class="form-group">
                                         <label for="Username">Email</label>
                                         <input type="text" class="form-control">
                                     </div>
 
                                     <div class="form-group text-center">
-                                        <button type="Submit" class="btn btn-success full-width">Submit</button><br>
-                                        <a href="{{ url('/')}}">Back to Login Page</a>
+                                        <input type="Submit" class="btn btn-success full-width" value="Submit"><br>
+                                        <a href="{{ url('/') }}">Back to Login Page</a>
                                     </div>  
                                 </form>
                             </div>

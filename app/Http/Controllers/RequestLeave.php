@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Auth;
 use App\Employee_Profiles;
-class payslip extends Controller
+use Auth;
+
+class RequestLeave extends Controller
 {
-    public function emp_payslip()
+    public function index()
     {
         $Employee_Profiles = Employee_Profiles::where('employee_code', Auth::user()->employee_code)->get();
-        return view('Employee/modules/payslip', compact('Employee_Profiles'));
+        return view('Employee/modules/request-leave', compact('Employee_Profiles'));
     }
 }

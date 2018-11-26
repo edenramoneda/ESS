@@ -45,7 +45,7 @@
                     </div>
                      <div class="card-body" style="overflow-y:scroll">
                         <b>Employee No:</b><span>120</span><br>
-                        <b>Name:</b> <span>Marc Carlos De Leon</span><br>
+                        <b>Name:</b> <span>Ariel Calio Lecias</span><br>
                         <b>Department:</b> <span>I.T.</span><br>
                         <b>Section:</b> <span>Maintenance</span><br>
                         <b>Position:</b> <span>I.T. Manager</span><br>

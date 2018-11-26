@@ -108,86 +108,179 @@ body {
 }
 
 #sidebar {
-  background-color: #343232;
-  height: 100vh;
+  height: 100%;
+  width: 0;
   position: fixed;
-  width: 240px;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  background-color: #323232;
+  overflow-x: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding-top: 10px;
 }
 
-#sidebar .sidebar-head {
-  margin: 3px;
+#sidebar .banner {
+  padding-bottom: 10px;
+  white-space: nowrap;
 }
 
-#sidebar img {
-  height: 100px;
-  width: 100px;
-  float: left;
-  padding: 5px;
-  border-radius: 50%;
+#sidebar .banner .logo {
+  display: inline-block;
+  padding-left: 3px;
+  margin-top: 0;
 }
 
-#sidebar .active-link {
-  background: -webkit-gradient(linear, left top, right top, from(#11998e), to(#38ef7d));
-  background: linear-gradient(to right, #11998e, #38ef7d);
+#sidebar .banner .logo img {
+  height: 50px;
+  width: 50px;
 }
 
-#sidebar ul li {
-  padding: 8px;
-  font-family: Raleway-Regular;
-  font-size: 14px;
-  line-height: 20px;
+#sidebar .banner .logo-name {
+  font-family: Raleway-Bold;
+  display: inline-block;
+  padding-left: 3px;
 }
 
-#sidebar ul li a:hover {
+#sidebar .banner .logo-name h3 {
+  font-size: 35px;
+}
+
+#sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 28px;
+}
+
+#sidebar .closebtn:hover {
   text-decoration: none;
 }
 
-#sidebar .banner h5 {
-  font-family: Raleway-Bold;
-  font-size: 36px;
-}
-
-#sidebar .banner img {
-  height: 80px;
-  width: 75px;
-}
-
-#sidebar h5 {
+#sidebar .Profile {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-bottom: 20px;
+  border-top: 1px solid #4b545c;
+  border-bottom: 1px solid #4b545c;
   font-family: Raleway-Medium;
-  display: inline;
 }
 
-#sidebar .sidenav-dropdown {
+#sidebar .Profile .image {
   display: block;
+}
+
+#sidebar .Profile .image img {
+  border: 2px solid #fff;
+}
+
+#sidebar .Profile .p-info {
+  display: inline-block;
+}
+
+#sidebar .Profile .p-info h6 {
+  font-size: 14px;
+}
+
+#sidebar .li-navs li a {
+  margin-left: 5px;
+  margin-right: 5px;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+#sidebar .li-navs li a:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#0f8a80), to(#11d45c));
+  background: linear-gradient(to right, #0f8a80, #11d45c);
+  border-radius: 8px;
+}
+
+#sidebar .custom-caret {
+  font-size: 21px;
+  float: right;
+  right: 10px;
+  margin-top: -5px;
+  display: inline;
+  position: absolute;
+}
+
+#myProfile .sub-nav, #myRequest .sub-nav {
+  padding-left: 10px;
+}
+
+#sidebar.active {
+  left: 0px;
+}
+
+.toggle-btn {
+  position: absolute;
+  left: 30px;
+  top: 15px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.toggle-btn span {
+  display: block;
+  width: 23px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
 }
 
 .ess-navigation {
   padding: 8px;
-  background: -webkit-gradient(linear, left top, right top, from(#11998e), to(#38ef7d));
-  background: linear-gradient(to right, #11998e, #38ef7d);
-  margin-left: 240px;
-  height: 70px;
+  background: -webkit-gradient(linear, left top, right top, from(#0f8a80), to(#11d45c));
+  background: linear-gradient(to right, #0f8a80, #11d45c);
+  height: 60px;
 }
 
 .ess-navigation .btn-custom-c {
-  background-color: #00b359;
+  background-color: #46d267;
   color: #fff;
   float: right;
+  -webkit-box-shadow: 2px 2px 15px 0 rgba(50, 50, 50, 0.19), 2px 2px 15px 0 rgba(50, 50, 50, 0.19);
+          box-shadow: 2px 2px 15px 0 rgba(50, 50, 50, 0.19), 2px 2px 15px 0 rgba(50, 50, 50, 0.19);
 }
 
-.content {
-  margin-left: 250px;
+.ess-navigation li {
+  list-style-type: none;
+}
+
+.overlay3 {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+  z-index: 10;
 }
 
 .container {
   margin: 0 auto;
   width: 80%;
-  margin-left: 250px;
   margin-bottom: 30px;
+  z-index: 1;
 }
 
 .card {
   border: 1px solid #adad85 !important;
+}
+
+.dashboard .card-header {
+  line-height: 10px;
+  background-color: #00b359 !important;
+}
+
+.dashboard .card-body b {
+  font-family: Raleway-Regular !important;
 }
 
 .employee-info {
@@ -209,7 +302,7 @@ body {
 
 .employee-info .card-body {
   padding: 15px;
-  line-height: 30px;
+  line-height: 25px;
 }
 
 .employee-info .card-body span {
@@ -220,6 +313,63 @@ body {
 .employee-info .card-body b {
   float: left;
   font-family: Lato-Medium;
+}
+
+.schedule .card-header {
+  background-color: #ebebe0;
+}
+
+.schedule .card-header b {
+  float: left;
+  font-family: Lato-Medium;
+  font-size: 20px;
+}
+
+.schedule .card-header button {
+  background-color: #00994d;
+  float: right;
+  color: #fff;
+  margin: 0 5px;
+}
+
+.schedule .card-body {
+  padding: 15px;
+  line-height: 30px;
+}
+
+.schedule .card-body span {
+  float: right;
+  font-family: Raleway-Regular;
+}
+
+.schedule .card-body b {
+  float: left;
+  font-family: Lato-Medium;
+}
+
+.dtr {
+  font-family: Raleway-Medium;
+}
+
+.dtr table, .dtr th, .dtr td {
+  border: 2px solid #d6d6c2;
+}
+
+.dtr table th {
+  background-color: #00b359;
+}
+
+.dtr table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.request-leave {
+  font-family: Raleway-Medium;
+}
+
+.request-leave .card-header {
+  background-color: #f5f5f0;
+  font-family: Raleway-Bold;
 }
 
 @media screen and (max-width: 800px) {
