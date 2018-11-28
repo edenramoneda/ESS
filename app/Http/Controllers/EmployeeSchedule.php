@@ -26,6 +26,6 @@ class EmployeeSchedule extends Controller
         $calendar_details = Calendar::addEvents( $schedule_list);
         */
         $Employee_Profiles = Employee_Profiles::where('employee_code', Auth::user()->employee_code)->get();
-        return view('Employee/modules/schedule', compact('Employee_Profiles'),compact('calendar_details'));
+        return view('Employee/modules/schedule', compact('Employee_Profiles'));
     }
 }

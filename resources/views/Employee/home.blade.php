@@ -52,7 +52,7 @@
                     <a class="nav-link text-white" href="{{ url('/Employee/modules/payslip') }}">Payslip</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link text-white" href="{ url('/Employee/modules/schedule') }}">Schedule</a>
+                    <a class="nav-link text-white" href="{{ url('/Employee/modules/schedule') }}">Schedule</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link text-white" href="{{ url('/Employee/modules/dtr') }}">Daily Time Record</a>
@@ -61,7 +61,7 @@
                     <a class="nav-link text-white" href="#myRequest" data-toggle="collapse" aria-expanded="false" class="text-white dropdown-toggle">
                             Request <span class="custom-caret">&#9662;</span></a>
                                   <ul class="collapse list-unstyled" id="myRequest">
-                                    <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/request-leave') }}" class="text-white">
+                                    <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/leave') }}" class="text-white">
                                         Leave</a>
                                     </li>
                                     <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/info') }}" class="text-white">

@@ -25,6 +25,8 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::get('schedule','EmployeeSchedule@index');
     Route::get('dtr','EmployeeDTR@index');
     Route::get('payslip','payslip@emp_payslip');
+    //for request
+    Route::get('leave' , 'RequestLeave@index');
 });
 //Employee Dashboard
 //Route::get('/Employee/modules/dashboard', 'Dashboard@index');

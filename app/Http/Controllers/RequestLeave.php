@@ -10,6 +10,6 @@ class RequestLeave extends Controller
     public function index()
     {
         $Employee_Profiles = Employee_Profiles::where('employee_code', Auth::user()->employee_code)->get();
-        return view('Employee/modules/request-leave', compact('Employee_Profiles'));
+        return view('Employee/modules/leave', compact('Employee_Profiles'));
     }
 }
