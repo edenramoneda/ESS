@@ -27,6 +27,9 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::get('payslip','payslip@emp_payslip');
     //for request
     Route::get('leave' , 'RequestLeave@index');
+    Route::get('shift' , 'RequestSchedule@index');
+    Route::get('OverUnderTime' , 'Over_UnderTime@index');
+    Route::get('Reimbursement' , 'Reimbursement@index');
 });
 //Employee Dashboard
 //Route::get('/Employee/modules/dashboard', 'Dashboard@index');

@@ -64,14 +64,14 @@
                                     <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/leave') }}" class="text-white">
                                         Leave</a>
                                     </li>
-                                    <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/info') }}" class="text-white">
+                                    <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/shift') }}" class="text-white">
                                         Schedule/Shift</a>
                                     </li>
-                                    <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/info') }}" class="text-white">
+                                    <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/OverUnderTime') }}" class="text-white">
                                         Overtime/Undertime</a>
                                     </li>
-                                    <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/info') }}" class="text-white">
-                                        Reimbursing</a>
+                                    <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/Reimbursement') }}" class="text-white">
+                                        Reimbursement</a>
                                     </li>
                                   </ul>
                     </li>
