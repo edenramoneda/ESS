@@ -1,49 +1,73 @@
-@include('Employee.home')
+
+@extends('layouts.test')
+
+@section('stylesheets')
+            
+<link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
+        <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
+        <meta charset="utf-8">
+@endsection
+
+@section('content')
 <div id="overlay" style="width: 100%; opacity: 0.9;"></div>
- <div class="container dashboard">
+ <div class="container-fluid dashboard">
         <div class="row">
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="card employee-info mt-5">
-                    <div class="card-header text-white">
-                        Type of Leave
-                    </div>
-                     <div class="card-body">
-                         <b>Vacation Leave:</b> <span>15</span><br>
-                         <b>Sick Leave:</b> <span>15</span><br>
-                    </div>
-                </div>
-            </div>
-             <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="card employee-info mt-5">
+             <div class="col-sm-4 col-md-3 col-lg-3">
+                <div class="card mt-5">
                     <div class="card-header text-white">
                         Remaining Leaves
                     </div>
                      <div class="card-body">
-                        <b>Vacation Leave:</b> <span>15</span><br>
-                        <b>Sick Leave:</b> <span>15</span><br>
+                         <strong>15</strong> <span>Vacation Leave</span><br>
+                         <strong>15</strong> <span>Sick Leave</span><br>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="card employee-info mt-5">
+            <div class="col-sm-4 col-md-3 col-lg-3">
+                <div class="card mt-5">
                     <div class="card-header text-white">
                         Leave Requests Status
                     </div>
                      <div class="card-body">
-                     <b>1</b> <span>Approved</span><br>
-                     <b>1</b> <span>Denied</span><br>
+                     <strong>1</strong> <span>Approved</span><br>
+                     <strong>1</strong> <span>Denied</span><br>
                     </div>
                 </div>
             </div>  
             <div class="col-sm-3 col-md-3 col-lg-3">
-                <div class="card employee-info mt-5">
+                <div class="card mt-5">
                     <div class="card-header text-white">
                         Leave Requisitions
                     </div>
                      <div class="card-body">
-                     <center>1</center>
+                     <strong>3 Days</strong> <span>Vacation Leave</span><br>
+                     <strong>2 Days</strong> <span>Sick Leave</span><br>
                     </div>
                 </div>
-            </div>            
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="card mt-5 announcement">
+                    <div class="card-header text-white">
+                        <strong>ANOUNCEMENT</strong>
+                    </div>
+                     <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">Holiday Declaration <br>Jan. 2-4 2019</li>
+                            <li class="list-group-item">Employee of The Month<br>
+                                Ariel Calio Lecias Jr. from IT Department
+                            </li>
+                        </ul>                    
+                    </div>
+                </div>
+            </div>                   
         </div>   
     </div>
+
+@endsection
+
+@section('scripts')
+        <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+@endsection

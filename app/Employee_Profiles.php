@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\EmployeeJobs;
 class Employee_Profiles extends Model
 {
     protected $table = "aerolink.tbl_hr4_employee_profiles";
@@ -17,6 +17,6 @@ class Employee_Profiles extends Model
         'height','weight',
         'contact_number','employment_contract',
     ];
-
+    
     protected $hidden = [];
 }

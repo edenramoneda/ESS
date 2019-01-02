@@ -6,6 +6,8 @@ use Auth;
 use DB;
 use Illuminate\Http\Request;
 use App\Employee_Profiles;
+use App\EmployeeJobs;
+use ACL;
 
 class LoginController extends Controller
 {
@@ -28,7 +30,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($user_data))
         {
-            return redirect('/Employee');
+            return redirect('/Employee/modules/dashboard');
         }else
         {
             return back()->with('error' , 'Incorrect Username or Password');
@@ -37,11 +39,25 @@ class LoginController extends Controller
 
     function successLogin()
     {
-        $Employee_Profiles = DB::table('aerolink.tbl_hr4_employee_profiles')
-        ->where('employee_code', Auth::user()->employee_code)
-        ->get();
-        return view('Employee/home', compact('Employee_Profiles'));
+        if(!Auth::user()){
+            return redirect()->route('empLog');
+        }
 
+        $Employee_Profiles = Employee_Profiles::
+        join('aerolink.tbl_hr4_employee_jobs', 'aerolink.tbl_hr4_employee_profiles.employee_code', '=', 'aerolink.tbl_hr4_employee_jobs.employee_code')
+        ->join('aerolink.tbl_hr4_jobs', 'aerolink.tbl_hr4_employee_jobs.job_id', '=', 'aerolink.tbl_hr4_jobs.job_id')
+        ->join('aerolink.tbl_hr4_job_classifications', 'aerolink.tbl_hr4_jobs.classification_id', '=', 'aerolink.tbl_hr4_job_classifications.id')
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
+        
+        ACL::newACL($Employee_Profiles);
+    
+        return view('Employee/modules/dashboard', compact('Employee_Profiles'));
+   //  $ep = new Employee_Profiles();
+    //   dd($ep->employeeJobs());
+      //  $ep = Employee_Profiles::with('employeeJobs')->get();
+     //   dd($Employee_Profiles);
+      //  echo $Employee_Profiles;
+      //  dd(EmployeeJobs::with('jobs')->get());
     }
     function logout()
     {

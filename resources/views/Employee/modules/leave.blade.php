@@ -1,5 +1,15 @@
-    
-    @include('Employee.home')
+
+@extends('layouts.test')
+
+@section('stylesheets')
+            
+<link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
+        <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
+        <meta charset="utf-8">
+@endsection
+
+@section('content')
 
     <div class="container mt-5 request-leave">
         <div class="row">
@@ -181,3 +191,10 @@
             </div>
         </div>
     </div>
+    @endsection
+
+@section('scripts')
+        <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+@endsection

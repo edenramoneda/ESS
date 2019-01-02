@@ -56,7 +56,7 @@
 body {
   padding: 0;
   margin: 0;
-  overflow-y: scroll;
+  background-color: #f1f1f1;
 }
 
 .full-width {
@@ -271,30 +271,59 @@ body {
 }
 
 .card {
-  border: 1px solid #adad85 !important;
+  border: none !important;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.dashboard {
+  font-family: Lato-Regular;
 }
 
 .dashboard .card-header {
   line-height: 10px;
-  background-color: #00b359 !important;
+  background-color: #00b359;
 }
 
-.dashboard .card-body b {
-  font-family: Raleway-Regular !important;
+.dashboard .card-body span {
+  float: right;
+}
+
+.dashboard .card-body strong {
+  color: #00994d;
+}
+
+.dashboard .announcement .card-header {
+  background-color: transparent;
+  color: #00994d !important;
+  padding: 20px;
+  border-bottom-style: solid;
+  border-bottom-color: #00994d;
+  border-bottom-width: 2px;
+}
+
+.dashboard .announcement .card-body {
+  padding: 0;
 }
 
 .employee-info {
   margin: auto auto;
+  overflow-y: scroll;
+  height: 90vh;
 }
 
 .employee-info .card-header {
-  background-color: #00cc66;
+  background: -webkit-gradient(linear, left top, right top, from(#0f8a80), to(#11d45c));
+  background: linear-gradient(to right, #0f8a80, #11d45c);
   font-family: Raleway-Medium;
-  font-size: 18px;
+  font-size: 16px;
+  height: 30px;
+  padding: 5px;
+  white-space: nowrap;
 }
 
 .employee-info .card-header button {
-  background-color: #00994d;
+  background-color: #59b986;
   float: right;
   color: #fff;
   margin: 0 5px;
@@ -302,7 +331,7 @@ body {
 
 .employee-info .card-body {
   padding: 15px;
-  line-height: 25px;
+  line-height: 20px;
 }
 
 .employee-info .card-body span {
@@ -313,6 +342,40 @@ body {
 .employee-info .card-body b {
   float: left;
   font-family: Lato-Medium;
+}
+
+.employee-info .cfg {
+  line-height: -5px;
+  border: none !important;
+}
+
+.employee-info .pds-button {
+  position: fixed;
+  z-index: 10;
+  bottom: 25px;
+  right: 50px;
+}
+
+.employee-info .pds-button .btn {
+  background-color: #00e673;
+  color: #fff;
+  font-family: Raleway-Bold;
+  border: 1px solid #00994d;
+  -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.payslip {
+  font-family: Lato-Regular;
+}
+
+.payslip .card-header {
+  line-height: 10px;
+  background-color: #00b359;
+}
+
+.payslip .card-body span {
+  right: 10px;
 }
 
 .schedule .card-header {

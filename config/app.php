@@ -209,6 +209,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Calendar' => MaddHatter\LaravelFullCalendar\Facades\Calendar::class,
+        'ACL' => App\Http\Controllers\ACL::class,
     ],
 
 ];

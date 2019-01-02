@@ -11,15 +11,16 @@
 |
 */
 
-Route::get('/', 'LoginController@index');
+Route::get('/', 'LoginController@index')->name('empLog');
+Route::get('/test', 'Test@sample');
 Route::post('/checklogin', 'LoginController@checkLogin');
-Route::get('/Employee', 'LoginController@successLogin');
+//Route::get('/Employee', 'LoginController@successLogin');
 Route::get('/logout' , 'LoginController@logout');
-Route::get('Employee/home', 'EmployeeController@index');
+//Route::get('Employee/home', 'EmployeeController@index');
 Route::get('/forgot-password', 'forgot_password@fp');
 
 Route::group(['prefix' => '/Employee/modules/'],function(){
-    Route::get('dashboard','Dashboard@index');
+    Route::get('dashboard','LoginController@successLogin');
     Route::get('info','EmployeeController@info');
     Route::get('pds','EmployeeController@pds');
     Route::get('schedule','EmployeeSchedule@index');

@@ -7,6 +7,10 @@ use Auth;
 
 class Dashboard extends Controller
 {
+    public function __construct(){
+        $this->middleware('restrict');
+    }
+
     public function index()
     {
         $Employee_Profiles = Employee_Profiles::where('employee_code', Auth::user()->employee_code)->get();

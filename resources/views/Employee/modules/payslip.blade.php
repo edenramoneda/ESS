@@ -1,9 +1,21 @@
-    @include('Employee.home')
+
+@extends('layouts.test')
+
+@section('stylesheets')
+            
+<link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
+        <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
+        <meta charset="utf-8">
+@endsection
+
+@section('content')
+
 
     <div class="container">
         <div class="row">
             <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="card employee-info mt-5 payslip">
+                <div class="card mt-5 payslip">
                     <div class="card-header text-white">
                         Payment
                     </div>
@@ -13,7 +25,7 @@
                 </div>
             </div>
              <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="card employee-info mt-5">
+                <div class="card mt-5 payslip">
                     <div class="card-header text-white">
                         Benefits
                     </div>
@@ -23,7 +35,7 @@
                 </div>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="card employee-info mt-5">
+                <div class="card mt-5 payslip">
                     <div class="card-header text-white">
                         Deduction
                     </div>
@@ -36,7 +48,7 @@
         </div>
         <div class="row">
            <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="card employee-info mt-5 payslip">
+                <div class="card mt-5 payslip">
                     <div class="card-header text-white">
                         Payslip Information 
                             <button type="button" class="btn">Download PDF</button>&ensp;
@@ -59,3 +71,10 @@
             </div>
         </div>    
     </div>
+    @endsection
+
+@section('scripts')
+        <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+@endsection

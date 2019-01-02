@@ -1,6 +1,6 @@
 
         
-        <link rel="stylesheet" href="{{ url('fonts/fontawesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
