@@ -21,10 +21,8 @@ Route::get('/forgot-password', 'forgot_password@fp');
 
 Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::get('dashboard','LoginController@successLogin');
-    Route::get('info','EmployeeController@info');
     Route::get('pds','EmployeeController@pds');
     Route::get('schedule','EmployeeSchedule@index');
-    Route::get('dtr','EmployeeDTR@index');
     Route::get('payslip','payslip@emp_payslip');
     //for request
     Route::get('leave' , 'RequestLeave@index');

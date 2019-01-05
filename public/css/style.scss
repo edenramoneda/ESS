@@ -219,7 +219,10 @@ body
     font-family: Lato-Regular;
     .card-header{
         line-height: 10px;
-        background-color: #00b359;
+        color: #008040!important;
+        border-bottom-style: solid;
+        border-bottom-color: #00994d;
+        border-bottom-width: 2px;
     }
     .card-body{
         span{
@@ -249,11 +252,11 @@ body
     margin:auto auto;
     overflow-y:scroll;
     height:90vh;
+    font-family: Lato-Regular;
 
     .card-header
     {
         background:  linear-gradient(to right, #0f8a80, #11d45c);
-        font-family: Raleway-Medium;
         font-size: 16px;
         height:30px;
         padding:5px;
@@ -273,7 +276,6 @@ body
         span
         {
             float:right;
-            font-family: Raleway-Regular;
         }
         b
         {
@@ -307,51 +309,47 @@ body
     .card-header{
         line-height: 10px;
         background-color: #00b359;
+
+        .hs{
+            float: left;
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        .cb{
+            float: right;
+            margin-left:10px;
+            background-color:  #008040;
+            color: #fff;
+        }
     }
     .card-body{
+        line-height: 25px;
         span{
-            right:10px;
+            float:right;
         }
     }
 }
-.schedule
+#Schedule
 {
-    .card-header
-    {
-        background-color: #ebebe0;
-
-        b
-        {
-            float: left;
-            font-family: Lato-Medium;
-            font-size: 20px;
+    font-family: Lato-Regular;
+    .schedule-card{
+        .card-header{
+            color: #008040!important;
         }
-        button
-        {
-            background-color:#00994d;
-            float: right;
-            color: #fff;
-            margin:0 5px;
+        .card-body{
+            padding:0;
+            .day{
+                color: #008040;
+            }
+            .sched{
+                float: right;
+            }
         }
     }
-    .card-body
-    {
-        padding:15px;
-        line-height:30px;
-        span
-        {
-            float:right;
-            font-family: Raleway-Regular;
-        }
-        b
-        {
-            float: left;
-            font-family: Lato-Medium;
-
-        }
-
+    th{
+        border:1px solid #dee2e6;
     }
-
 }
 .dtr
 {
@@ -368,12 +366,16 @@ body
         background-color: #fff;
     }
 }
-.request-leave
+#request-leave
 {
-    font-family: Raleway-Medium;
+    font-family: Lato-Regular;
     .card-header
     {
-        background-color: #f5f5f0;
+        color: #008040!important;
+        background-color: #e6ffee;
+        border-bottom-style: solid;
+        border-bottom-color: #00994d;
+        border-bottom-width: 2px;
         font-family: Raleway-Bold;
     }
 }

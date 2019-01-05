@@ -282,7 +282,10 @@ body {
 
 .dashboard .card-header {
   line-height: 10px;
-  background-color: #00b359;
+  color: #008040 !important;
+  border-bottom-style: solid;
+  border-bottom-color: #00994d;
+  border-bottom-width: 2px;
 }
 
 .dashboard .card-body span {
@@ -310,12 +313,12 @@ body {
   margin: auto auto;
   overflow-y: scroll;
   height: 90vh;
+  font-family: Lato-Regular;
 }
 
 .employee-info .card-header {
   background: -webkit-gradient(linear, left top, right top, from(#0f8a80), to(#11d45c));
   background: linear-gradient(to right, #0f8a80, #11d45c);
-  font-family: Raleway-Medium;
   font-size: 16px;
   height: 30px;
   padding: 5px;
@@ -336,7 +339,6 @@ body {
 
 .employee-info .card-body span {
   float: right;
-  font-family: Raleway-Regular;
 }
 
 .employee-info .card-body b {
@@ -374,40 +376,49 @@ body {
   background-color: #00b359;
 }
 
-.payslip .card-body span {
-  right: 10px;
-}
-
-.schedule .card-header {
-  background-color: #ebebe0;
-}
-
-.schedule .card-header b {
+.payslip .card-header .hs {
   float: left;
-  font-family: Lato-Medium;
   font-size: 20px;
-}
-
-.schedule .card-header button {
-  background-color: #00994d;
-  float: right;
-  color: #fff;
-  margin: 0 5px;
-}
-
-.schedule .card-body {
-  padding: 15px;
   line-height: 30px;
 }
 
-.schedule .card-body span {
+.payslip .card-header .cb {
   float: right;
-  font-family: Raleway-Regular;
+  margin-left: 10px;
+  background-color: #008040;
+  color: #fff;
 }
 
-.schedule .card-body b {
-  float: left;
-  font-family: Lato-Medium;
+.payslip .card-body {
+  line-height: 25px;
+}
+
+.payslip .card-body span {
+  float: right;
+}
+
+#Schedule {
+  font-family: Lato-Regular;
+}
+
+#Schedule .schedule-card .card-header {
+  color: #008040 !important;
+}
+
+#Schedule .schedule-card .card-body {
+  padding: 0;
+}
+
+#Schedule .schedule-card .card-body .day {
+  color: #008040;
+}
+
+#Schedule .schedule-card .card-body .sched {
+  float: right;
+}
+
+#Schedule th {
+  border: 1px solid #dee2e6;
 }
 
 .dtr {
@@ -426,12 +437,16 @@ body {
   background-color: #fff;
 }
 
-.request-leave {
-  font-family: Raleway-Medium;
+#request-leave {
+  font-family: Lato-Regular;
 }
 
-.request-leave .card-header {
-  background-color: #f5f5f0;
+#request-leave .card-header {
+  color: #008040 !important;
+  background-color: #e6ffee;
+  border-bottom-style: solid;
+  border-bottom-color: #00994d;
+  border-bottom-width: 2px;
   font-family: Raleway-Bold;
 }
 

@@ -11,11 +11,11 @@ class EmployeeController extends Controller
     public function __construct(){
         $this->middleware('restrict');
     }
-    public function info()
+   /* public function info()
     {
         $Employee_Profiles = Employee_Profiles::where('employee_code', Auth::user()->employee_code)->get();
         return view('Employee/modules/info', compact('Employee_Profiles'));
-    }
+    }*/
     public function pds()
     {
         $Employee_Profiles = Employee_Profiles::

@@ -12,9 +12,10 @@
 @section('content')
 <div id="overlay" style="width: 100%; opacity: 0.9;"></div>
  <div class="container-fluid dashboard">
+        <h2 class="mt-2">Dashboard</h2><hr>
         <div class="row">
              <div class="col-sm-4 col-md-3 col-lg-3">
-                <div class="card mt-5">
+                <div class="card mt-2">
                     <div class="card-header text-white">
                         Remaining Leaves
                     </div>
@@ -25,7 +26,7 @@
                 </div>
             </div>
             <div class="col-sm-4 col-md-3 col-lg-3">
-                <div class="card mt-5">
+                <div class="card mt-2">
                     <div class="card-header text-white">
                         Leave Requests Status
                     </div>
@@ -36,7 +37,7 @@
                 </div>
             </div>  
             <div class="col-sm-3 col-md-3 col-lg-3">
-                <div class="card mt-5">
+                <div class="card mt-2">
                     <div class="card-header text-white">
                         Leave Requisitions
                     </div>
@@ -47,7 +48,7 @@
                 </div>
             </div>
             <div class="col-sm-3 col-md-3 col-lg-3">
-                <div class="card mt-5 announcement">
+                <div class="card mt-2 announcement">
                     <div class="card-header text-white">
                         <strong>ANOUNCEMENT</strong>
                     </div>

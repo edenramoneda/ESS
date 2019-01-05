@@ -11,32 +11,112 @@
 
 @section('content')
 
-<div class="container">
-        <div class="row mt-5">
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                      <div class="form-group">
-                        <select class="form-control" id="sel1" name="sellist1">
-                            <option>January 2018</option>
-                            <option>February 2018</option>
-                            <option>March 2018</option>
-                            <option>April 2018</option>
-                            <option>May 2018</option>
-                            <option>June 2018</option>
-                            <option>July 2018</option>
-                            <option>August 2018</option>
-                            <option>September 2018</option>
-                            <option>October 2018</option>
-                            <option>November 2018</option>
-                            <option>December 2018</option>
-                        </select>
-                    </div>
-            </div>
-        </div>
-
+<div class="container-fluid mt-3" id="Schedule">
+        <h3>Schedule</h3><hr>
         <div class="row">
-           <div class="col-sm-12 col-md-12 col-lg-12">
-              
+           <div class="col-sm-12 col-md-9 col-lg-9">
+                <div class="card mt-2 schedule-card">
+                        <div class="card-header">
+                                <strong>DAILY TIME RECORD</strong>
+                        </div>
+                        <div class="card-body">
+                        <table class="table">
+                                <thead>
+                                <tr>
+                                        <th colspan="4">Date</th>
+                                        <th colspan="4">AM</th>
+                                        <th colspan="4">PM</th>
+                                        <th colspan="4">Totals</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                        <th colspan="4"></th>
+                                        <th colspan="2">In</th>
+                                        <th colspan="2">Out</th>
+                                        <th colspan="2">In</th>
+                                        <th colspan="2">Out</th>
+                                        <th colspan="2">Total</th>
+                                        <th colspan="2">Remarks</th>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="4">2018-09-03</td>
+                                        <td colspan="2">08:00</td>
+                                        <td colspan="2">12:00</td>
+                                        <td colspan="2">01:00</td>
+                                        <td colspan="2">05:00</td>
+                                        <td colspan="2">8 hours</td>
+                                        <td colspan="2">On-Time</td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="4">2018-09-04</td>
+                                        <td colspan="2">08:00</td>
+                                        <td colspan="2">12:00</td>
+                                        <td colspan="2">01:00</td>
+                                        <td colspan="2">05:00</td>
+                                        <td colspan="2">8 hours</td>
+                                        <td colspan="2">On-Time</td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="4">2018-09-05</td>
+                                        <td colspan="2">08:00</td>
+                                        <td colspan="2">12:00</td>
+                                        <td colspan="2">01:00</td>
+                                        <td colspan="2">05:00</td>
+                                        <td colspan="2">8 hours</td>
+                                        <td colspan="2">On-Time</td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="4">2018-09-06</td>
+                                        <td colspan="2">08:00</td>
+                                        <td colspan="2">12:00</td>
+                                        <td colspan="2">01:00</td>
+                                        <td colspan="2">05:00</td>
+                                        <td colspan="2">8 hours</td>
+                                        <td colspan="2">On-Time</td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="4">2018-09-07</td>
+                                        <td colspan="2">08:00</td>
+                                        <td colspan="2">12:00</td>
+                                        <td colspan="2">01:00</td>
+                                        <td colspan="2">05:00</td>
+                                        <td colspan="2">8 hours</td>
+                                        <td colspan="2">On-Time</td>
+                                        </tr>
+                                </tbody>
+                                </table>
+                        </div>
+                </div>
             </div>
+            <div class="col-sm-12 col-md-3 col-lg-3">
+                <div class="card mt-2 schedule-card">
+                    <div class="card-header">
+                        <strong>SCHEDULE</strong>
+                    </div>
+                     <div class="card-body">
+                        <ul class="list-group">
+                        @foreach($Employee_Profiles as $key => $s)
+                            <li class="list-group-item">
+                                <span class="day">Monday</span><span class="sched">{{ $s->Mon }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="day">Tuesday</span><span class="sched">{{ $s->Tue }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="day">Wednesday</span><span class="sched">{{ $s->Wed }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="day">Thursday</span><span class="sched">{{ $s->Thurs }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="day">Friday</span><span class="sched">{{ $s->Fri }}</span>
+                            </li>
+                        @endforeach
+                        </ul>                    
+                    </div>
+                </div>
+              </div>
         </div>    
     </div>
     @endsection

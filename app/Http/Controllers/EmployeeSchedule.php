@@ -25,7 +25,17 @@ class EmployeeSchedule extends Controller
         }
         $calendar_details = Calendar::addEvents( $schedule_list);
         */
-        $Employee_Profiles = Employee_Profiles::where('employee_code', Auth::user()->employee_code)->get();
+        $Employee_Profiles = Employee_Profiles::
+        select('aerolink.tbl_hr4_employee_profiles.employee_code',
+        'aerolink.tbl_hr3_CreateSchedule.Monday as Mon',
+        'aerolink.tbl_hr3_CreateSchedule.Tuesday as Tue',
+        'aerolink.tbl_hr3_CreateSchedule.Wednesday as Wed',
+        'aerolink.tbl_hr3_CreateSchedule.Thursday as Thurs',
+        'aerolink.tbl_hr3_CreateSchedule.Friday as Fri'
+        )
+        ->join('aerolink.tbl_hr3_CreateSchedule','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr3_CreateSchedule.ID')
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+        ->get();
         return view('Employee/modules/schedule', compact('Employee_Profiles'));
     }
 }

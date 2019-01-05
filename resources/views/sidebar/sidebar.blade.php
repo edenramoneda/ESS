@@ -42,10 +42,6 @@
                         <i class="fa fa-calendar"></i> Schedule</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/dtr') }}">
-                        <i class="fa fa-clock"></i> Daily Time Record</a>
-                        </li>
-                        <li class="nav-item">
                         <a class="nav-link text-white" href="#myRequest" data-toggle="collapse" aria-expanded="false" class="text-white dropdown-toggle">
                             <i class="fa fa-pencil-alt"></i> Request <span class="custom-caret">&#9662;</span></a>
                                     <ul class="collapse list-unstyled" id="myRequest">

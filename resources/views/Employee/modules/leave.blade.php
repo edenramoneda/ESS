@@ -11,26 +11,28 @@
 
 @section('content')
 
-    <div class="container mt-5 request-leave">
+    <div class="container mt-2" id="request-leave">
+        <h3>Request Leave</h3><hr>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header text-center">
                             Leave Request Form
                     </div>
+                    @foreach($Employee_Profiles as $key => $leaveRequest)
                     <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <label>Department</label>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="IT Department" disabled="disabled">
+                                        <input type="text" class="form-control" value="{{ $leaveRequest->dept_name}}" disabled="disabled">
                                     </div>
                                 </div>
 
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                     <label>Name</label>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="Ariel Calio Lecias" disabled="disabled">
+                                        <input type="text" class="form-control" value="{{ $leaveRequest->firstname . ' ' . $leaveRequest->middlename . ' ' . $leaveRequest->lastname}}" disabled="disabled">
                                     </div>
                                 </div>
                             </div>
@@ -45,13 +47,13 @@
                                 <div class="col-sm-12 col-md-4 col-lg-4">
                                     <label>Position</label>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="IT Manager" disabled="disabled">
+                                        <input type="text" class="form-control" value="{{ $leaveRequest->title }}" disabled="disabled">
                                     </div>
                                 </div>
                                  <div class="col-sm-12 col-md-4 col-lg-4">
                                     <label>Employee Type</label>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="Regular" disabled="disabled">
+                                        <input type="text" class="form-control" value="{{ $leaveRequest->type_name }}" disabled="disabled">
                                     </div>
                                 </div>
                             </div>
@@ -88,13 +90,13 @@
                      <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-12">
-                                    <label>*In Case of Vacation Leave</label><br><br>
+                                    <label><strong>*In Case of Vacation Leave</strong></label><br><br>
                             </div>
 
                             <div class="col-sm-12 col-md-2 col-12">
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                    <label class="custom-control-label" for="customCheck">Local</label>
+                                <div class="form-group mb-3">
+                                    <input type="checkbox" name="example1">
+                                    <label>Local</label>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-10 col-12">
@@ -102,10 +104,10 @@
                                         <input type="text" class="form-control" placeholder="Specify....">
                                 </div>
                             </div>
-                               <div class="col-sm-12 col-md-2 col-12">
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                    <label class="custom-control-label" for="customCheck">Abroad</label>
+                            <div class="col-sm-12 col-md-2 col-12">
+                                <div class="form-group mb-3">
+                                    <input type="checkbox" name="example1">
+                                    <label>Abroad</label>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-10 col-12">
@@ -113,15 +115,14 @@
                                         <input type="text" class="form-control" placeholder="Specify....">
                                 </div>
                             </div>
-
                                 <div class="col-sm-12 col-md-12 col-12">
-                                    <label>*In Case of Sick Leave</label><br><br>
+                                    <label><strong>*In Case of Sick Leave</strong></label><br><br>
                             </div>
 
                             <div class="col-sm-12 col-md-2 col-12">
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                    <label class="custom-control-label" for="customCheck">In Hospital</label>
+                                <div class="form-group mb-3">
+                                    <input type="checkbox" name="example1">
+                                    <label>In Hospital</label>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-10 col-12">
@@ -129,12 +130,14 @@
                                         <input type="text" class="form-control" placeholder="Specify....">
                                 </div>
                             </div>
-                               <div class="col-sm-12 col-md-2 col-12">
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                    <label class="custom-control-label" for="customCheck">Out Patient</label>
+                            
+                            <div class="col-sm-12 col-md-2 col-12">
+                                <div class="form-group mb-3">
+                                    <input type="checkbox" name="example1">
+                                    <label>Out Patient</label>
                                 </div>
                             </div>
+
                             <div class="col-sm-12 col-md-10 col-12">
                                 <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Specify....">
@@ -186,7 +189,8 @@
                                             <button class="form-control btn-success"><a href="" class="text-white">Send</a></button>
                              </div>
                         </div>
-                    </div>
+                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
