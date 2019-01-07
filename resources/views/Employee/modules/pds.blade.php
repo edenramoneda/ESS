@@ -11,10 +11,11 @@
 
 @section('content')
         <div class="container-fluid">
-        <h4 class="mt-2">Personal Data Sheet</h4><hr>
+        <h4 class="mt-2">Profile</h4><hr>
             <div class="row">
                 <div class="col-sm-12 col-md-3 col-lg-3">
                     <div class="card custom-card employee-info mt-2" style="height:auto; overflow-y:hidden">
+                    <div class="card-header text-white"><i class="fa fa-suitcase"></i> Employment Information</div>
                         <div class="card-body">
                             <div class="form-group mb-4">
                                         <center><img src="{{ asset('image/m.jpg') }}" height="140" width="120"><br>

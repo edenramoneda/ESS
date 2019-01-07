@@ -26,7 +26,12 @@ class EmployeeSchedule extends Controller
         $calendar_details = Calendar::addEvents( $schedule_list);
         */
         $Employee_Profiles = Employee_Profiles::
-        select('aerolink.tbl_hr4_employee_profiles.employee_code',
+        select(
+        'aerolink.tbl_hr4_employee_profiles.employee_code',
+        'aerolink.tbl_hr4_employee_profiles.firstname',
+        'aerolink.tbl_hr4_employee_profiles.middlename',
+        'aerolink.tbl_hr4_employee_profiles.lastname',    
+        'aerolink.tbl_hr4_employee_profiles.employee_code',
         'aerolink.tbl_hr3_CreateSchedule.Monday as Mon',
         'aerolink.tbl_hr3_CreateSchedule.Tuesday as Tue',
         'aerolink.tbl_hr3_CreateSchedule.Wednesday as Wed',

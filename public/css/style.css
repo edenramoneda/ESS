@@ -230,6 +230,11 @@ body {
   margin: 3px 0;
 }
 
+.btn-ess {
+  background-color: #00e673;
+  float: right;
+}
+
 .ess-navigation {
   padding: 8px;
   background: -webkit-gradient(linear, left top, right top, from(#0f8a80), to(#11d45c));
@@ -367,34 +372,24 @@ body {
           box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.payslip {
+.payroll {
   font-family: Lato-Regular;
 }
 
-.payslip .card-header {
+.payroll .card-header {
   line-height: 10px;
-  background-color: #00b359;
+  color: #008040 !important;
+  border-bottom-style: solid;
+  border-bottom-color: #00994d;
+  border-bottom-width: 2px;
 }
 
-.payslip .card-header .hs {
-  float: left;
-  font-size: 20px;
-  line-height: 30px;
+.payroll .card-body {
+  padding: 0 !important;
 }
 
-.payslip .card-header .cb {
-  float: right;
-  margin-left: 10px;
-  background-color: #008040;
-  color: #fff;
-}
-
-.payslip .card-body {
-  line-height: 25px;
-}
-
-.payslip .card-body span {
-  float: right;
+.payroll th, .payroll tr, .payroll td {
+  border: 1px solid #dee2e6;
 }
 
 #Schedule {
@@ -417,7 +412,7 @@ body {
   float: right;
 }
 
-#Schedule th {
+#Schedule th, #Schedule tr, #Schedule td {
   border: 1px solid #dee2e6;
 }
 
@@ -437,17 +432,25 @@ body {
   background-color: #fff;
 }
 
-#request-leave {
+.request-leave {
   font-family: Lato-Regular;
 }
 
-#request-leave .card-header {
+.request-leave .card-header {
   color: #008040 !important;
   background-color: #e6ffee;
   border-bottom-style: solid;
   border-bottom-color: #00994d;
   border-bottom-width: 2px;
   font-family: Raleway-Bold;
+}
+
+.request-leave .card-body {
+  padding: 0;
+}
+
+.request-leave th, .request-leave tr, .request-leave td {
+  border: 1px solid #dee2e6;
 }
 
 @media screen and (max-width: 800px) {

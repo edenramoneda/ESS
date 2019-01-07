@@ -31,33 +31,27 @@
                         </li>
                         <li class="nav-item">
                         <a class="nav-link text-white" href="{{ url('/Employee/modules/pds') }}" class="text-white">
-                         <i class="fa fa-briefcase" aria-hidden="true"></i> Personal Data Sheet</a>
+                         <i class="fa fa-briefcase" aria-hidden="true"></i> Profile</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link text-white" href="{{ url('/Employee/modules/payslip') }}">
-                        <i class="fa fa-money-bill-alt"></i> Payslip</a>
+                        <i class="fa fa-money-bill-alt"></i> Payroll</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link text-white" href="{{ url('/Employee/modules/schedule') }}">
                         <i class="fa fa-calendar"></i> Schedule</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="#myRequest" data-toggle="collapse" aria-expanded="false" class="text-white dropdown-toggle">
-                            <i class="fa fa-pencil-alt"></i> Request <span class="custom-caret">&#9662;</span></a>
-                                    <ul class="collapse list-unstyled" id="myRequest">
-                                        <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/leave') }}" class="text-white">
-                                        <i class="fa fa-calendar-times" aria-hidden="true"></i> Leave</a>
-                                        </li>
-                                        <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/shift') }}" class="text-white">
-                                        <i class="fa fa-calendar-minus" aria-hidden="true"></i>   Schedule/Shift</a>
-                                        </li>
-                                        <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/OverUnderTime') }}" class="text-white">
-                                            <i class="fa fa-tty" aria-hidden="true"></i>   Overtime/Undertime</a>
-                                        </li>
-                                        <li class="nav-item sub-nav"><a class="nav-link text-white" href="{{ url('/Employee/modules/Reimbursement') }}" class="text-white">
-                                        <i class="fa fa-handshake" aria-hidden="true"></i> Reimbursement</a>
-                                        </li>
-                                    </ul>
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/leave') }}">
+                        <i class="fa fa-calendar-times" aria-hidden="true"></i> Leave</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/OverUnderTime') }}">
+                        <i class="fa fa-tty" aria-hidden="true"></i>   Overtime/Undertime</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/Reimbursement') }}">
+                        <i class="fa fa-handshake" aria-hidden="true"></i> Reimbursement</a>
                         </li>
                     </ul>
                     @elseif(ACL::userACL()->class_name == 'Managerial')

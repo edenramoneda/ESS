@@ -170,6 +170,10 @@ body
 
     }
 }
+.btn-ess{
+    background-color: #00e673;
+    float:right;
+}
 .ess-navigation
 {
     padding:8px;
@@ -304,30 +308,21 @@ body
     }
 
 }
-.payslip{
+.payroll{
     font-family: Lato-Regular;
     .card-header{
         line-height: 10px;
-        background-color: #00b359;
+        color: #008040!important;
+        border-bottom-style: solid;
+        border-bottom-color: #00994d;
+        border-bottom-width: 2px;
 
-        .hs{
-            float: left;
-            font-size: 20px;
-            line-height: 30px;
-        }
-
-        .cb{
-            float: right;
-            margin-left:10px;
-            background-color:  #008040;
-            color: #fff;
-        }
     }
     .card-body{
-        line-height: 25px;
-        span{
-            float:right;
-        }
+        padding:0!important;
+    }
+    th,tr,td{
+        border:1px solid #dee2e6;
     }
 }
 #Schedule
@@ -347,7 +342,7 @@ body
             }
         }
     }
-    th{
+    th,tr,td{
         border:1px solid #dee2e6;
     }
 }
@@ -366,7 +361,7 @@ body
         background-color: #fff;
     }
 }
-#request-leave
+.request-leave
 {
     font-family: Lato-Regular;
     .card-header
@@ -377,6 +372,12 @@ body
         border-bottom-color: #00994d;
         border-bottom-width: 2px;
         font-family: Raleway-Bold;
+    }
+    .card-body{
+        padding:0;
+    }
+    th,tr,td{
+        border:1px solid #dee2e6;
     }
 }
 @media screen and (max-width:800px)
