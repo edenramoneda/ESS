@@ -11,7 +11,7 @@
 |
 */
 if (env('APP_ENV') === 'production') {
-    URL::forceSchema('https');
+    \URL::forceSchema('https');
 }
 
 Route::get('/', 'LoginController@index')->name('empLog');
