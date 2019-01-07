@@ -18,6 +18,8 @@
                 <div class="card mt-2 schedule-card">
                         <div class="card-header">
                                 <strong>DAILY TIME RECORD</strong>
+                                <button type="button" class="btn btn-ess text-white" data-toggle="modal" data-target="#myModal">Shift Record/History</button>
+                                <button type="button" class="btn btn-ess text-white mr-3" data-toggle="modal" data-target="#myModal">Request Schedule</button>
                         </div>
                         <div class="card-body">
                         <table class="table">
