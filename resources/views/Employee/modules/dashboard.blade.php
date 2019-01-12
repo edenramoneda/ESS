@@ -50,14 +50,14 @@
             <div class="col-sm-3 col-md-3 col-lg-3">
                 <div class="card mt-2 announcement">
                     <div class="card-header text-white">
-                        <strong>ANOUNCEMENT</strong>
+                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                        <strong> ANOUNCEMENT </strong>
                     </div>
                      <div class="card-body">
                         <ul class="list-group">
-                            <li class="list-group-item">Holiday Declaration <br>Jan. 2-4 2019</li>
-                            <li class="list-group-item">Employee of The Month<br>
-                                Ariel Calio Lecias Jr. from IT Department
-                            </li>
+                            <li class="list-group-item">
+                            <b>Holiday Declaration</b><br>
+                            Jan. 2-4 2019</li>
                         </ul>                    
                     </div>
                 </div>

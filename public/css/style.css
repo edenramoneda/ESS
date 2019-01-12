@@ -314,6 +314,10 @@ body {
   padding: 0;
 }
 
+.dashboard .announcement .card-body b {
+  color: #00994d !important;
+}
+
 .employee-info {
   margin: auto auto;
   overflow-y: scroll;

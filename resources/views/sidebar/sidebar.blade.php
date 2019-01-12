@@ -47,7 +47,7 @@
                         </li>
                         <li class="nav-item">
                         <a class="nav-link text-white" href="{{ url('/Employee/modules/OverUnderTime') }}">
-                        <i class="fa fa-tty" aria-hidden="true"></i>   Overtime/Undertime</a>
+                        <i class="fa fa-tty" aria-hidden="true"></i>   Overtime</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link text-white" href="{{ url('/Employee/modules/Reimbursement') }}">
@@ -74,6 +74,12 @@
                 <button type="button" class="btn btn-custom-c"> 
                     <i class="fa fa-bell"></i>
                     Notifications <span class="badge badge-light">4</span>
+                </button>  
+            </li>&ensp;&ensp;
+            <li class="nav-item">
+                <button type="button" class="btn btn-custom-c"> 
+                    <i class="fa fa-envelope"></i>
+                    Messages <span class="badge badge-light">1</span>
                 </button>  
             </li>&ensp;&ensp;
             <li class="nav-item">
