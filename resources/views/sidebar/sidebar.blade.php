@@ -72,14 +72,12 @@
         <nav class="navbar justify-content-end ess-navigation">
             <li class="nav-item">
                 <button type="button" class="btn btn-custom-c"> 
-                    <i class="fa fa-bell"></i>
-                    Notifications <span class="badge badge-light">4</span>
+                    <i class="fa fa-bell"></i> <span class="badge badge-light">4</span>
                 </button>  
             </li>&ensp;&ensp;
             <li class="nav-item">
                 <button type="button" class="btn btn-custom-c"> 
-                    <i class="fa fa-envelope"></i>
-                    Messages <span class="badge badge-light">1</span>
+                    <i class="fa fa-envelope"></i> <span class="badge badge-light">1</span>
                 </button>  
             </li>&ensp;&ensp;
             <li class="nav-item">

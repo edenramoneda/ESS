@@ -37,7 +37,7 @@ class LoginController extends Controller
         }
     }
 
-    function successLogin()
+   /* function successLogin()
     {
         if(!Auth::user()){
             return redirect()->route('empLog');
@@ -58,7 +58,7 @@ class LoginController extends Controller
      //   dd($Employee_Profiles);
       //  echo $Employee_Profiles;
       //  dd(EmployeeJobs::with('jobs')->get());
-    }
+    }*/
     function logout()
     {
         Auth::logout();

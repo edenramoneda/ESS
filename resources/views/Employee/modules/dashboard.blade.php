@@ -53,13 +53,15 @@
                     <i class="fa fa-bullhorn" aria-hidden="true"></i>
                         <strong> ANOUNCEMENT </strong>
                     </div>
+                    @foreach($Announcement as $key => $announcement)
                      <div class="card-body">
                         <ul class="list-group">
                             <li class="list-group-item">
-                            <b>Holiday Declaration</b><br>
-                            Jan. 2-4 2019</li>
+                            <b>{{ $announcement->announcement_title }}</b><br><i style="font-size:11px;">{{ $announcement->date }}</i><br><br>
+                            {{ $announcement->announcement_content}}</li>
                         </ul>                    
                     </div>
+                    @endforeach
                 </div>
             </div>                   
         </div>   

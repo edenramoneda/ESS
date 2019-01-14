@@ -318,62 +318,24 @@ body {
   color: #00994d !important;
 }
 
-.employee-info {
-  margin: auto auto;
-  overflow-y: scroll;
-  height: 90vh;
-  font-family: Lato-Regular;
+#pds .row-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.employee-info .card-header {
-  background: -webkit-gradient(linear, left top, right top, from(#0f8a80), to(#11d45c));
-  background: linear-gradient(to right, #0f8a80, #11d45c);
-  font-size: 16px;
-  height: 30px;
-  padding: 5px;
-  white-space: nowrap;
+#pds .row-flex .content {
+  height: 100%;
 }
 
-.employee-info .card-header button {
-  background-color: #59b986;
+#pds .gen-info .card-body {
+  line-height: 27px;
+}
+
+#pds .gen-info .card-body span {
   float: right;
-  color: #fff;
-  margin: 0 5px;
-}
-
-.employee-info .card-body {
-  padding: 15px;
-  line-height: 20px;
-}
-
-.employee-info .card-body span {
-  float: right;
-}
-
-.employee-info .card-body b {
-  float: left;
-  font-family: Lato-Medium;
-}
-
-.employee-info .cfg {
-  line-height: -5px;
-  border: none !important;
-}
-
-.employee-info .pds-button {
-  position: fixed;
-  z-index: 10;
-  bottom: 25px;
-  right: 50px;
-}
-
-.employee-info .pds-button .btn {
-  background-color: #00e673;
-  color: #fff;
-  font-family: Raleway-Bold;
-  border: 1px solid #00994d;
-  -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
-          box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .payroll {
@@ -394,6 +356,10 @@ body {
 
 .payroll th, .payroll tr, .payroll td {
   border: 1px solid #dee2e6;
+}
+
+#pds {
+  white-space: nowrap;
 }
 
 #Schedule {

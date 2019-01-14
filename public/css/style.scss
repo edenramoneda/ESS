@@ -254,62 +254,29 @@ body
     }
 }
 //Profile
-.employee-info
-{
-    margin:auto auto;
-    overflow-y:scroll;
-    height:90vh;
-    font-family: Lato-Regular;
-
-    .card-header
-    {
-        background:  linear-gradient(to right, #0f8a80, #11d45c);
-        font-size: 16px;
-        height:30px;
-        padding:5px;
-        white-space: nowrap;
-        button
-        {
-            background-color:#59b986;
-            float: right;
-            color: #fff;
-            margin:0 5px;
-        }
-    }
-    .card-body
-    {
-        padding:15px;
-        line-height:20px;
-        span
-        {
-            float:right;
-        }
-        b
-        {
-            float: left;
-            font-family: Lato-Medium;
-
-        }
-
-    }
-    .cfg{
-        line-height:-5px;
-        border:none!important;
-    }
-    .pds-button{
-        position: fixed;
-        z-index: 10;
-        bottom:25px;
-        right:50px;
-        .btn{
-            background-color: #00e673;
-            color: #fff;
-            font-family: Raleway-Bold;
-            border:1px solid #00994d;
-            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 4px 10px 0 rgba(0, 0, 0, 0.12); 
+#pds{
+    
+    .row-flex{
+        display: flex;
+        flex-wrap: wrap;
+    
+        .content {
+            height: 100%;
+            
         }
     }
 
+    
+    .gen-info{
+        .card-body{
+            line-height:27px;
+            
+            span{
+                float:right;
+            }
+            
+        }
+    }
 }
 .payroll{
     font-family: Lato-Regular;
@@ -328,7 +295,9 @@ body
         border:1px solid #dee2e6;
     }
 }
-
+#pds{
+    white-space: nowrap;
+}
 #Schedule
 {
     font-family: Lato-Regular;
