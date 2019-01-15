@@ -11,7 +11,12 @@
 
 @section('content')
         <div class="container-fluid" id="pds">
-            <h4 class="mt-2">Profile</h4><hr>
+            <h4 class="mt-2">Profile
+            <a href="{{ url('/Employee/modules/pds/generate_pds') }}" class="btn btn-ess text-white">
+            Print PDS</a>
+            </h4>
+
+            <hr>
             @foreach($temp_PDS as $key => $employee)
              <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">

@@ -19,19 +19,25 @@ Route::get('/test', 'Test@sample');
 Route::post('/checklogin', 'LoginController@checkLogin');
 //Route::get('/Employee', 'LoginController@successLogin');
 Route::get('/logout' , 'LoginController@logout');
+Route::get('/Employee/AccountSettings' , 'AccountSettingsController@account_settings');
 //Route::get('Employee/home', 'EmployeeController@index');
 Route::get('/forgot-password', 'forgot_password@fp');
 
 Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::get('dashboard','Dashboard@index');
-    Route::get('pds','EmployeeController@pds');
+   // Route::get('pds','EmployeeController@pds');
+    //Route::get('/dynamic_pdf/pdf', 'DynamicPDFController@pdf');
     Route::get('schedule','EmployeeSchedule@index');
     Route::get('payslip','payslip@emp_payslip');
+    Route::group(['prefix' => 'pds'],function(){
+        Route::get('/','EmployeeController@pds');
+        Route::get('generate_pds', 'EmployeeController@generatePDS');
+    });
     //for request
     Route::get('leave' , 'RequestLeave@index');
     Route::get('shift' , 'RequestSchedule@index');
-    Route::get('OverUnderTime' , 'Over_UnderTime@index');
-    Route::get('Reimbursement' , 'Reimbursement@index');
+    Route::get('overtime' , 'OvertimeController@index');
+    Route::get('reimbursement' , 'Reimbursement@index');
 });
 //Employee Dashboard
 //Route::get('/Employee/modules/dashboard', 'Dashboard@index');

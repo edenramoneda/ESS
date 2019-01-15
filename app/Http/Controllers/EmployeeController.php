@@ -11,18 +11,13 @@ use App\AcademicAwards;
 use App\GovernmentIDs;
 use Auth;
 use DB;
-
+use PDF;
 class EmployeeController extends Controller
 {
 
     public function __construct(){
         $this->middleware('restrict');
     }
-   /* public function info()
-    {
-        $Employee_Profiles = Employee_Profiles::where('employee_code', Auth::user()->employee_code)->get();
-        return view('Employee/modules/info', compact('Employee_Profiles'));
-    }*/
     public function pds()
     {
         $Employee_Profiles = Employee_Profiles::
@@ -31,7 +26,6 @@ class EmployeeController extends Controller
         ->join('aerolink.tbl_hr4_jobs', 'aerolink.tbl_hr4_employee_jobs.job_id', '=', 'aerolink.tbl_hr4_jobs.job_id')
         ->join('aerolink.tbl_hr4_job_classifications', 'aerolink.tbl_hr4_jobs.classification_id', '=', 'aerolink.tbl_hr4_job_classifications.id')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
-        
 
         $temp_PDS = Employee_Profiles::
         select('aerolink.tbl_hr4_employee_profiles.employee_code',
@@ -68,6 +62,7 @@ class EmployeeController extends Controller
                 ['aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code],
                 ['aerolink.tbl_hr4_employee_FB.isEC ', '=', '1']
             ])->get();
+           // return $temp_PDS;
 
         $FamilyBackground = FamilyBackground::
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr4_employee_FB.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
@@ -96,6 +91,42 @@ class EmployeeController extends Controller
       //  $employee = $temp_PDS[0];
         return view('Employee/modules/pds', compact('Employee_Profiles', 'temp_PDS','FamilyBackground','EmployeeTraining'
     ,'EducationalAttainment','EmployeeWorkExp','AcademicAwards','GovIDs'));
+  //  $temp_PDS = PDF::loadView('Employee/modules/pds',compact('temp_PDS'));
+    return $temp_PDS->download('PDS.pdf');
+    }
+    public function generatePDS(){
+
+        $pds = \App::make('dompdf.wrapper');
+        $pds->loadHTML($this->convert_data_into_html());
+        return $pds->stream();
+    }
+    public function convert_data_into_html(){
+        $temp_PDS = $this->pds();
+        $output = '
+        <h3 align="center">Personal Data Sheet</h3>
+            <table width="100%" style="border-collapse: collapse; border: 0px;">
+            <tr>
+            <th style="border: 1px solid; padding:12px;" width="20%">Name</th>
+            <th style="border: 1px solid; padding:12px;" width="30%">Date Hired</th>
+            <th style="border: 1px solid; padding:12px;" width="15%">Department</th>
+            <th style="border: 1px solid; padding:12px;" width="15%">Designation</th>
+            <th style="border: 1px solid; padding:12px;" width="20%">Employee Type</th>
+        </tr>
+        ';
+
+        foreach($temp_PDS as $EmpPDS){
+            $output .= '
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'. $EmpPDS->firstname .'</td>
+            <td style="border: 1px solid; padding:12px;">'. $EmpPDS->datehired .'</td>
+            <td style="border: 1px solid; padding:12px;">'. $EmpPDS->dept_name .'</td>
+            <td style="border: 1px solid; padding:12px;">'. $EmpPDS->designation .'</td>
+            <td style="border: 1px solid; padding:12px;">'. $EmpPDS->type_name .'</td>
+           </tr>
+            ';
+        }
+        $output .= '</table>';
+        return $output;
     }
 
 }

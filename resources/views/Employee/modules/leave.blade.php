@@ -22,32 +22,38 @@
                                 <button type="button" class="btn btn-ess text-white" data-toggle="modal" data-target="#myModal">Request Leave</button>
                         </div>
                         <div class="card-body">
-                        <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Type of Leave</th>
-                                    <th colspan="4">Reason</th>
-                                    <th>Days of Leave</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Attachment</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead class="thead-light">
                                     <tr>
-                                     <td>Sick Leave</td>
-                                     <td colspan="4">Magkakasakit ako sa katamaran</td>
-                                     <td>3</td>
-                                     <td>2019-01-01</td>
-                                     <td>2019-01-03</td>
-                                     <td>Medical.pdf</td>
-                                     <td>Pending</td>
-                                     <td>Button Here</td>
+                                        <th>Type of Leave</th>
+                                        <th colspan="4">Reason</th>
+                                        <th>Days of Leave</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Attachment</th>
+                                        <th>Approver</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
-                                </tbody>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td>Sick Leave</td>
+                                        <td colspan="4">Magkakasakit ako sa katamaran</td>
+                                        <td>3</td>
+                                        <td>2019-01-01</td>
+                                        <td>2019-01-03</td>
+                                        <td>Medical.pdf</td>
+                                        <td>Raven Velasco</td>
+                                        <td>Pending</td>
+                                        <td>
+                                            <button type="button" class="btn bg-success btn-sm text-white">Cancel Request</button>
+                                        </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
+                            </div>
                         </div>
                 </div>
             </div>

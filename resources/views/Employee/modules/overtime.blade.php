@@ -10,11 +10,11 @@
 @endsection
 
 @section('content')
-  <div class="container-fluid" id="reimbursement">
+  <div class="container-fluid" id="overtime">
         <div class="card mt-5">
                 <div class="card-header">
-                        <strong>Reimbursement Details
-                        <button type="button" class="btn btn-ess text-white btn-sm">Reimburse</button>
+                        <strong>Overtime Requests
+                        <button type="button" class="btn btn-ess text-white btn-sm">Request Overtime</button>
                         </strong>
                 </div>
                 <div class="card-body">
@@ -22,26 +22,22 @@
                                 <table class="table table-hover table-bordered">
                                     <thead class="thead-light">
                                     <tr>
-                                        <th>OR No</th>
+                                        <th>Overtime Hours</th>
                                         <th>Date</th>
-                                        <th>Department</th>
-                                        <th>Cash Received</th>
-                                        <th>Expenses</th>
-                                        <th>Particulars</th>
-                                        <th>Cash Returned</th>
-                                        <th>Total Amount</th>
+                                        <th colspan="4">Reason</th>
+                                        <th colspan="4">Approved by</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                        <td>19001</td>
-                                        <td>2018-11-21</td>
-                                        <td>IT/Digital Media</td>
-                                        <td>5000</td>
-                                        <td>5000</td>
-                                        <td>ddf</td>
-                                        <td>5000</td>
-                                        <td>5000</td>
+                                        <td>02:00</td>
+                                        <td>2019-11-19</td>
+                                        <td colspan="4">More Paper Works</td>
+                                        <td colspan="4">Waiting....</td>
+                                        <td>
+                                            <button type="button" class="btn bg-success btn-sm text-white">Cancel Request</button>
+                                        </td>
                                         </tr>
                                     </tbody>
                                 </table>

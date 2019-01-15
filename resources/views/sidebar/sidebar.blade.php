@@ -30,7 +30,7 @@
                             <i class="fa fa-tachometer-alt" aria-hidden="true"></i> Dashboard</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/pds') }}" class="text-white">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/pds/') }}" class="text-white">
                          <i class="fa fa-briefcase" aria-hidden="true"></i> Profile</a>
                         </li>
                         <li class="nav-item">
@@ -46,11 +46,11 @@
                         <i class="fa fa-calendar-times" aria-hidden="true"></i> Leave</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/OverUnderTime') }}">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/overtime') }}">
                         <i class="fa fa-tty" aria-hidden="true"></i>   Overtime</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/Reimbursement') }}">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
                         <i class="fa fa-handshake" aria-hidden="true"></i> Reimbursement</a>
                         </li>
                     </ul>
@@ -89,7 +89,7 @@
                             @endif
                             </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Change Password</button>
+                            <button class="dropdown-item" type="button"><a href="{{ url('/Employee/AccountSettings') }}">Account Settings</a></button>
                             <button class="dropdown-item" type="button"><a href="{{ url('/logout') }}">Logout</a></button>
                         </div>
                 </div>

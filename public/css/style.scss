@@ -5,7 +5,7 @@ body
 {
     padding:0;
     margin:0;
-    background-color: #f1f1f1;
+    background-color: #f2f2f2;
   //  overflow: hidden;
 }
 .full-width
@@ -171,13 +171,13 @@ body
     }
 }
 .btn-ess{
-    background-color: #00e673;
+    background-color: #28a745;
     float:right;
 }
 .ess-navigation
 {
     padding:8px;
-    background: linear-gradient(to right, #0f8a80, #11d45c);
+    background: linear-gradient(to right, #0f8a80, #28a745);
     height:60px;
     
     .btn-custom-c
@@ -186,9 +186,16 @@ body
         color: #fff;
         float: right;
         box-shadow: 2px 2px 15px 0 rgba(50, 50, 50, 0.19),2px 2px 15px 0 rgba(50, 50, 50, 0.19);
+        
     }
     li{
         list-style-type: none;
+    }
+    a{
+        color: #000;
+    }
+    a:hover{
+        text-decoration: none;
     }
 }
 .overlay3 {
@@ -334,23 +341,16 @@ body
         background-color: #fff;
     }
 }
-.request-leave
+.request-leave, #overtime, #reimbursement
 {
     font-family: Lato-Regular;
     .card-header
     {
         color: #008040!important;
-        background-color: #e6ffee;
         border-bottom-style: solid;
         border-bottom-color: #00994d;
         border-bottom-width: 2px;
         font-family: Raleway-Bold;
-    }
-    .card-body{
-        padding:0;
-    }
-    th,tr,td{
-        border:1px solid #dee2e6;
     }
 }
 @media screen and (max-width:800px)
