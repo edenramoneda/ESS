@@ -98,23 +98,22 @@
                     </div>
                      <div class="card-body">
                         <ul class="list-group">
-                        @foreach($Employee_Profiles as $key => $s)
                             <li class="list-group-item">
-                                <span class="day">Monday</span><span class="sched">{{ $s->Mon }}</span>
+                                <span class="day">Monday</span><span class="sched">08:00AM - 5:00PM</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="day">Tuesday</span><span class="sched">{{ $s->Tue }}</span>
+                                <span class="day">Tuesday</span><span class="sched">08:00AM - 5:00PM</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="day">Wednesday</span><span class="sched">{{ $s->Wed }}</span>
+                                <span class="day">Wednesday</span><span class="sched">08:00AM - 5:00PM</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="day">Thursday</span><span class="sched">{{ $s->Thurs }}</span>
+                                <span class="day">Thursday</span><span class="sched">08:00AM - 5:00PM</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="day">Friday</span><span class="sched">{{ $s->Fri }}</span>
+                                <span class="day">Friday</span><span class="sched">08:00AM - 5:00PM</span>
                             </li>
-                        @endforeach
+
                         </ul>                    
                     </div>
                 </div>

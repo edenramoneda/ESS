@@ -161,7 +161,7 @@
                         </div>
                      </div>
                      <div class="modal-footer">
-                             dd
+                            <button type="button"  class="btn btn-ess text-white">Print</button>
                      </div>
                      @endforeach
                 </div>
