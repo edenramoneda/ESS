@@ -25,66 +25,22 @@
                                 <thead>
                                 <tr>
                                         <th colspan="4">Date</th>
-                                        <th colspan="4">AM</th>
-                                        <th colspan="4">PM</th>
-                                        <th colspan="4">Totals</th>
+                                        <th colspan="4">Time In</th>
+                                        <th colspan="4">Time Out</th>
+                                        <th colspan="4">Overtime Hours</th>
+                                        <th colspan="4">Hours Worked</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($TimeSheet as $key => $ts)
                                         <tr>
-                                        <th colspan="4"></th>
-                                        <th colspan="2">In</th>
-                                        <th colspan="2">Out</th>
-                                        <th colspan="2">In</th>
-                                        <th colspan="2">Out</th>
-                                        <th colspan="2">Total</th>
-                                        <th colspan="2">Remarks</th>
+                                        <td colspan="4">{{ $ts-> date}}</td>
+                                        <td colspan="4">{{ $ts-> time_in}}</td>
+                                        <td colspan="4">{{ $ts-> time_out}}</td>
+                                        <td colspan="4">{{ $ts-> overtime_hours}}</td>
+                                        <td colspan="4">{{ $ts-> hours_worked}}</td>
                                         </tr>
-                                        <tr>
-                                        <td colspan="4">2018-09-03</td>
-                                        <td colspan="2">08:00</td>
-                                        <td colspan="2">12:00</td>
-                                        <td colspan="2">01:00</td>
-                                        <td colspan="2">05:00</td>
-                                        <td colspan="2">8 hours</td>
-                                        <td colspan="2">On-Time</td>
-                                        </tr>
-                                        <tr>
-                                        <td colspan="4">2018-09-04</td>
-                                        <td colspan="2">08:00</td>
-                                        <td colspan="2">12:00</td>
-                                        <td colspan="2">01:00</td>
-                                        <td colspan="2">05:00</td>
-                                        <td colspan="2">8 hours</td>
-                                        <td colspan="2">On-Time</td>
-                                        </tr>
-                                        <tr>
-                                        <td colspan="4">2018-09-05</td>
-                                        <td colspan="2">08:00</td>
-                                        <td colspan="2">12:00</td>
-                                        <td colspan="2">01:00</td>
-                                        <td colspan="2">05:00</td>
-                                        <td colspan="2">8 hours</td>
-                                        <td colspan="2">On-Time</td>
-                                        </tr>
-                                        <tr>
-                                        <td colspan="4">2018-09-06</td>
-                                        <td colspan="2">08:00</td>
-                                        <td colspan="2">12:00</td>
-                                        <td colspan="2">01:00</td>
-                                        <td colspan="2">05:00</td>
-                                        <td colspan="2">8 hours</td>
-                                        <td colspan="2">On-Time</td>
-                                        </tr>
-                                        <tr>
-                                        <td colspan="4">2018-09-07</td>
-                                        <td colspan="2">08:00</td>
-                                        <td colspan="2">12:00</td>
-                                        <td colspan="2">01:00</td>
-                                        <td colspan="2">05:00</td>
-                                        <td colspan="2">8 hours</td>
-                                        <td colspan="2">On-Time</td>
-                                        </tr>
+                                @endforeach
                                 </tbody>
                                 </table>
                         </div>
@@ -97,22 +53,23 @@
                     </div>
                      <div class="card-body">
                         <ul class="list-group">
+                            @foreach($Schedule as $key => $s)
                             <li class="list-group-item">
-                                <span class="day">Monday</span><span class="sched">08:00AM - 5:00PM</span>
+                                <span class="day">Monday</span><span class="sched">{{ $s->mon }}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="day">Tuesday</span><span class="sched">08:00AM - 5:00PM</span>
+                                <span class="day">Tuesday</span><span class="sched">{{ $s->tues }}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="day">Wednesday</span><span class="sched">08:00AM - 5:00PM</span>
+                                <span class="day">Wednesday</span><span class="sched">{{ $s->wed }}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="day">Thursday</span><span class="sched">08:00AM - 5:00PM</span>
+                                <span class="day">Thursday</span><span class="sched">{{ $s->thurs }}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="day">Friday</span><span class="sched">08:00AM - 5:00PM</span>
+                                <span class="day">Friday</span><span class="sched">{{ $s->fri }}</span>
                             </li>
-
+                        @endforeach
                         </ul>                    
                     </div>
                 </div>
