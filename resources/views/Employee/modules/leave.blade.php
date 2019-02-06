@@ -26,31 +26,30 @@
                                 <table class="table table-hover table-bordered">
                                     <thead class="thead-light">
                                     <tr>
+                                        <th>Date Requested</th>
                                         <th>Type of Leave</th>
                                         <th colspan="4">Reason</th>
                                         <th>Days of Leave</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
-                                        <th>Attachment</th>
-                                        <th>Approver</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($LeaveRequest as $key => $leave)
                                         <tr>
-                                        <td>Sick Leave</td>
-                                        <td colspan="4">Cat Bite</td>
-                                        <td>3</td>
-                                        <td>2019-01-01</td>
-                                        <td>2019-01-03</td>
-                                        <td>Medical.pdf</td>
-                                        <td>Raven Velasco</td>
-                                        <td>Pending</td>
-                                        <td>
+                                        <td>{{ $leave->date_requested }}</td>
+                                        <td>{{ $leave->type_of_leave }}</td>
+                                        <td colspan="4">{{ $leave->reason }}</td>
+                                        <td>{{ $leave->day_of_leave }}</td>
+                                        <td>{{ $leave->start_date }}</td>
+                                        <td>{{ $leave->end_date }}</td>
+                                        <td>{{ $leave->status }}</td>
+                                     <!--   <td>
                                             <button type="button" class="btn bg-success btn-sm text-white">Cancel Request</button>
-                                        </td>
+                                        </td>-->
                                         </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -68,62 +67,52 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-        @foreach($Employee_Profiles as $key => $leaveRequest)
-            <form action="" method="POST">
+        @if($message = Session::get('error'))
+                                    <div class="alert alert-danger alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @endif
+
+                               {{-- displays validation --}}
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </div>
+                                @endif
+
+            <form action="/Employee/modules/leave" method="POST">
+            @csrf
                 <div class="form-group">
-                    <label for="usr">Name:</label>
-                    <input type="text" class="form-control" value="{{ $leaveRequest->firstname . ' ' . $leaveRequest->middlename . ' ' . $leaveRequest->lastname}}" disabled="disabled">
-                </div>
-                <div class="form-group">
-                    <label>Position</label>     
-                    <input type="text" class="form-control" value="{{ $leaveRequest->title }}" disabled="disabled">
-                </div>
-                <div class="form-group">
-                    <label>Department</label>     
-                    <input type="text" class="form-control" value="{{ $leaveRequest->dept_name}}" disabled="disabled">
-                </div>
-                <div class="form-group">
-                    <label>Employee Type</label>     
-                    <input type="text" class="form-control" value="{{ $leaveRequest->type_name }}" disabled="disabled">
-                </div>
-                <div class="form-group">
-                    <label>Type of Leave</label>
-                    <select name="cars" class="custom-select">
-                        <option selected>Vacation Leave</option>
-                        <option value="volvo">Sick Leave</option>
-                        <option value="fiat">Paternity</option>
-                        <option value="audi">Others</option>
+                    <label>Select Leave</label>
+                    <select name="type_leaves" class="custom-select">
+                    @foreach($TypeOfLeaves as $key => $leave)
+                        <option name="type_leave">{{ $leave-> leave_name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>*(if others is selected)*</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
                     <label>Reason</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="reason">
                 </div>
                 <div class="form-group">
                     <label>Days of Leave</label>
-                    <input type="number" class="form-control" >
+                    <input type="number" class="form-control" name="leave_days">
                 </div>
                 <div class="form-group">
                     <label>Start Date</label>
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" name="start_date">
                 </div>
                 <div class="form-group">
                     <label>End Date</label>
-                    <input type="date" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Attachment</label>
-                    <input type="file" class="form-control">        
+                    <input type="date" class="form-control" name="end_date">
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Submit" class="btn btn-success">
                 </div>
             </form>
-        @endforeach
         </div>
     </div>
   </div>

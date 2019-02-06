@@ -29,7 +29,7 @@ class Dashboard extends Controller
         
         $Announcement = DashboardModel::
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_announcement.posted_by','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
+        ->get();
         //dd($Employee_Profiles);
         return view('/Employee/modules/dashboard', compact('Announcement','Employee_Profiles'));
     }

@@ -34,7 +34,7 @@
                                     </div>
 
                                     <div class="form-group text-center">
-                                        <input type="Submit" class="btn btn-success full-width" value="Submit"><br>
+                                        <input type="Submit" class="btn btn-success full-width" value="Send Password Reset Link"><br>
                                         <a href="{{ url('/') }}">Back to Login Page</a>
                                     </div>  
                                 </form>

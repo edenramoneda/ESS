@@ -22,27 +22,29 @@
                                 <table class="table table-hover table-bordered">
                                     <thead class="thead-light">
                                     <tr>
+                                        <th>Date Requested</th>
                                         <th>OR No</th>
                                         <th>Date</th>
-                                        <th>Department</th>
-                                        <th>Cash Received</th>
-                                        <th>Expenses</th>
+                                        <th>Received</th>
                                         <th>Particulars</th>
-                                        <th>Cash Returned</th>
+                                        <th>Attachment</th>
                                         <th>Total Amount</th>
+                                        <th>Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($Reimbursement as $key => $r)
                                         <tr>
-                                        <td>19001</td>
-                                        <td>2018-11-21</td>
-                                        <td>IT/Digital Media</td>
-                                        <td>5000</td>
-                                        <td>5000</td>
-                                        <td>ddf</td>
-                                        <td>5000</td>
-                                        <td>5000</td>
+                                        <td> {{$r->date_requested }}</td>
+                                        <td> {{$r->or_no }}</td>
+                                        <td>{{$r->date }}</td>
+                                        <td>{{$r->recieved }}</td>
+                                        <td>{{$r->particulars }}</td>
+                                        <td>{{$r->attachment }}</td>
+                                        <td>{{$r->total_amount }}</td>
+                                        <td>{{$r->status }}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                         </div>
@@ -61,30 +63,27 @@
                         
                         <!-- Modal body -->
                         <div class="modal-body">
-                        <form action="" method="POST">
+                        <form action="/Employee/modules/reimbursement" method="POST">
+                        @csrf
                                 <div class="form-group">
                                 <label>OR No.</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="or_no">
                                 </div>
                                 <div class="form-group">
                                 <label>Cash Received</label>
-                                <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                <label>Expenses</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="cash_received">
                                 </div>
                                 <div class="form-group">
                                 <label>Particulars</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="particulars">
                                 </div>
                                 <div class="form-group">
-                                <label>Cash Returned</label>
-                                <input type="text" class="form-control">
+                                <label>Attachment</label>
+                                <input type="file" class="form-control" name="attachment">
                                 </div>
                                 <div class="form-group">
                                 <label>Total Amount</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="total_amount">
                                 </div>
                                 <div class="form-group">
                                 <input type="submit" value="Submit" class="btn btn-success">

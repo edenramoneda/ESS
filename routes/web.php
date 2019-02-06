@@ -34,10 +34,16 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
         Route::get('generate_pds', 'EmployeeController@generatePDS');
     });
     //for request
-    Route::get('leave' , 'RequestLeave@index');
+    Route::group(['prefix' => 'leave'], function(){
+        Route::resource('/' , 'RequestLeave');
+    }); 
     Route::get('shift' , 'RequestSchedule@index');
-    Route::get('overtime' , 'OvertimeController@index');
-    Route::get('reimbursement' , 'Reimbursement@index');
+    Route::group(['prefix' => 'overtime'], function(){
+        Route::resource('/' , 'OvertimeController');
+    });
+    Route::group(['prefix' => 'reimbursement'], function(){
+        Route::resource('/' , 'Reimbursement');
+    });
 });
 //Employee Dashboard
 //Route::get('/Employee/modules/dashboard', 'Dashboard@index');

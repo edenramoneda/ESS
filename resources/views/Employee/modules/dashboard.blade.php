@@ -7,14 +7,14 @@
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
         <meta charset="utf-8">
-@endsection
+        @endsection
 
 @section('content')
 <div id="overlay" style="width: 100%; opacity: 0.9;"></div>
  <div class="container-fluid dashboard">
         <h2 class="mt-2">Dashboard</h2><hr>
         <div class="row">
-             <div class="col-sm-4 col-md-3 col-lg-3">
+            <!--<div class="col-sm-4 col-md-3 col-lg-3">
                 <div class="card mt-2">
                     <div class="card-header text-white">
                         Remaining Leaves
@@ -46,8 +46,8 @@
                      <strong>2 Days</strong> <span>Sick Leave</span><br>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3 col-md-3 col-lg-3">
+            </div>-->
+            <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="card mt-2 announcement">
                     <div class="card-header text-white">
                     <i class="fa fa-bullhorn" aria-hidden="true"></i>

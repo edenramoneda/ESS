@@ -70,15 +70,11 @@
         </div>
         
         <nav class="navbar justify-content-end ess-navigation">
-            <li class="nav-item">
-                <button type="button" class="btn btn-custom-c"> 
-                    <i class="fa fa-bell"></i> <span class="badge badge-light">4</span>
-                </button>  
+            <li class="nav-item text-white" title="Notifications">
+                    <i class="fa fa-bell"></i><sup> <span class="badge badge-danger">4</span></sup>
             </li>&ensp;&ensp;
-            <li class="nav-item">
-                <button type="button" class="btn btn-custom-c"> 
-                    <i class="fa fa-envelope"></i> <span class="badge badge-light">1</span>
-                </button>  
+            <li class="nav-item text-white" title="Messages">
+                    <i class="fa fa-envelope"></i> <sup><span class="badge badge-danger">1</span></sup>
             </li>&ensp;&ensp;
             <li class="nav-item">
                 <div class="btn-group">

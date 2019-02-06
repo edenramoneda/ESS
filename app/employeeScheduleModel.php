@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class employeeScheduleModel extends Model
 {
-    protected $table = "aerolink.tbl_hr3_createSchedule";
+    protected $table = "aerolink.tbl_hr3_weekdays";
 
     protected $fillable = [
-        'ID','Monday','Tuesday',
-        'Wednesday','Thursday','Friday'
+        'employee_code','mon','tues',
+        'wed','thurs','fri'
     ];
 
     protected $hidden = [];

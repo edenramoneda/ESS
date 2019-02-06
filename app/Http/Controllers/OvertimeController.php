@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Employee_Profiles;
 use Auth;
 use Illuminate\Http\Request;
+use App\RequestOvertime;
 
 class OvertimeController extends Controller
 {
@@ -17,6 +18,23 @@ class OvertimeController extends Controller
          ->join('aerolink.tbl_hr4_employeeTypes','aerolink.tbl_hr4_employees.type_id','=','aerolink.tbl_hr4_employeeTypes.type_id')
          ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
          ->get();
-         return view('/Employee/modules/overtime',compact('Employee_Profiles'));
+
+        $Overtime = RequestOvertime::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_overtime_status.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code)->get();
+       
+         return view('/Employee/modules/overtime',compact('Overtime','Employee_Profiles'));
+    }
+    public function store(Request $request){
+        $this->validate($request, [
+            'overtime_hours' => 'required',
+            'reason' => 'required'
+        ]); 
+        $ot = new RequestOvertime;
+        $ot->employee_code = Auth::user()->employee_code;
+        $ot->date = date("l Y-m-d");
+        $ot->overtime_hours = $request->input('overtime_hours');
+        $ot->reson = $request->input('reason');
+        $ot->status = "Pending";
+        $ot->save();
     }
 }

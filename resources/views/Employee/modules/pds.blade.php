@@ -49,7 +49,7 @@
                                     <div>
                                         <h6>Department</h6>
                                         <p>{{$employee->dept_name }}</p>
-                                    </div>    
+                                    </div>      
                                 </div>
                                 <div class="col-sm-12 col-md-2 col-2 d-flex justify-content-start">
                                     <div>

@@ -22,23 +22,21 @@
                                 <table class="table table-hover table-bordered">
                                     <thead class="thead-light">
                                     <tr>
-                                        <th>Overtime Hours</th>
                                         <th>Date</th>
+                                        <th>Overtime Hours</th>
                                         <th colspan="4">Reason</th>
-                                        <th colspan="4">Approved by</th>
-                                        <th>Action</th>
+                                        <th colspan="4">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                        <td>2 Hours</td>
-                                        <td>2019-11-19</td>
-                                        <td colspan="4">More Paper Works</td>
-                                        <td colspan="4">Waiting for Approval</td>
-                                        <td>
-                                            <button type="button" class="btn bg-success btn-sm text-white">Cancel Request</button>
-                                        </td>
-                                        </tr>
+                                        @foreach($Overtime as $key => $O)
+                                                <tr>
+                                                        <td>{{ $O->date}}</td>
+                                                        <td>{{ $O->overtime_hours}}</td>
+                                                        <td colspan="4">{{ $O->reson}}</td>
+                                                        <td colspan="4">{{ $O->status}}</td>
+                                                </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                         </div>
@@ -57,14 +55,15 @@
                         
                         <!-- Modal body -->
                         <div class="modal-body">
-                        <form action="" method="POST">
+                        <form action="/Employee/modules/overtime" method="POST">
+                        @csrf
                                 <div class="form-group">
                                 <label>Overtime Hours</label>
-                                <input type="text" class="form-control" placeholder="Example: 02 Hours">
+                                <input type="number" class="form-control" placeholder="Example: 2" name="overtime_hours">
                                 </div>
                                 <div class="form-group">
                                 <label>Reason</label>
-                                <input type="text" class="form-control" placeholder="Example: Finish Work">
+                                <input type="text" class="form-control" placeholder="Example: Finish Work" name="reason">
                                 </div>
                                 <div class="form-group">
                                 <input type="submit" value="Submit" class="btn btn-success">
