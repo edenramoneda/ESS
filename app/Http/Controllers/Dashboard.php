@@ -51,11 +51,13 @@ class Dashboard extends Controller
         
     /*    $EmpPerformance = EmployeePerformance::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr1_perfGrading.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();*/
-        $EmpPerformance = DB::table('aerolink.tbl_hr1_perfGrading')
+        $EmpPerformance = EmployeePerformance::select(DB::raw("*,(productivity + qualityofwork + Initiative + teamwork + 
+        problemsolving + attendance/6)as average"))
+        //->table('aerolink.tbl_hr1_perfGrading')
         ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr1_perfGrading.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
         ->get();
-         response()->json($EmpPerformance);
+       //  response()->json($EmpPerformance);
         
         $Announcement = DashboardModel::
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_announcement.posted_by','=','aerolink.tbl_hr4_employee_profiles.employee_code')

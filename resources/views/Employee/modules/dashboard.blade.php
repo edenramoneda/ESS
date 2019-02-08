@@ -19,6 +19,9 @@
                     <div class="card-body">
                         <b class="text-center">Performance Grading</b>
                         <canvas id="canvas" height="300" width="300"></canvas>
+                        @foreach($EmpPerformance as $key => $EP)
+                        <p>Rating: {{$EP->average}}%</p>
+                        @endforeach
                     </div>
                 </div>
             </div>
