@@ -233,6 +233,12 @@ body {
 .btn-ess {
   background-color: #28a745;
   float: right;
+  color: white;
+}
+
+.btn-ess:hover {
+  background-color: #18722d;
+  color: white;
 }
 
 .ess-navigation {
@@ -242,12 +248,8 @@ body {
   height: 60px;
 }
 
-.ess-navigation .btn-custom-c {
-  background-color: #46d267;
-  color: #fff;
-  float: right;
-  -webkit-box-shadow: 2px 2px 15px 0 rgba(50, 50, 50, 0.19), 2px 2px 15px 0 rgba(50, 50, 50, 0.19);
-          box-shadow: 2px 2px 15px 0 rgba(50, 50, 50, 0.19), 2px 2px 15px 0 rgba(50, 50, 50, 0.19);
+.ess-navigation .nav-item {
+  cursor: pointer;
 }
 
 .ess-navigation li {
@@ -420,6 +422,74 @@ body {
   border-bottom-color: #00994d;
   border-bottom-width: 2px;
   font-family: Raleway-Bold;
+}
+
+/* Center the loader */
+#loader {
+  margin: 0 auto;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
 }
 
 @media screen and (max-width: 800px) {

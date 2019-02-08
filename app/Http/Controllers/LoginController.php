@@ -59,6 +59,7 @@ class LoginController extends Controller
       //  echo $Employee_Profiles;
       //  dd(EmployeeJobs::with('jobs')->get());
     }*/
+
     function logout()
     {
         Auth::logout();

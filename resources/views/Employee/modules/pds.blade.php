@@ -10,10 +10,10 @@
 @endsection
 
 @section('content')
-        <div class="container-fluid" id="pds">
+        <div class="container" id="pds">
             <h4 class="mt-2">Profile
-            <a href="{{ url('/Employee/modules/pds/generate_pds') }}" class="btn btn-ess text-white">
-            Print PDS</a>
+           <!-- <a href="{{ url('/Employee/modules/pds/generate_pds') }}" class="btn btn-ess text-white">
+            Print PDS</a>-->
             </h4>
 
             <hr>
@@ -357,4 +357,5 @@
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
 @endsection

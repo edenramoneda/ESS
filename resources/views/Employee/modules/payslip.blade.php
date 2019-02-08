@@ -160,9 +160,6 @@
                             </div>
                         </div>
                      </div>
-                     <div class="modal-footer">
-                            <button type="button"  class="btn btn-ess text-white">Print</button>
-                     </div>
                      @endforeach
                 </div>
            </div>
@@ -174,4 +171,5 @@
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
 @endsection

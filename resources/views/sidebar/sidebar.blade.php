@@ -70,24 +70,48 @@
         </div>
         
         <nav class="navbar justify-content-end ess-navigation">
-            <li class="nav-item text-white" title="Notifications">
+           <!-- <li class="nav-item text-white" title="Notifications">
                     <i class="fa fa-bell"></i><sup> <span class="badge badge-danger">4</span></sup>
-            </li>&ensp;&ensp;
-            <li class="nav-item text-white" title="Messages">
-                    <i class="fa fa-envelope"></i> <sup><span class="badge badge-danger">1</span></sup>
-            </li>&ensp;&ensp;
-            <li class="nav-item">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-custom-c dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset('image/m.jpg') }}" height="20" width="20" class="rounded-circle"> 
-                            @if(isset(Auth::user()->username))
-                                            {{ Auth::user()-> username }}
-                            @endif
-                            </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button"><a href="{{ url('/Employee/AccountSettings') }}">Account Settings</a></button>
-                            <button class="dropdown-item" type="button"><a href="{{ url('/logout') }}">Logout</a></button>
+            </li>&ensp;&ensp;-->
+            <li class="nav-item text-white dropdown" title="Messages"  data-toggle="dropdown">
+                <i class="fa fa-envelope"></i>
+                 <sup><span class="badge badge-danger">
+                 @foreach($CountMessage as $key => $CM)
+                    {{$CM->Message}}
+                 @endforeach
+                 </span></sup>
+                 <div class="dropdown-menu dropdown-menu-right" style="width:400px;overflow-y:auto;height:50vh;">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>Messages</b>
+                              <!--  <span>
+                                <i class="fa fa-pencil-alt f-right"></i> <b title="compose message">Compose</b>
+                                </span>-->
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-group">
+                                @foreach($EmpMessage as $key => $EM)
+                                    <li class="list-group-item">
+                                    <b>{{ $EM->sender }}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
+                                    <p>{{ $EM->message}}</p>
+                                   <!-- <a href="" class="f-right text-primary">Reply</a>-->
+                                    </li>
+                                @endforeach
+                                </ul>                    
+                            </div>
                         </div>
+                </div>
+            </li>&ensp;&ensp;
+            <li class="nav-item text-white mr-3">
+                <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ asset('image/m.jpg') }}" height="20" width="20" class="rounded-circle"> 
+                        @if(isset(Auth::user()->username))
+                            {{ Auth::user()-> username }}
+                        @endif
+                </div>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button"><a href="{{ url('/Employee/AccountSettings') }}">Account Settings</a></button>
+                    <button class="dropdown-item" type="button"><a href="{{ url('/logout') }}">Logout</a></button>
                 </div>
             </li>
         </nav>

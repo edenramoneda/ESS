@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta charset="utf-8">
 @endsection
 
@@ -59,68 +60,84 @@
         </div>
     </div>
 
-    <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">  Leave Request Form</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">  Leave Request Form</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                @if($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+
+                    {{-- displays validation --}}
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </div>
+                        @endif
+                    <form method="POST">
+                    @csrf
+                        <div class="form-group">
+                            <label>Select Leave</label>
+                            <select name="type_leaves" id="type_leaves" class="custom-select">
+                            @foreach($TypeOfLeaves as $key => $leave)
+                                <option>{{ $leave-> leave_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Reason</label>
+                            <input type="text" class="form-control" name="reason" id="reason">
+                        </div>
+                        <div class="form-group">
+                            <label>Days of Leave</label>
+                            <input type="number" class="form-control" name="leave_days" id="leave_days">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="date" class="form-control" name="start_date" id="start_date">
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" class="form-control" name="end_date" id="end_date">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success" onclick="LeaveSubmitted()">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-        @if($message = Session::get('error'))
-                                    <div class="alert alert-danger alert-block">
-                                        <button type="button" class="close" data-dismiss="alert">x</button>
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                @endif
 
-                               {{-- displays validation --}}
-                                @if (count($errors) > 0)
-                                    <div class="alert alert-danger">
-                                        @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </div>
-                                @endif
-
-            <form action="/Employee/modules/leave" method="POST">
-            @csrf
-                <div class="form-group">
-                    <label>Select Leave</label>
-                    <select name="type_leaves" class="custom-select">
-                    @foreach($TypeOfLeaves as $key => $leave)
-                        <option name="type_leave">{{ $leave-> leave_name}}</option>
-                        @endforeach
-                    </select>
+        <div class="modal fade" id="LeaveMessage">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <div id="loader"></div>
+                        <div style="display:none;" id="myDiv" class="animate-bottom">    
+                        <h2>Tada!</h2>
+                        <p>Your Overtime Request successfully submitted</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Reason</label>
-                    <input type="text" class="form-control" name="reason">
-                </div>
-                <div class="form-group">
-                    <label>Days of Leave</label>
-                    <input type="number" class="form-control" name="leave_days">
-                </div>
-                <div class="form-group">
-                    <label>Start Date</label>
-                    <input type="date" class="form-control" name="start_date">
-                </div>
-                <div class="form-group">
-                    <label>End Date</label>
-                    <input type="date" class="form-control" name="end_date">
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Submit" class="btn btn-success">
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-  </div>
-</div>
     @endsection
 
 @section('scripts')
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/synapse.js') }}"></script>
 @endsection

@@ -100,4 +100,6 @@
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
 @endsection

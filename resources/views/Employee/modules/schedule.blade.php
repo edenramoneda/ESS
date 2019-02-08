@@ -18,7 +18,7 @@
                 <div class="card mt-2 schedule-card">
                         <div class="card-header">
                                 <strong>DAILY TIME RECORD</strong>
-                                <button type="button" class="btn btn-ess text-white mr-3" data-toggle="modal" data-target="#myModal">Request Schedule</button>
+                            <!--    <button type="button" class="btn btn-ess text-white mr-3" data-toggle="modal" data-target="#myModal">Request Schedule</button>-->
                         </div>
                         <div class="card-body">
                         <table class="table">
@@ -81,8 +81,8 @@
                 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                        <h4 class="modal-title">Request Schedule</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Request Schedule</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         
                         <!-- Modal body -->
@@ -111,4 +111,5 @@
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
 @endsection

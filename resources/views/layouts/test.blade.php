@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Aerolink | ESS</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{ asset('image/aerolink.png') }}">
         @yield('stylesheets')
     </head>

@@ -24,7 +24,6 @@
                                     <tr>
                                         <th>Date Requested</th>
                                         <th>OR No</th>
-                                        <th>Date</th>
                                         <th>Received</th>
                                         <th>Particulars</th>
                                         <th>Attachment</th>
@@ -37,7 +36,6 @@
                                         <tr>
                                         <td> {{$r->date_requested }}</td>
                                         <td> {{$r->or_no }}</td>
-                                        <td>{{$r->date }}</td>
                                         <td>{{$r->recieved }}</td>
                                         <td>{{$r->particulars }}</td>
                                         <td>{{$r->attachment }}</td>
@@ -105,4 +103,5 @@
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
 @endsection
