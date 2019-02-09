@@ -70,8 +70,11 @@
                 <div class="card mt-2 schedule-card">
                         <div class="card-header">
                                 <strong>DAILY TIME RECORD</strong>
-                                <select class="form-control-sm dtr-filter">
+                                <select class="form-control-sm dtr-filter" name="dtr-filter">
                                     <option selected>Filter by Month</option>
+                                    @foreach($TimeSheetCB as $key=> $EmpTS)
+                                        <option selected>{{$EmpTS->date}}</option>
+                                    @endforeach
                                 </select>
                         </div>
                         <div class="card-body">

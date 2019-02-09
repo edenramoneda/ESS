@@ -14,7 +14,7 @@ use Auth;
 use Calendar;
 class EmployeeSchedule extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
         $Employee_Profiles = Employee_Profiles::
@@ -46,16 +46,27 @@ class EmployeeSchedule extends Controller
 
 
         $TimeSheet = timesheetModel::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_timesheet.employee_id','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+        ->where([
+            ['aerolink.tbl_hr4_employee_profiles.employee_code', '=',Auth::user()->employee_code],
+            ['date','=',$request->input('dtr-filter')],
+            ])
         ->orderBy('aerolink.tbl_hr3_timesheet.created_at', 'desc')
         ->get();
         
+        $TimeSheetCB = timesheetModel::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_timesheet.employee_id','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+        ->get();
         //Schedule Requests
         $ScheduleRequests = ScheduleRequests:://join('aerolink.tbl_hr3_shift_status_new','aerolink.tbl_hr3_shifting_request.employee_code','=','aerolink.tbl_hr3_shift_status_new.employee_code')
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_shifting_request.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
         ->get();
-        return view('Employee/modules/schedule', compact('ScheduleRequests','CountMessage','EmpMessage','Schedule','TimeSheet','Employee_Profiles'));
+
+        //filter dtr
+     /*   if ($request->has('month')) {
+            $EmpTimeSheet =  timesheetModel::->get();
+         }*/
+        return view('Employee/modules/schedule', compact('TimeSheetCB','ScheduleRequests','CountMessage','EmpMessage','Schedule','TimeSheet','Employee_Profiles'));
     }
     public function store(Request $request){
         $this->validate($request, [
