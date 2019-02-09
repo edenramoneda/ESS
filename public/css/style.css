@@ -392,8 +392,18 @@ body {
   float: right;
 }
 
+#Schedule .schedule-card .dtr-filter {
+  display: inline;
+  width: 20%;
+  float: right;
+}
+
 #Schedule th, #Schedule tr, #Schedule td {
   border: 1px solid #dee2e6;
+}
+
+.form-feedback-err, .form-feedback-success {
+  display: none;
 }
 
 .dtr {

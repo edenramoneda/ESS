@@ -27,17 +27,29 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::get('dashboard','Dashboard@index');
    // Route::get('pds','EmployeeController@pds');
     //Route::get('/dynamic_pdf/pdf', 'DynamicPDFController@pdf');
-    Route::get('schedule','EmployeeSchedule@index');
+
     Route::get('payslip','payslip@emp_payslip');
     Route::group(['prefix' => 'pds'],function(){
         Route::get('/','EmployeeController@pds');
         Route::get('generate_pds', 'EmployeeController@generatePDS');
     });
+    Route::group(['prefix' => 'pds'],function(){
+        Route::get('/','EmployeeController@pds');
+        Route::get('generate_pds', 'EmployeeController@generatePDS');
+    });
+    Route::group(['prefix' => 'schedule'], function(){
+        Route::resource('/' , 'EmployeeSchedule');
+    }); 
     //for request
     Route::group(['prefix' => 'leave'], function(){
         Route::resource('/' , 'RequestLeave');
     }); 
-    Route::get('shift' , 'RequestSchedule@index');
+   /* Route::group(['prefix' => 'shift'],function(){
+        Route::resource('/' , 'RequestSchedule@index');
+    });*/
+
+   
+
     Route::group(['prefix' => 'overtime'], function(){
         Route::resource('/' , 'OvertimeController');
     });

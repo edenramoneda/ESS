@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Employee_Profiles;
 use App\EmployeeMessage;
+use App\PayslipModel;
 use DB;
 class payslip extends Controller
 {
@@ -34,6 +35,12 @@ class payslip extends Controller
             ['aerolink.tbl_hr2_ess_message.isUnread', '=',1]
             ])
         ->get();
-        return view('Employee/modules/payslip', compact('CountMessage','EmpMessage','Employee_Profiles'));
+
+        //payroll transactions
+        $Payslip = PayslipModel::
+        join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_dummy_payroll.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+        ->get();
+        return view('Employee/modules/payslip', compact('Payslip','CountMessage','EmpMessage','Employee_Profiles'));
     }
 }

@@ -32,17 +32,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($Reimbursement as $key => $r)
-                                        <tr>
-                                        <td> {{$r->date_requested }}</td>
-                                        <td> {{$r->or_no }}</td>
-                                        <td>{{$r->recieved }}</td>
-                                        <td>{{$r->particulars }}</td>
-                                        <td>{{$r->attachment }}</td>
-                                        <td>{{$r->total_amount }}</td>
-                                        <td>{{$r->status }}</td>
-                                        </tr>
-                                        @endforeach
+                                        @if($Reimbursement->isNotEmpty())
+                                                @foreach($Reimbursement as $key => $r)
+                                                <tr>
+                                                <td> {{$r->date }}</td>
+                                                <td> {{$r->or_no }}</td>
+                                                <td>{{$r->recieved }}</td>
+                                                <td>{{$r->particulars }}</td>
+                                                <td>{{$r->attachment }}</td>
+                                                <td>{{$r->total_amount }}</td>
+                                                <td>{{$r->status }}</td>
+                                                </tr>
+                                                @endforeach
+                                        @else
+                                                <tr>
+                                                        <td colspan="12">No Results Found</td>
+                                                </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                         </div>

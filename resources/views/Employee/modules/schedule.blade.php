@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta charset="utf-8">
 @endsection
 
@@ -14,42 +15,11 @@
 <div class="container-fluid mt-3" id="Schedule">
         <h3>Schedule</h3><hr>
         <div class="row">
-           <div class="col-sm-12 col-md-9 col-lg-9">
-                <div class="card mt-2 schedule-card">
-                        <div class="card-header">
-                                <strong>DAILY TIME RECORD</strong>
-                            <!--    <button type="button" class="btn btn-ess text-white mr-3" data-toggle="modal" data-target="#myModal">Request Schedule</button>-->
-                        </div>
-                        <div class="card-body">
-                        <table class="table">
-                                <thead>
-                                <tr>
-                                        <th colspan="4">Date</th>
-                                        <th colspan="4">Time In</th>
-                                        <th colspan="4">Time Out</th>
-                                        <th colspan="4">Overtime Hours</th>
-                                        <th colspan="4">Hours Worked</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($TimeSheet as $key => $ts)
-                                        <tr>
-                                        <td colspan="4">{{ $ts-> date}}</td>
-                                        <td colspan="4">{{ $ts-> time_in}}</td>
-                                        <td colspan="4">{{ $ts-> time_out}}</td>
-                                        <td colspan="4">{{ $ts-> overtime_hours}}</td>
-                                        <td colspan="4">{{ $ts-> hours_worked}}</td>
-                                        </tr>
-                                @endforeach
-                                </tbody>
-                                </table>
-                        </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
+        <div class="col-sm-12 col-md-3 col-lg-3">
                 <div class="card mt-2 schedule-card">
                     <div class="card-header">
                         <strong>SCHEDULE</strong>
+                        <button type="button" class="btn btn-sm btn-ess text-white" data-toggle="modal" data-target="#myModal">Request Schedule</button>
                     </div>
                      <div class="card-body">
                         <ul class="list-group">
@@ -73,7 +43,69 @@
                         </ul>                    
                     </div>
                 </div>
+                <div class="card mt-2 schedule-card">
+                    <div class="card-header">
+                        <strong>Schedule Requests</strong>
+                    </div>
+                     <div class="card-body">
+                        <ul class="list-group">
+                            @if($ScheduleRequests->isNotEmpty())
+                                @foreach($ScheduleRequests as $key => $sr)
+                                <li class="list-group-item">
+                                    <span class="day">{{$sr->date}}</span><span class="sched">
+                                    <button type="button" class="btn btn-sm btn-ess text-white" data-toggle="modal" data-target="#myModal">View</button>
+                                    </span>
+                                </li>
+                                @endforeach
+                            @else
+                                <li class="list-group-item">
+                                    No Results Found
+                                </li>
+                            @endif
+                        </ul>                    
+                    </div>
+                </div>
               </div>
+           <div class="col-sm-12 col-md-9 col-lg-9">
+                <div class="card mt-2 schedule-card">
+                        <div class="card-header">
+                                <strong>DAILY TIME RECORD</strong>
+                                <select class="form-control-sm dtr-filter">
+                                    <option selected>Filter by Month</option>
+                                </select>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive" style="height:80vh;">
+                                <table class="table">
+                                        <thead>
+                                        <tr>
+                                                <th colspan="4">Date</th>
+                                                <th colspan="4">Time In</th>
+                                                <th colspan="4">Time Out</th>
+                                                <th colspan="4">Total Hours</th>
+                                                <th colspan="4">Undertime</th>
+                                                <th colspan="4">Overtime</th>
+                                                <th colspan="4">Late</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($TimeSheet as $key => $ts)
+                                                <tr>
+                                                <td colspan="4">{{ $ts-> date}}</td>
+                                                <td colspan="4">{{ $ts-> time_in}}</td>
+                                                <td colspan="4">{{ $ts-> time_out}}</td>
+                                                <td colspan="4">{{ $ts-> total_hours}}</td>
+                                                <td colspan="4">{{ $ts-> undertime}}</td>
+                                                <td colspan="4">{{ $ts-> overtime}}</td>
+                                                <td colspan="4">{{ $ts-> late}}</td>
+                                                </tr>
+                                        @endforeach
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
         </div>  
         <div class="modal fade" id="myModal">
                 <div class="modal-dialog">
@@ -83,22 +115,31 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Request Schedule</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        
+                        </div>  
                         <!-- Modal body -->
                         <div class="modal-body">
-                        <form action="" method="POST">
+                        <form id="resched-form">
+                            @csrf
+                                <div class="alert alert-danger form-feedback-err alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        All fields are required
+                                </div>
+                                <div class="alert alert-success form-feedback-success alert-dismissible">Request successfully Submitted!</div>
                                 <div class="form-group">
                                 <label>Schedule</label>
-                                <input type="text" class="form-control">
+                                <select class="form-control" name="sched_name" id="sched_name">
+                                    <option selected>8:00 AM - 5:00 PM</option>
+                                    <option>9:00 AM - 6:00 PM</option>
+                                    <option>10:00 AM - 7:00 PM</option>
+                                </select>
                                 </div>
                                 <div class="form-group">
                                 <label>Reason</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="sched_reason" id="sched_reason">
                                 </div>
-                                <input type="submit" value="Submit" class="btn btn-success">
+                                <input type="submit" value="Submit" id="submit_rsched" class="btn btn-success">
                                 </div>
-                        </form>
+                        <form>
                         </div>
                 </div>  
                 </div>
@@ -110,6 +151,7 @@
 @section('scripts')
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/synapse.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
 @endsection

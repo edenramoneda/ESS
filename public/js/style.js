@@ -28,6 +28,34 @@ function LeaveSubmitted(){
         });
     }
 
+//Schedule Submodule
+$(document).ready(function(){
+    $("#resched-form").submit(function(e){
+
+        e.preventDefault();
+        var sched_namex = $("#sched_name").val();   
+        var sched_reasonx = $("#sched_reason").val();
+        var xhttp = new XMLHttpRequest();
+
+
+        if(sched_namex == '' || sched_reasonx == ''){
+         //   $(".form-feedback-err").html("All fields are required")
+         $(".form-feedback-err").fadeIn(1000);
+         $(".form-feedback-err").fadeOut(5000);
+        }
+        else{
+            httpAjax('post', '/Employee/modules/schedule/', {
+                data:{ sched_name: $("#sched_name").val(), sched_reason: $("#sched_reason").val()},
+            }).then( res => {
+                $(".form-feedback-success").fadeIn(1000);
+                $("#resched-form").trigger("reset");
+                $(".form-feedback-err").hide();
+                $(".form-feedback-success").fadeOut(6000);
+            });
+        }
+    });
+});
+
 function showLeaveMessage(){
     document.getElementById("loader").style.display = "none";
     document.getElementById("myDiv").style.display = "block";

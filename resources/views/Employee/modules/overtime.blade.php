@@ -29,14 +29,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($Overtime as $key => $O)
+                                        @if($Overtime->isNotEmpty())
+                                                @foreach($Overtime as $key => $O)
+                                                        <tr>
+                                                                <td>{{ $O->date}}</td>
+                                                                <td>{{ $O->overtime_hours}}</td>
+                                                                <td colspan="4">{{ $O->reson}}</td>
+                                                                <td colspan="4">{{ $O->status}}</td>
+                                                        </tr>
+                                                @endforeach
+                                        @else
                                                 <tr>
-                                                        <td>{{ $O->date}}</td>
-                                                        <td>{{ $O->overtime_hours}}</td>
-                                                        <td colspan="4">{{ $O->reson}}</td>
-                                                        <td colspan="4">{{ $O->status}}</td>
+                                                        <td colspan="12">No Results Found</td>
                                                 </tr>
-                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                         </div>

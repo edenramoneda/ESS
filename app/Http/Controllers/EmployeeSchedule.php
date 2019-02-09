@@ -7,6 +7,7 @@ use App\employeeScheduleModel;
 use App\timeSheetModel;
 use App\EmployeeWeekdays;
 use App\EmployeeMessage;
+use App\ScheduleRequests;
 use DB;
 use Validator;
 use Auth;
@@ -17,11 +18,11 @@ class EmployeeSchedule extends Controller
     {
 
         $Employee_Profiles = Employee_Profiles::
-        //   join('aerolink.tbl_hr2_announcement','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr2_announcement.posted_by')
-           join('aerolink.tbl_hr4_employee_jobs', 'aerolink.tbl_hr4_employee_profiles.employee_code', '=', 'aerolink.tbl_hr4_employee_jobs.employee_code')
-           ->join('aerolink.tbl_hr4_jobs', 'aerolink.tbl_hr4_employee_jobs.job_id', '=', 'aerolink.tbl_hr4_jobs.job_id')
-           ->join('aerolink.tbl_hr4_job_classifications', 'aerolink.tbl_hr4_jobs.classification_id', '=', 'aerolink.tbl_hr4_job_classifications.id')
-           ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
+     //   join('aerolink.tbl_hr2_announcement','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr2_announcement.posted_by')
+        join('aerolink.tbl_hr4_employee_jobs', 'aerolink.tbl_hr4_employee_profiles.employee_code', '=', 'aerolink.tbl_hr4_employee_jobs.employee_code')
+        ->join('aerolink.tbl_hr4_jobs', 'aerolink.tbl_hr4_employee_jobs.job_id', '=', 'aerolink.tbl_hr4_jobs.job_id')
+        ->join('aerolink.tbl_hr4_job_classifications', 'aerolink.tbl_hr4_jobs.classification_id', '=', 'aerolink.tbl_hr4_job_classifications.id')
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
 
            $EmpMessage = EmployeeMessage::select(DB::raw("CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
            'aerolink.tbl_hr4_jobs.title','aerolink.tbl_hr2_ess_message.message','aerolink.tbl_hr2_ess_message.date_sent')
@@ -44,9 +45,28 @@ class EmployeeSchedule extends Controller
         ->get();
 
 
-        $TimeSheet = timesheetModel::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_temp_timesheet.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        $TimeSheet = timesheetModel::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_timesheet.employee_id','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+        ->orderBy('aerolink.tbl_hr3_timesheet.created_at', 'desc')
+        ->get();
+        
+        //Schedule Requests
+        $ScheduleRequests = ScheduleRequests:://join('aerolink.tbl_hr3_shift_status_new','aerolink.tbl_hr3_shifting_request.employee_code','=','aerolink.tbl_hr3_shift_status_new.employee_code')
+        join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_shifting_request.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
         ->get();
-        return view('Employee/modules/schedule', compact('CountMessage','EmpMessage','Schedule','TimeSheet','Employee_Profiles'));
+        return view('Employee/modules/schedule', compact('ScheduleRequests','CountMessage','EmpMessage','Schedule','TimeSheet','Employee_Profiles'));
+    }
+    public function store(Request $request){
+        $this->validate($request, [
+            'sched_name' => 'required',
+            'sched_reason' => 'required',
+        ]); 
+        $sr = new ScheduleRequests;
+        $sr->date = date('l Y-m-d');
+        $sr->employee_code = Auth::user()->employee_code;
+        $sr->schedule = $request->input('sched_name');
+        $sr->reason = $request->input('sched_reason');
+        $sr->save();
     }
 }

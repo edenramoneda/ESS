@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class timeSheetModel extends Model
 {
-    protected $table = "aerolink.tbl_hr2_temp_timesheet";
+    protected $table = "aerolink.tbl_hr3_timesheet";
 
     protected $fillable = [
-        'id','date','employee_code','time_in','time_out','ovetime_hours','hours_worked'
+        'id','date','employee_id','date','time_in','time_out','total_hours','undertime','overtime','late'
     ];
 }

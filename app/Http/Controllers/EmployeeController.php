@@ -38,6 +38,7 @@ class EmployeeController extends Controller
         'aerolink.tbl_hr4_employee_profiles.height',
         'aerolink.tbl_hr4_employee_profiles.weight',
         'aerolink.tbl_hr4_employee_profiles.contact_number as epCN',
+        'aerolink.tbl_hr4_employee_profiles.address',
         'aerolink.tbl_hr4_employee_profiles.email as epE',
         'aerolink.tbl_hr4_employees.datehired as datehired',
         'aerolink.tbl_hr4_jobs.title as jobTitle',

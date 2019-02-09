@@ -19,7 +19,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="card mt-2 request-leave">
                         <div class="card-header">
-                                <strong>LEAVE DETAILS</strong>
+                                <strong>LEAVE REQUESTS</strong>
                                 <button type="button" class="btn btn-ess text-white" data-toggle="modal" data-target="#myModal">Request Leave</button>
                         </div>
                         <div class="card-body">
@@ -37,20 +37,73 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($LeaveRequest as $key => $leave)
-                                        <tr>
-                                        <td>{{ $leave->date_requested }}</td>
-                                        <td>{{ $leave->type_of_leave }}</td>
-                                        <td colspan="4">{{ $leave->reason }}</td>
-                                        <td>{{ $leave->day_of_leave }}</td>
-                                        <td>{{ $leave->start_date }}</td>
-                                        <td>{{ $leave->end_date }}</td>
-                                        <td>{{ $leave->status }}</td>
-                                     <!--   <td>
-                                            <button type="button" class="btn bg-success btn-sm text-white">Cancel Request</button>
-                                        </td>-->
-                                        </tr>
-                                    @endforeach
+                                    @if($LeaveRequest->isNotEmpty())
+                                        @foreach($LeaveRequest as $key => $leave)
+                                            <tr>
+                                            <td>{{ $leave->date }}</td>
+                                            <td>{{ $leave->leave_name }}</td>
+                                            <td colspan="4">{{ $leave->reason }}</td>
+                                            <td>{{ $leave->range_leave }}</td>
+                                            <td>{{ $leave->date_start }}</td>
+                                            <td>{{ $leave->date_end }}</td>
+                                            <td>{{ $leave->status }}</td>
+                                        <!--   <td>
+                                                <button type="button" class="btn bg-success btn-sm text-white">Cancel Request</button>
+                                            </td>-->
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                            <tr>
+                                                <td colspan="12">No Results Found</td>
+                                            </tr>
+                                    @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card mt-5 request-leave">
+                        <div class="card-header">
+                                <strong>LEAVE HISTORY</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th>Date Requested</th>
+                                        <th>Type of Leave</th>
+                                        <th colspan="4">Reason</th>
+                                        <th>Days of Leave</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if($LeaveRequest->isNotEmpty())
+                                        @foreach($LeaveRequest as $key => $leave)
+                                            <tr>
+                                            <td>{{ $leave->date }}</td>
+                                            <td>{{ $leave->leave_name }}</td>
+                                            <td colspan="4">{{ $leave->reason }}</td>
+                                            <td>{{ $leave->range_leave }}</td>
+                                            <td>{{ $leave->date_start }}</td>
+                                            <td>{{ $leave->date_end }}</td>
+                                            <td>{{ $leave->status }}</td>
+                                        <!--   <td>
+                                                <button type="button" class="btn bg-success btn-sm text-white">Cancel Request</button>
+                                            </td>-->
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                            <tr>
+                                                <td colspan="12">No Results Found</td>
+                                            </tr>
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>

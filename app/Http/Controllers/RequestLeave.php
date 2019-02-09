@@ -20,7 +20,7 @@ class RequestLeave extends Controller
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
 
         $LeaveRequest = leave_managementstatus::
-        join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_management_status.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_request_new.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code)->get();
         
         $EmpMessage = EmployeeMessage::select(DB::raw("CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),

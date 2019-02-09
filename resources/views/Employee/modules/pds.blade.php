@@ -97,6 +97,8 @@
                                         <span>{{ $employee->height }}</span><br>
                                         <strong>Weight:</strong>
                                         <span>{{ $employee->weight }}</span><br>
+                                        <strong>Address:</strong>
+                                        <span>{{ $employee->address }}</span><br>
                                     </div>    
                                 </div>
                             </div>

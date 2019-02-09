@@ -118,7 +118,7 @@
                 data: {
                     labels: ["productivity", "qualityofwork", "Initiative", "teamwork", "problemsolving", "attendance"],
                     datasets: [{
-                        label: '# of Votes',
+                      //  label: '# of Votes',
                         data: [{{$EP->productivity}}, {{$EP->qualityofwork}}, {{$EP->Initiative}}, {{$EP->teamwork}}, {{$EP->problemsolving}}, {{$EP->attendance}}],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',

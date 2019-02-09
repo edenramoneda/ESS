@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class leave_managementstatus extends Model
 {
-    protected $table = "aerolink.tbl_hr3_leave_management_status";
+    protected $table = "aerolink.tbl_hr3_leave_request_new";
 
     protected $fillable = [
-        'id','date_requested','employee_code','request_id','type_of_leave','reason','day_of_leave','start_date','end_date','status'
+        'id','date','employee_code','leave_name','range_leave','date_start','date_end','reason'
     ];
 
     protected $hidden = [];
