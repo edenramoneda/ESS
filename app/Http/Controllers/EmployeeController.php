@@ -10,6 +10,7 @@ use App\WorkExperience;
 use App\AcademicAwards;
 use App\GovernmentIDs;
 use App\EmployeeMessage;
+use App\AdminReqInbox;
 use Auth;
 use DB;
 use PDF;
@@ -19,7 +20,7 @@ class EmployeeController extends Controller
     public function __construct(){
         $this->middleware('restrict');
     }
-    public function pds()
+    public function index()
     {
         $Employee_Profiles = Employee_Profiles::
      //   join('aerolink.tbl_hr2_announcement','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr2_announcement.posted_by')
@@ -144,6 +145,21 @@ class EmployeeController extends Controller
         }
         $output .= '</table>';
         return $output;
+    }
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'field_name' => 'required',
+            'change_data_to' => 'required',
+            'pds_reason' => 'required',
+        ]); 
+        $req_pds = new AdminReqInbox;
+        $req_pds->employee_code = Auth::user()->employee_code;
+        $req_pds->field_want_to_change= $request->input('field_name');
+        $req_pds->data_want_to_change_to = $request->input('change_data_to');
+        $req_pds->reason = $request->input('pds_reason');
+        $req_pds->date_req = date('l Y-m-d');  
+        $req_pds->save();
     }
 
 }

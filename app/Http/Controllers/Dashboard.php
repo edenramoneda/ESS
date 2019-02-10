@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employee_Profiles;
 use App\Dashboard as DashboardModel;
+use App\leave_managementstatus;
 use Auth;
 use DB;
 use App\EmployeeMessage;
@@ -62,7 +63,12 @@ class Dashboard extends Controller
         $Announcement = DashboardModel::
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_announcement.posted_by','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->get();
+
+        $CountLeaveRequests = leave_managementstatus::select(DB::raw("COUNT(*) as count_leave"))
+        ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_request_new.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+        ->get();
         //dd($Employee_Profiles);
-        return view('/Employee/modules/dashboard', compact('EmpPerformance','Schedule','CountMessage','EmpMessage','Announcement','Employee_Profiles'));
+        return view('/Employee/modules/dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles'));
     }
 }

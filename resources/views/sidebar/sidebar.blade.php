@@ -57,10 +57,52 @@
                     @elseif(ACL::userACL()->class_name == 'Managerial')
                     <ul class="li-navs list-unstyled">
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/dashboard') }}">Mga Modules ni manager dito</a>
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/admin-dashboard') }}">
+                            <i class="fa fa-tachometer-alt" aria-hidden="true"></i> Dashboard</a>
                         </li>
-                    @endif
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/pds/') }}" class="text-white">
+                         <i class="fa fa-briefcase" aria-hidden="true"></i> Profile</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/payslip') }}">
+                        <i class="fa fa-money-bill-alt"></i> Payroll</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/schedule') }}">
+                        <i class="fa fa-calendar"></i> Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/leave') }}">
+                        <i class="fa fa-calendar-times" aria-hidden="true"></i> Leave</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/overtime') }}">
+                        <i class="fa fa-tty" aria-hidden="true"></i>   Overtime</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
+                        <i class="fa fa-handshake" aria-hidden="true"></i> Reimbursement</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
+                        <i class="fa fa-users" aria-hidden="true"></i> Total Employees</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
+                        <i class="fa fa-inbox" aria-hidden="true"></i> Request Inbox</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
+                        <i class="fa fa-archive" aria-hidden="true"></i> Archive Requests</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
+                        <i class="fa fa-inbox" aria-hidden="true"></i> Departments</a>
+                        </li>
                     </ul>
+                    @endif
+
         </div>
 
         <div class="toggle-btn" onclick="openNav()">
@@ -76,9 +118,9 @@
             <li class="nav-item text-white dropdown" title="Messages"  data-toggle="dropdown">
                 <i class="fa fa-envelope"></i>
                  <sup><span class="badge badge-danger">
-                 @foreach($CountMessage as $key => $CM)
-                    {{$CM->Message}}
-                 @endforeach
+                    @foreach($CountMessage as $key => $CM)
+                        {{$CM->Message}}
+                    @endforeach
                  </span></sup>
                  <div class="dropdown-menu dropdown-menu-right" style="width:400px;overflow-y:auto;height:50vh;">
                         <div class="card">
@@ -90,13 +132,19 @@
                             </div>
                             <div class="card-body p-0">
                                 <ul class="list-group">
-                                @foreach($EmpMessage as $key => $EM)
-                                    <li class="list-group-item">
-                                    <b>{{ $EM->sender }}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
-                                    <p>{{ $EM->message}}</p>
-                                   <!-- <a href="" class="f-right text-primary">Reply</a>-->
-                                    </li>
-                                @endforeach
+                                    @if($EmpMessage->isNotEmpty())
+                                        @foreach($EmpMessage as $key => $EM)
+                                            <li class="list-group-item">
+                                            <b>{{ $EM->sender }}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
+                                            <p>{{ $EM->message}}</p>
+                                        <!-- <a href="" class="f-right text-primary">Reply</a>-->
+                                            </li>
+                                        @endforeach
+                                    @else
+                                            <li class="list-group-item">
+                                                <p>No Messages</p>
+                                            </li>
+                                    @endif
                                 </ul>                    
                             </div>
                         </div>

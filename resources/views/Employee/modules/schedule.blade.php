@@ -79,7 +79,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive" style="height:80vh;">
-                                <table class="table">
+                                <table class="table table-sm">
                                         <thead>
                                         <tr>
                                                 <th colspan="4">Date</th>
@@ -121,7 +121,7 @@
                         </div>  
                         <!-- Modal body -->
                         <div class="modal-body">
-                        <form id="resched-form">
+                        <form id="resched-form" method="POST">
                             @csrf
                                 <div class="alert alert-danger form-feedback-err alert-dismissible">
                                     <button type="button" class="close" data-dismiss="alert">&times;</button>

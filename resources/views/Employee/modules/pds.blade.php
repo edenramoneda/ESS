@@ -14,6 +14,7 @@
             <h4 class="mt-2">Profile
            <!-- <a href="{{ url('/Employee/modules/pds/generate_pds') }}" class="btn btn-ess text-white">
             Print PDS</a>-->
+            <a href="{{url('/Employee/modules/leave')}}" class="btn btn-ess btn-sm" data-toggle="modal" data-target="#req_changes_pds">Request Changes</a>
             </h4>
 
             <hr>
@@ -30,12 +31,12 @@
                                 <div class="col-sm-12 col-md-4 col-4 d-flex justify-content-start">
                                     <img src="{{ asset('image/m.jpg') }}" height="140" width="120">
                                     <div class="pl-3">
-                                        <h4>{{ $employee->employee_code }}</h4>
-                                            <h2 style="margin-top: -4%;"> 
+                                        <h5><i>{{ $employee->employee_code }}</i></h5>
+                                            <h4> 
                                                 {{$employee->firstname }}
-                                                {{$employee->middlename }}
+                                                {{$employee->middlename }}<br>
                                                 {{$employee->lastname }}
-                                            </h2>
+                                            </h4>
                                         <h6> <i class="text-grey">{{ $employee->jobTitle }} </i> </h6>
                                     </div>
                                 </div>
@@ -79,14 +80,6 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-12">
                                     <div>
-                                        <strong>Last Name:</strong>
-                                        <span>{{ $employee->lastname }}</span><br>
-                                        <strong>First Name:</strong>
-                                        <span>{{ $employee->firstname }}</span><br>
-                                        <strong>Middle Name:</strong>
-                                        <span>{{ $employee->middlename }}</span><br>
-                                        <strong>Suffix:</strong>
-                                        <span>{{ $employee->suffix_name }}</span><br>
                                         <strong>Civil Status:</strong>
                                         <span>{{ $employee->civil_status }}</span><br>
                                         <strong>Date of Birth:</strong>
@@ -194,14 +187,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($EducationalAttainment as $key => $EA)
-                                                <tr>
-                                                    <td>{{ $EA->educ_level }}</td>
-                                                    <td>{{ $EA->school }}</td>
-                                                    <td>{{ $EA->course }}</td>
-                                                    <td>{{ $EA->duration }}</td>
-                                                </tr>
-                                                @endforeach
+                                                @if($EducationalAttainment->isNotEmpty())
+                                                    @foreach($EducationalAttainment as $key => $EA)
+                                                    <tr>
+                                                        <td>{{ $EA->educ_level }}</td>
+                                                        <td>{{ $EA->school }}</td>
+                                                        <td>{{ $EA->course }}</td>
+                                                        <td>{{ $EA->duration }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr><td>No Results Found</td></tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -232,14 +229,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($EmployeeTraining as $key => $ET)
-                                                <tr>
-                                                    <td>{{ $ET->title }}</td>
-                                                    <td>{{ $ET->duration }}</td>
-                                                    <td>{{ $ET->type }}</td>
-                                                    <td>{{ $ET->conducted_by }}</td>
-                                                </tr>
-                                                @endforeach
+                                                @if($EmployeeTraining->isNotEmpty())
+                                                    @foreach($EmployeeTraining as $key => $ET)
+                                                    <tr>
+                                                        <td>{{ $ET->title }}</td>
+                                                        <td>{{ $ET->duration }}</td>
+                                                        <td>{{ $ET->type }}</td>
+                                                        <td>{{ $ET->conducted_by }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr><td>No Results Found</td></tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -271,14 +272,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($EmployeeWorkExp as $key => $EWE)
-                                                <tr>
-                                                    <td>{{ $EWE->duration }}</td>
-                                                    <td>{{ $EWE->position }}</td>
-                                                    <td>{{ $EWE->company }}</td>
-                                                    <td>{{ $EWE->employment_status }}</td>
-                                                </tr>
-                                                @endforeach
+                                                @if($EmployeeWorkExp->isNotEmpty())
+                                                    @foreach($EmployeeWorkExp as $key => $EWE)
+                                                    <tr>
+                                                        <td>{{ $EWE->duration }}</td>
+                                                        <td>{{ $EWE->position }}</td>
+                                                        <td>{{ $EWE->company }}</td>
+                                                        <td>{{ $EWE->employment_status }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr><td>No Results Found</td></tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -306,12 +311,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($AcademicAwards as $key => $EAA)
-                                                <tr>
-                                                    <td>{{ $EAA->title }}</td>
-                                                    <td>{{ $EAA->date_awarded }}</td>
-                                                </tr>
-                                                @endforeach
+                                                @if($AcademicAwards->isNotEmpty())
+                                                    @foreach($AcademicAwards as $key => $EAA)
+                                                    <tr>
+                                                        <td>{{ $EAA->title }}</td>
+                                                        <td>{{ $EAA->date_awarded }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr><td>No Awards</td></tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -329,6 +338,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-6">
+                                    @if($GovIDs->isNotEmpty())
                                         @foreach($GovIDs as $key => $GIDs)
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-12 col-12">
@@ -345,6 +355,9 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                    @else
+                                        No Results Found
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -352,6 +365,68 @@
                 </div>
              </div> 
              @endforeach
+
+            <div class="modal fade" id="req_changes_pds">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"> Request Changes on your Profile</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                    @if($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+                        {{-- displays validation --}}
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </div>
+                            @endif
+                        <form method="POST" id="pds_form">
+                        @csrf
+                            <div class="alert alert-danger form-pds-err alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                All fields are required!
+                            </div>
+                            <div class="alert alert-success form-pds-success alert-dismissible">Request successfully Submitted!</div>
+                            <div class="form-group">
+                                <label>Select Field</label>
+                                <select name="field_name" id="field_name" class="form-control">
+                                    <option selected>Lastname</option>
+                                    <option >Middlename</option>
+                                    <option>Firstname</option>
+                                    <option>Height</option>
+                                    <option>Weight</option>
+                                    <option>Civil</option>
+                                    <option>Email</option>
+                                    <option>Address</option>
+                                    <option>My Contact Number</option>
+                                    <option>In Case of Emergency: Name</option>
+                                    <option>In Case of Emergency: Contact Number</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Data you want to change to: </label>
+                                <input type="text" class="form-control" name="change_data_to" id="change_data_to">
+                            </div>
+                            <div class="form-group">
+                                <label>Reason: </label>
+                                <input type="text" class="form-control" name="pds_reason" id="pds_reason">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     @endsection
 
@@ -360,4 +435,5 @@
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Synapse.js') }}"></script>
 @endsection

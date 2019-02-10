@@ -19,9 +19,23 @@ class RequestLeave extends Controller
         ->join('aerolink.tbl_hr4_job_classifications', 'aerolink.tbl_hr4_jobs.classification_id', '=', 'aerolink.tbl_hr4_job_classifications.id')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
 
-        $LeaveRequest = leave_managementstatus::
+        $LeaveRequestNew = leave_managementstatus::
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_request_new.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-        ->where('aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code)->get();
+        ->where([
+            ['aerolink.tbl_hr3_leave_request_new.isCurrent', '=','1'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code],
+            ])
+            ->orderBy("aerolink.tbl_hr3_leave_request_new.created_at","desc")
+            ->get();
+        
+        $LeaveRequestHistory = leave_managementstatus::
+        join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_request_new.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where([
+            ['aerolink.tbl_hr3_leave_request_new.isCurrent', '=','0'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code],
+            ])
+            ->orderBy("aerolink.tbl_hr3_leave_request_new.created_at","desc")
+            ->get();
         
         $EmpMessage = EmployeeMessage::select(DB::raw("CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
         'aerolink.tbl_hr4_jobs.title','aerolink.tbl_hr2_ess_message.message','aerolink.tbl_hr2_ess_message.date_sent')
@@ -41,7 +55,7 @@ class RequestLeave extends Controller
 
        $TypeOfLeaves = TypeOfLeaves::get();
        
-        return view('Employee/modules/leave', compact('CountMessage','EmpMessage','TypeOfLeaves','LeaveRequest','Employee_Profiles'));
+        return view('Employee/modules/leave', compact('LeaveRequestHistory','CountMessage','EmpMessage','TypeOfLeaves','LeaveRequestNew','Employee_Profiles'));
     }
     public function store(Request $request){
         $this->validate($request, [
@@ -52,14 +66,13 @@ class RequestLeave extends Controller
             'end_date' => 'required'
         ]); 
         $leave_stats = new leave_managementstatus;
-        $leave_stats->date_requested = date('l Y-m-d');
+        $leave_stats->date = date('l Y-m-d');
         $leave_stats->employee_code = Auth::user()->employee_code;
-        $leave_stats->type_of_leave = $request->input('type_leaves');
+        $leave_stats->leave_name = $request->input('type_leaves');
         $leave_stats->reason = $request->input('reason');
-        $leave_stats->day_of_leave = $request->input('leave_days');
-        $leave_stats->start_date = $request->input('start_date');
-        $leave_stats->end_date = $request->input('end_date');
-        $leave_stats->status = "Pending";
+        $leave_stats->range_leave = $request->input('leave_days');
+        $leave_stats->date_start = $request->input('start_date');
+        $leave_stats->date_end = $request->input('end_date');
         $leave_stats->save();
 
   //   echo $leave_stats->type_of_leave = $request->input('type_leaves');

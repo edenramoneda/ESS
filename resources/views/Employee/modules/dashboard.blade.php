@@ -29,7 +29,6 @@
                 <div class="card mt-2">
                     <div class="card-header text-white">
                         Leave Balances
-                        <a href="{{url('/Employee/modules/leave')}}" class="btn btn-ess btn-sm">View all Leaves</a>
                     </div>
                      <div class="card-body">
                         <div class="container-fluid">
@@ -52,11 +51,17 @@
                 <div class="card mt-4">
                     <div class="card-header text-white">
                         Leave Requests
-                        <a href="{{url('/Employee/modules/payslip')}}" class="btn btn-ess btn-sm">View leave requests</a>
                     </div>
                      <div class="card-body">
                         <div class="container-fluid">
-                            There are no leave requests
+                            @if($CountLeaveRequests->isNotEmpty())
+                                @foreach($CountLeaveRequests as $key => $col)
+                                    {{$col->count_leave}}
+                                @endforeach
+                            @else
+                                There are no leave requests
+                            @endif
+                            <a href="{{url('/Employee/modules/leave')}}" class="btn btn-ess btn-sm">View leave requests</a>
                          </div>
                     </div>
                 </div>
@@ -121,12 +126,12 @@
                       //  label: '# of Votes',
                         data: [{{$EP->productivity}}, {{$EP->qualityofwork}}, {{$EP->Initiative}}, {{$EP->teamwork}}, {{$EP->problemsolving}}, {{$EP->attendance}}],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
+                            'rgba(255, 0, 102, 0.2)',
+                            'rgba(153, 0, 204, 0.2)',
+                            'rgb(255, 255, 0, 0.2)',
+                            'rgba(0, 51, 204, 0.2)',
+                            'rgba(0, 128, 64, 0.2)',
+                            'rgba(255, 51, 0, 0.2)'
                         ],
                         borderColor: [
                             'rgba(255,99,132,1)',

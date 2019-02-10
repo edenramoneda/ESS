@@ -46,10 +46,7 @@ class EmployeeSchedule extends Controller
 
 
         $TimeSheet = timesheetModel::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_timesheet.employee_id','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-        ->where([
-            ['aerolink.tbl_hr4_employee_profiles.employee_code', '=',Auth::user()->employee_code],
-            ['date','=',$request->input('dtr-filter')],
-            ])
+        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', '=',Auth::user()->employee_code)
         ->orderBy('aerolink.tbl_hr3_timesheet.created_at', 'desc')
         ->get();
         
@@ -60,6 +57,7 @@ class EmployeeSchedule extends Controller
         $ScheduleRequests = ScheduleRequests:://join('aerolink.tbl_hr3_shift_status_new','aerolink.tbl_hr3_shifting_request.employee_code','=','aerolink.tbl_hr3_shift_status_new.employee_code')
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_shifting_request.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+        ->orderBy("aerolink.tbl_hr3_shifting_request.created_at","desc")
         ->get();
 
         //filter dtr

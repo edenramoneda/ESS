@@ -37,21 +37,34 @@ class OvertimeController extends Controller
              ])
          ->get();
 
-        $Overtime = RequestOvertime::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_overtime_status.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-        ->where('aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code)->get();
+        $Overtime = RequestOvertime::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_overtime.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where([
+            ['aerolink.tbl_hr3_overtime.isCurrent', '=','1'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code]
+            ])
+            ->orderBy("aerolink.tbl_hr3_overtime.created_at","desc")
+            ->get();
+        
+         $OvertimeHistory = RequestOvertime::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_overtime.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where([
+            ['aerolink.tbl_hr3_overtime.isCurrent', '=','0'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code]
+            ])
+            ->orderBy("aerolink.tbl_hr3_overtime.created_at","desc")
+            ->get();
        
-         return view('/Employee/modules/overtime',compact('CountMessage','EmpMessage','Overtime','Employee_Profiles'));
+         return view('/Employee/modules/overtime',compact('CountMessage','EmpMessage','Overtime','OvertimeHistory','Employee_Profiles'));
     }
     public function store(Request $request){
         $this->validate($request, [
             'overtime_hours' => 'required',
-            'reason' => 'required'
+            'overtime_reason' => 'required'
         ]); 
         $ot = new RequestOvertime;
         $ot->employee_code = Auth::user()->employee_code;
         $ot->date = date("l Y-m-d");
         $ot->overtime_hours = $request->input('overtime_hours');
-        $ot->reson = $request->input('reason');
+        $ot->reason = $request->input('overtime_reason');
         $ot->status = "Pending";
         $ot->save();
     }

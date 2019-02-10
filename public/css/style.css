@@ -234,6 +234,7 @@ body {
   background-color: #28a745;
   float: right;
   color: white;
+  font-family: Lato-Regular;
 }
 
 .btn-ess:hover {
@@ -402,7 +403,9 @@ body {
   border: 1px solid #dee2e6;
 }
 
-.form-feedback-err, .form-feedback-success {
+.form-feedback-err, .form-feedback-success, .form-leave-err, .form-leave-success,
+.form-ot-err, .form-ot-success, .form-reimburse-success, .form-reimburse-err,
+.form-pds-err, .form-pds-success {
   display: none;
 }
 

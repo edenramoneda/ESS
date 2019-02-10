@@ -40,8 +40,23 @@ class Reimbursement extends Controller
 
         $Reimbursement = ReimbursementModel::
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_reimbursement_request.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-        ->where('aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code)->get();
-        return view('Employee/modules/reimbursement', compact('CountMessage','EmpMessage','Reimbursement','Employee_Profiles'));
+        ->where([
+            ['aerolink.tbl_hr3_reimbursement_request.isCurrent','=','1'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code', '=', Auth::user()->employee_code]
+            ])
+        ->orderBy('aerolink.tbl_hr3_reimbursement_request.created_at','desc')
+        ->get();
+
+        $ReimbursementHistory = ReimbursementModel::
+        join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_reimbursement_request.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where([
+            ['aerolink.tbl_hr3_reimbursement_request.isCurrent','=','0'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code', '=', Auth::user()->employee_code]
+            ])
+        ->orderBy('aerolink.tbl_hr3_reimbursement_request.created_at','desc')
+        ->get();
+
+        return view('Employee/modules/reimbursement', compact('CountMessage','EmpMessage','Reimbursement','ReimbursementHistory','Employee_Profiles'));
     }
     public function store(Request $request){
         $this->validate($request, [
@@ -52,7 +67,7 @@ class Reimbursement extends Controller
             'total_amount' => 'required'
         ]); 
         $reimburse = new ReimbursementModel;
-        $reimburse->date_requested = date('l Y-m-d');
+        $reimburse->date = date('l Y-m-d');
         $reimburse->employee_code = Auth::user()->employee_code;
         $reimburse->or_no = $request->input('or_no');
         $reimburse->recieved = $request->input('cash_received');

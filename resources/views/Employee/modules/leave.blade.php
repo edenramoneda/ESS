@@ -20,11 +20,11 @@
                 <div class="card mt-2 request-leave">
                         <div class="card-header">
                                 <strong>LEAVE REQUESTS</strong>
-                                <button type="button" class="btn btn-ess text-white" data-toggle="modal" data-target="#myModal">Request Leave</button>
+                                <button type="button" class="btn btn-ess btn-sm text-white" data-toggle="modal" data-target="#myModal">Request Leave</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered">
+                                <table class="table table-hover table-bordered table-sm">
                                     <thead class="thead-light">
                                     <tr>
                                         <th>Date Requested</th>
@@ -37,8 +37,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if($LeaveRequest->isNotEmpty())
-                                        @foreach($LeaveRequest as $key => $leave)
+                                    @if($LeaveRequestNew->isNotEmpty())
+                                        @foreach($LeaveRequestNew as $key => $leave)
                                             <tr>
                                             <td>{{ $leave->date }}</td>
                                             <td>{{ $leave->leave_name }}</td>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered">
+                                <table class="table table-hover table-bordered table-sm">
                                     <thead class="thead-light">
                                     <tr>
                                         <th>Date Requested</th>
@@ -84,8 +84,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if($LeaveRequest->isNotEmpty())
-                                        @foreach($LeaveRequest as $key => $leave)
+                                    @if($LeaveRequestHistory->isNotEmpty())
+                                        @foreach($LeaveRequestHistory as $key => $leave)
                                             <tr>
                                             <td>{{ $leave->date }}</td>
                                             <td>{{ $leave->leave_name }}</td>
@@ -136,8 +136,13 @@
                                 @endforeach
                             </div>
                         @endif
-                    <form method="POST">
+                    <form method="POST" id="leave-form">
                     @csrf
+                        <div class="alert alert-danger form-leave-err alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            All fields are required!
+                        </div>
+                        <div class="alert alert-success form-leave-success alert-dismissible">Leave Request successfully Submitted!</div>
                         <div class="form-group">
                             <label>Select Leave</label>
                             <select name="type_leaves" id="type_leaves" class="custom-select">
@@ -163,24 +168,9 @@
                             <input type="date" class="form-control" name="end_date" id="end_date">
                         </div>
                         <div class="form-group">
-                            <button type="button" class="btn btn-success" onclick="LeaveSubmitted()">Submit</button>
+                            <input type="submit" class="btn btn-success" value="Submit">
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="LeaveMessage">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                    <div id="loader"></div>
-                        <div style="display:none;" id="myDiv" class="animate-bottom">    
-                        <h2>Tada!</h2>
-                        <p>Your Overtime Request successfully submitted</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
