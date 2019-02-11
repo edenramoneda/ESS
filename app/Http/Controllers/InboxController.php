@@ -1,19 +1,19 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Employee_Profiles;
 use App\Dashboard as DashboardModel;
-use App\leave_managementstatus;
 use App\Department;
 use Auth;
 use DB;
+use App\PDSInbox;
 use App\EmployeeMessage;
-use App\EmployeePerformance;
-use App\EmployeeWeekdays;
-class AdminDashboardController extends Controller
+
+class InboxController extends Controller
 {
     public function index(){
-
         $Employee_Profiles = Employee_Profiles::
         //   join('aerolink.tbl_hr2_announcement','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr2_announcement.posted_by')
            join('aerolink.tbl_hr4_employee_jobs', 'aerolink.tbl_hr4_employee_profiles.employee_code', '=', 'aerolink.tbl_hr4_employee_jobs.employee_code')
@@ -47,66 +47,42 @@ class AdminDashboardController extends Controller
            ->latest('aerolink.tbl_hr2_ess_message.created_at')
            ->paginate(5);
 
-           $Schedule = EmployeeWeekdays::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_weekdays.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-           ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
-           ->get();
-           
-       /*    $EmpPerformance = EmployeePerformance::join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr1_perfGrading.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-           ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();*/
-           $EmpPerformance = EmployeePerformance::select(DB::raw("*,(productivity + qualityofwork + Initiative + teamwork + 
-           problemsolving + attendance/6)as average"))
-           //->table('aerolink.tbl_hr1_perfGrading')
-           ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr1_perfGrading.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-           ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
-           ->get();
-          //  response()->json($EmpPerformance);
-           
-           $Announcement = DashboardModel::
-           join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_announcement.posted_by','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-           ->orderBY('aerolink.tbl_hr2_announcement.date','desc')
-           ->get();
-   
-           $CountLeaveRequests = leave_managementstatus::select(DB::raw("COUNT(*) as count_leave"))
-           ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_request_new.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-           ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
-           ->get();
-
-           $CountEmployees = Employee_Profiles::select(DB::raw("COUNT(*) as no_of_employees, aerolink.tbl_hr4_department.dept_name"))
-           ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
-           ->join('aerolink.tbl_hr4_jobs','aerolink.tbl_hr4_employee_jobs.job_id','=','aerolink.tbl_hr4_employee_jobs.job_id')
-           ->join('aerolink.tbl_hr4_department','aerolink.tbl_hr4_jobs.dept_id','=','aerolink.tbl_hr4_department.id')
-           ->groupBy('aerolink.tbl_hr4_department.dept_name')
-           ->get();
-
-           $Department = Department::select(DB::raw("COUNT(*) as department"))
-           ->get();
-
-           $Employees = Employee_Profiles::select(DB::raw("COUNT(*) as employees"))
-           ->get();
-
-           $CountRankAndFile = Employee_Profiles::select(DB::raw("COUNT(*)as rank_and_files"))
+           $PDSReq = PDSInbox::select(DB::raw("aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS fullname"),
+           'aerolink.tbl_hr2_ess_req_inbox.field_want_to_change as fc','aerolink.tbl_hr2_ess_req_inbox.data_want_to_change_to as content',
+           'aerolink.tbl_hr2_ess_req_inbox.reason','aerolink.tbl_eis_request_status.req_status','aerolink.tbl_hr2_ess_req_inbox.date_req')
+           ->join('aerolink.tbl_eis_request_status','aerolink.tbl_hr2_ess_req_inbox.req_status_id','=','aerolink.tbl_eis_request_status.req_status_id')
+           ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_req_inbox.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
            ->join('aerolink.tbl_hr4_jobs','aerolink.tbl_hr4_employee_jobs.job_id','=','aerolink.tbl_hr4_jobs.job_id')
            ->join('aerolink.tbl_hr4_job_classifications','aerolink.tbl_hr4_jobs.classification_id','=','aerolink.tbl_hr4_job_classifications.class_level')
            ->join('aerolink.tbl_hr4_department','aerolink.tbl_hr4_jobs.dept_id','=','aerolink.tbl_hr4_department.id')
            ->where([
             ['aerolink.tbl_hr4_job_classifications.class_level','4'],
-            ['aerolink.tbl_hr4_department.dept_name','Human Resources']
+            ['aerolink.tbl_hr4_department.dept_name','Human Resources'],
+            ['aerolink.tbl_hr2_ess_req_inbox.req_status_id','3']
+
            ])
+           ->orderBy('aerolink.tbl_hr2_ess_req_inbox.req_status_id','desc')
            ->get();
-           //return $CountEmployees;
-           return view('/Employee/modules/admin-dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles',
-           'CountEmployees','Department','Employees','CountRankAndFile'));
-    }
-    public function store(Request $request){
-        $this->validate($request, [
-            'announcement_title' => 'required',
-            'announcement_content' => 'required',
-        ]); 
-        $a = new DashboardModel;
-        $a->announcement_title= $request->input('announcement_title');
-        $a->announcement_content= $request->input('announcement_content');
-        $a->posted_by = Auth::user()->employee_code;  
-        $a->save();
+
+           $PDSReqArchive = PDSInbox::select(DB::raw("aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS fullname"),
+           'aerolink.tbl_hr2_ess_req_inbox.field_want_to_change as fc','aerolink.tbl_hr2_ess_req_inbox.data_want_to_change_to as content',
+           'aerolink.tbl_hr2_ess_req_inbox.reason','aerolink.tbl_eis_request_status.req_status','aerolink.tbl_hr2_ess_req_inbox.date_req')
+           ->join('aerolink.tbl_eis_request_status','aerolink.tbl_hr2_ess_req_inbox.req_status_id','=','aerolink.tbl_eis_request_status.req_status_id')
+           ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_req_inbox.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+           ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
+           ->join('aerolink.tbl_hr4_jobs','aerolink.tbl_hr4_employee_jobs.job_id','=','aerolink.tbl_hr4_jobs.job_id')
+           ->join('aerolink.tbl_hr4_job_classifications','aerolink.tbl_hr4_jobs.classification_id','=','aerolink.tbl_hr4_job_classifications.class_level')
+           ->join('aerolink.tbl_hr4_department','aerolink.tbl_hr4_jobs.dept_id','=','aerolink.tbl_hr4_department.id')
+           ->where([
+            ['aerolink.tbl_hr4_job_classifications.class_level','4'],
+            ['aerolink.tbl_hr4_department.dept_name','Human Resources'],
+            ['aerolink.tbl_hr2_ess_req_inbox.req_status_id','<>','3']
+
+           ])
+           ->orderBy('aerolink.tbl_hr2_ess_req_inbox.req_status_id','desc')
+           ->get();
+
+           return view('/Employee/modules/inbox',compact('Employee_Profiles','CountMessage','EmpMessage','PDSReq','PDSReqArchive'));
     }
 }

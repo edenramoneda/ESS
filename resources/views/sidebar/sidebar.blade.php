@@ -85,19 +85,15 @@
                         <i class="fa fa-handshake" aria-hidden="true"></i> Reimbursement</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/employees') }}">
                         <i class="fa fa-users" aria-hidden="true"></i> Total Employees</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
-                        <i class="fa fa-inbox" aria-hidden="true"></i> Request Inbox</a>
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/inbox') }}">
+                        <i class="fa fa-inbox" aria-hidden="true"></i> Inbox</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
-                        <i class="fa fa-archive" aria-hidden="true"></i> Archive Requests</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/Employee/modules/reimbursement') }}">
+                        <a class="nav-link text-white" href="{{ url('/Employee/modules/company') }}">
                         <i class="fa fa-inbox" aria-hidden="true"></i> Departments</a>
                         </li>
                     </ul>

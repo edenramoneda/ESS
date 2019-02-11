@@ -11,7 +11,29 @@ function openNav(){
 
 //Schedule Submodule
 $(document).ready(function(){
-    //Schedule
+    //Announcement
+    $("#announcement_form").submit(function(e){
+
+        e.preventDefault();
+        var a_title = $("#announcement_title").val();   
+        var a_content = $("#announcement_content").val();
+
+        if(a_title == '' || a_content == ''){
+         //   $(".form-feedback-err").html("All fields are required")
+         $(".form-announcement-err").fadeIn(1000);
+         $(".form-announcement-err").fadeOut(5000);
+        }
+        else{
+            httpAjax('post', '/Employee/modules/admin-dashboard/', {
+                data:{ announcement_title: a_title, announcement_content: a_content},
+            }).then( res => {
+                $(".form-announcement-success").fadeIn(1000);
+                $("#announcement_form").trigger("reset");
+                $(".form-announcent-err").hide();
+                $(".form-announcement-success").fadeOut(6000);
+            });
+        }
+    });
     //Schedule
     $("#pds_form").submit(function(e){
 

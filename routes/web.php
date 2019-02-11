@@ -27,6 +27,10 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::get('dashboard','Dashboard@index');
    // Route::get('pds','EmployeeController@pds');
     //Route::get('/dynamic_pdf/pdf', 'DynamicPDFController@pdf');
+    Route::group(['prefix' => 'welcome'],function(){
+        Route::resource('/','WelcomeController');
+    });
+
     Route::group(['prefix' => 'admin-dashboard'],function(){
         Route::resource('/','AdminDashboardController');
     });
@@ -55,6 +59,16 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     });
     Route::group(['prefix' => 'reimbursement'], function(){
         Route::resource('/' , 'Reimbursement');
+    });
+    
+    Route::group(['prefix' => 'employees'], function(){
+        Route::resource('/' , 'TotalEmployees');
+    });
+    Route::group(['prefix' => 'inbox'], function(){
+        Route::resource('/' , 'InboxController');
+    });
+    Route::group(['prefix' => 'company'], function(){
+        Route::resource('/' , 'DepartmentController');
     });
 });
 //Employee Dashboard

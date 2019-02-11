@@ -27,7 +27,7 @@
                          </div>
                     </div>
                     <div class="card-header bg-success">
-                        <a href="" class="text-white">View Departments</a>
+                        <a href="{{ url('/Employee/modules/company') }}" class="text-white">View Departments</a>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                          </div>
                     </div>
                     <div class="card-header bg-success">
-                        <a href="" class="text-white">View Employees</a>
+                        <a href="/Employee/modules/employees" class="text-white">View Employees</a>
                     </div>
                 </div>
             </div>
@@ -52,25 +52,39 @@
                 <div class="card mt-2 text-center">
                      <div class="card-body">
                         <div class="container-fluid">
-                            <h3>3</h3>
+                            <h3>
+                                @foreach($CountRankAndFile as $key=> $CRF)
+                                        {{$CRF->rank_and_files}}
+                                @endforeach
+                            </h3>
                             Your Under Employees
                          </div>
                     </div>
                     <div class="card-header bg-success">
-                        <a href="" class="text-white">View your under employees</a>
+                        <a href="/Employee/modules/employees" class="text-white">View your under employees</a>
                     </div>
                 </div>
             </div>       
             <div class="col-sm-12 col-md-3 col-lg-3">
-                <div class="card mt-2 text-center">
-                     <div class="card-body">
-                        <div class="container-fluid">
-                            <h3>3</h3>
-                            Employee Leave Requests
-                         </div>
+                <div class="card announcement mr-3" style="float:right;position:absolute;">
+                    <div class="card-header text-white">
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                        <strong> ANOUNCEMENT </strong>
+                            <i class="fa fa-pencil-alt" style="float:right;cursor:pointer" data-toggle="modal" data-target="#announcement_modal"></i>
                     </div>
-                    <div class="card-header bg-success">
-                        <a href="" class="text-white">View Employee Leave Requests</a>
+                    <div class="card-body" style="overflow-y:auto;height:65vh">
+                        <ul class="list-group">
+                            @if($Announcement->isNotEmpty())
+                                @foreach($Announcement as $key => $announcement)
+                                    <li class="list-group-item">
+                                <b>{{ $announcement->announcement_title }} <i class="fa fa-trash" style="float:right;cursor:pointer" data-toggle="modal" data-target="#confirm_drop_announcement"></i></b><br><i style="font-size:11px;">{{ $announcement->date }}</i><br><br>
+                                {{ $announcement->announcement_content}}
+                                @endforeach
+                            @else
+                                No Announcements
+                            @endif
+                            </li>
+                        </ul>                    
                     </div>
                 </div>
             </div>                      
@@ -145,25 +159,79 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-3 col-lg-3">
-                    <div class="card announcement">
-                        <div class="card-header text-white">
-                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
-                            <strong> ANOUNCEMENT </strong>
-                                <i class="fa fa-pencil-alt" style="float:right;cursor:pointer"></i>
-                        </div>
-                        @foreach($Announcement as $key => $announcement)
-                        <div class="card-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                <b>{{ $announcement->announcement_title }} <i class="fa fa-trash" style="float:right;cursor:pointer"></i></b><br><i style="font-size:11px;">{{ $announcement->date }}</i><br><br>
-                                {{ $announcement->announcement_content}}</li>
-                            </ul>                    
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
         </div>  
+
+        <div class="modal fade" id="announcement_modal" tabindex="-1" role="dialog" aria-labelledby="myPostModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"> Post Announcement</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                @if($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+
+                    {{-- displays validation --}}
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </div>
+                        @endif
+                    <form method="POST" id="announcement_form">
+                    @csrf
+                        <div class="alert alert-danger form-announcement-err alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            All fields are required!
+                        </div>
+                        <div class="alert alert-success form-announcement-success alert-dismissible">Announcement Posted!</div>
+                        <div class="form-group">
+                            <label>Announcement Title</label>
+                            <input type="text" class="form-control" name="announcement_title" id="announcement_title">
+                        </div>
+                        <div class="form-group">
+                            <label>Announcement Content</label>
+                            <textarea class="form-control" name="announcement_content" id="announcement_content"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade confirm_drop_announcement" id="confirm_drop_announcement" tabindex="-1" role="dialog" aria-labelledby="myDropModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"> Drop This Announcement</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="announcement_form">
+                    @csrf
+                        <div class="form-group">
+                            <label>Announcement Title</label>
+                            <input type="text" class="form-control" name="announcement_title" id="announcement_title">
+                        </div>
+                        <div class="form-group">
+                            <label>Announcement Content</label>
+                            <textarea class="form-control" name="announcement_content" id="announcement_content"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
@@ -173,6 +241,7 @@
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/Chart.bundle.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/Synapse.js') }}"></script>
         <script>
             var ctx = document.getElementById("canvas").getContext('2d');
             var myChart = new Chart(ctx, {

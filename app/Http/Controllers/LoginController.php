@@ -30,7 +30,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($user_data))
         {
-            return redirect('/Employee/modules/dashboard');
+            return redirect('/Employee/modules/welcome');
         }else
         {
             return back()->with('error' , 'Incorrect Username or Password');

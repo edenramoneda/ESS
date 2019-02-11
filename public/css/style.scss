@@ -195,9 +195,9 @@ body
     a{
         color: #000;
     }
-    a:hover{
-        text-decoration: none;
-    }
+}
+a:hover{
+    text-decoration: none;
 }
 .overlay3 {
     height: 100%;
@@ -322,19 +322,19 @@ body
                 float: right;
             }
         }
-        .dtr-filter{
-            display:inline; 
-            width:20%;
-            float:right;
-        }
     }
     th,tr,td{
         border:1px solid #dee2e6;
     }
 }
+.dtr-filter{
+    display:inline; 
+    width:20%;
+    float:right;
+}
 .form-feedback-err, .form-feedback-success , .form-leave-err, .form-leave-success,
 .form-ot-err, .form-ot-success,.form-reimburse-success, .form-reimburse-err,
-.form-pds-err, .form-pds-success{
+.form-pds-err, .form-pds-success, .form-announcement-err, .form-announcement-success{
 display: none;
 }
 .dtr
