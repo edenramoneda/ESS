@@ -158,3 +158,34 @@ $(document).ready(function(){
         }
     });
 });
+
+//for Under Employees Form
+$('#editEmp').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var empCode = button.data('empcode')
+    var empFN = button.data('firstname')
+    var empMN = button.data('middlename')
+    var empLN = button.data('lastname')
+    var height = button.data('height')
+    var weight = button.data('weight')
+    var cs = button.data('cs')
+    var email = button.data('email')
+    var address = button.data('address')
+    var contact_number = button.data('cn')
+    var ename = button.data('ename')
+    var ecn = button.data('ecn')
+    var modal = $(this)
+
+    modal.find('.modal-body #employee_code').val(empCode);
+    modal.find('.modal-body #firstname').val(empFN);
+    modal.find('.modal-body #middlename').val(empMN);
+    modal.find('.modal-body #lastname').val(empLN);
+    modal.find('.modal-body #height').val(height);
+    modal.find('.modal-body #weight').val(weight);
+    modal.find('.modal-body #cs').val(cs);
+    modal.find('.modal-body #email').val(email);
+    modal.find('.modal-body #address').val(address);
+    modal.find('.modal-body #cn').val(contact_number);
+    modal.find('.modal-body #eName').val(ename);
+    modal.find('.modal-body #EmergCN').val(ecn);
+})

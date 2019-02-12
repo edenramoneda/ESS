@@ -15,11 +15,20 @@
     <div class="container-fluid mt-2">
         <h3>Leave</h3>
         <hr>
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="card mt-2 request-leave">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#leave_req">Leave Requests</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#leave_history">History</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="leave_req" class="container-fluid tab-pane active"><br>
+                 <div class="card mt-2 request-leave">
                         <div class="card-header">
-                                <strong>LEAVE REQUESTS</strong>
                                 <button type="button" class="btn btn-ess btn-sm text-white" data-toggle="modal" data-target="#myModal">Request Leave</button>
                         </div>
                         <div class="card-body">
@@ -63,8 +72,7 @@
                         </div>
                 </div>
             </div>
-
-            <div class="col-sm-12 col-md-12 col-lg-12">
+            <div id="leave_history" class="container-fluid tab-pane fade"><br>
                 <div class="card mt-5 request-leave">
                         <div class="card-header">
                                 <strong>LEAVE HISTORY</strong>
@@ -111,7 +119,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">

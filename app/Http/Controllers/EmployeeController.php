@@ -149,8 +149,9 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'announcement_title' => 'required',
-            'announcement_content' => 'required',
+            'field_name' => 'required',
+            'change_data_to' => 'required',
+            'pds_reason' => 'required',
         ]); 
         $req_pds = new AdminReqInbox;
         $req_pds->employee_code = Auth::user()->employee_code;

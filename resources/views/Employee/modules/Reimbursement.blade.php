@@ -11,89 +11,106 @@
 
 @section('content')
   <div class="container-fluid" id="reimbursement">
-        <div class="card mt-5">
-                <div class="card-header">
-                        <strong>Reimbursement Requests
-                        <button type="button" class="btn btn-ess text-white btn-sm" data-toggle="modal" data-target="#myModal">Request Reimbursement</button>
-                        </strong>
-                </div>
-                <div class="card-body">
-                        <div class="table-responsive table-sm">
-                                <table class="table table-hover table-bordered">
-                                    <thead class="thead-light">
-                                    <tr>
-                                        <th>Date Requested</th>
-                                        <th>OR No</th>
-                                        <th>Received</th>
-                                        <th>Particulars</th>
-                                        <th>Attachment</th>
-                                        <th>Total Amount</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if($Reimbursement->isNotEmpty())
-                                                @foreach($Reimbursement as $key => $r)
-                                                <tr>
-                                                <td> {{$r->date }}</td>
-                                                <td> {{$r->or_no }}</td>
-                                                <td>{{$r->recieved }}</td>
-                                                <td>{{$r->particulars }}</td>
-                                                <td>{{$r->attachment }}</td>
-                                                <td>{{$r->total_amount }}</td>
-                                                <td>{{$r->status }}</td>
-                                                </tr>
-                                                @endforeach
-                                        @else
-                                                <tr>
-                                                        <td colspan="12">No Results Found</td>
-                                                </tr>
-                                        @endif
-                                    </tbody>
-                                </table>
-                        </div>
-                </div>
-        </div>
+        <h3 class="mt-3">Reimbursement</h3>
 
-         <div class="card mt-5">
-                <div class="card-header">
-                        <strong>Reimbursement History</strong>
-                </div>
-                <div class="card-body">
-                        <div class="table-responsive table-sm">
-                                <table class="table table-hover table-bordered">
-                                    <thead class="thead-light">
-                                    <tr>
-                                        <th>Date Requested</th>
-                                        <th>OR No</th>
-                                        <th>Received</th>
-                                        <th>Particulars</th>
-                                        <th>Attachment</th>
-                                        <th>Total Amount</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if($ReimbursementHistory->isNotEmpty())
-                                                @foreach($ReimbursementHistory as $key => $r)
+        <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#r">Reimbursement</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#rh">Reimbursement History</a>
+                </li>
+        </ul>
+
+                <!-- Tab panes -->
+        <div class="tab-content">
+                <div id="r" class="container-fluid tab-pane active"><br>
+                        <div class="card">
+                                <div class="card-header">
+                                        <strong>Reimbursement Requests
+                                        <button type="button" class="btn btn-ess text-white btn-sm" data-toggle="modal" data-target="#myModal">Request Reimbursement</button>
+                                        </strong>
+                                </div>
+                                <div class="card-body">
+                                        <div class="table-responsive table-sm">
+                                                <table class="table table-hover table-bordered">
+                                                <thead class="thead-light">
                                                 <tr>
-                                                <td> {{$r->date }}</td>
-                                                <td> {{$r->or_no }}</td>
-                                                <td>{{$r->recieved }}</td>
-                                                <td>{{$r->particulars }}</td>
-                                                <td>{{$r->attachment }}</td>
-                                                <td>{{$r->total_amount }}</td>
-                                                <td>{{$r->status }}</td>
+                                                        <th>Date Requested</th>
+                                                        <th>OR No</th>
+                                                        <th>Received</th>
+                                                        <th>Particulars</th>
+                                                        <th>Attachment</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Status</th>
                                                 </tr>
-                                                @endforeach
-                                        @else
-                                                <tr>
-                                                        <td colspan="12">No Results Found</td>
-                                                </tr>
-                                        @endif
-                                    </tbody>
-                                </table>
+                                                </thead>
+                                                <tbody>
+                                                        @if($Reimbursement->isNotEmpty())
+                                                                @foreach($Reimbursement as $key => $r)
+                                                                <tr>
+                                                                <td> {{$r->date }}</td>
+                                                                <td> {{$r->or_no }}</td>
+                                                                <td>{{$r->recieved }}</td>
+                                                                <td>{{$r->particulars }}</td>
+                                                                <td>{{$r->attachment }}</td>
+                                                                <td>{{$r->total_amount }}</td>
+                                                                <td>{{$r->status }}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                        @else
+                                                                <tr>
+                                                                        <td colspan="12">No Results Found</td>
+                                                                </tr>
+                                                        @endif
+                                                </tbody>
+                                                </table>
+                                        </div>
+                                </div>
                         </div>
+                </div>
+                <div id="rh" class="container-fluid tab-pane fade"><br>
+                <div class="card">
+                        <div class="card-header">
+                                <strong>Reimbursement History</strong>
+                        </div>
+                        <div class="card-body">
+                                <div class="table-responsive table-sm">
+                                        <table class="table table-hover table-bordered">
+                                        <thead class="thead-light">
+                                        <tr>
+                                                <th>Date Requested</th>
+                                                <th>OR No</th>
+                                                <th>Received</th>
+                                                <th>Particulars</th>
+                                                <th>Attachment</th>
+                                                <th>Total Amount</th>
+                                                <th>Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                                @if($ReimbursementHistory->isNotEmpty())
+                                                        @foreach($ReimbursementHistory as $key => $r)
+                                                        <tr>
+                                                        <td> {{$r->date }}</td>
+                                                        <td> {{$r->or_no }}</td>
+                                                        <td>{{$r->recieved }}</td>
+                                                        <td>{{$r->particulars }}</td>
+                                                        <td>{{$r->attachment }}</td>
+                                                        <td>{{$r->total_amount }}</td>
+                                                        <td>{{$r->status }}</td>
+                                                        </tr>
+                                                        @endforeach
+                                                @else
+                                                        <tr>
+                                                                <td colspan="12">No Results Found</td>
+                                                        </tr>
+                                                @endif
+                                        </tbody>
+                                        </table>
+                                </div>
+                        </div>
+                </div>
                 </div>
         </div>
 

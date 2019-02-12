@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h2 class="mt-2">List of Employees</h2><hr>
+        <h2 class="mt-2">Employees</h2><hr>
 
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
@@ -99,14 +99,18 @@
                                                 <td colspan="4">{{$CRA->datehired}}</td>
                                                 <td colspan="4">{{$CRA->designation}}</td>
                                                 <td colspan="4">
-                                                    <a href="" class="btn btn-success btn-sm" title="Edit">
+                                                    <button type="button" class="btn btn-success btn-sm" data-empcode="{{$CRA->employee_code}}" 
+                                                    data-firstname="{{$CRA->firstname}}" data-middlename="{{$CRA->middlename}}" data-lastname="{{$CRA->lastname}}"
+                                                    data-height="{{$CRA->height}}" data-weight="{{$CRA->weight}}" data-cs="{{$CRA->csName}}" data-email="{{$CRA->email}}" 
+                                                    data-address="{{$CRA->address}}" data-cn="{{$CRA->epCN}}" data-ename="{{$CRA->complete_name}}" data-ecn="{{$CRA->EmergCN}}"
+                                                    data-toggle="modal" data-target="#editEmp"title="Edit">
                                                     <i class="fa fa-pencil-alt"></i>
-                                                    </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
-                                                <td colspan="12">No Employees</td>
+                                                <td colspan="30">No Employees</td>
                                     @endif
                                 </tbody>
                             </table>
@@ -114,6 +118,85 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="modal fade" id="editEmp">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                             <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title">Edit Employee Data</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                <form method="POST" id="overtime-req-form">
+                                @csrf
+                                        <div class="alert alert-danger form-ot-err alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                All fields are required
+                                        </div>
+                                        <div class="alert alert-success form-ot-success alert-dismissible">Request successfully Submitted!</div>
+                                        <div class="form-group">
+                                        <input type="hidden" class="form-control" name="employee_code" id="employee_code">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Firstname</label>
+                                        <input type="text" class="form-control" name="firstname" id="firstname">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Middlename</label>
+                                        <input type="text" class="form-control" name="middlename" id="middlename">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Lastname</label>
+                                        <input type="text" class="form-control" name="lastname" id="lastname">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Height</label>
+                                        <input type="text" class="form-control" name="height" id="height">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Weight</label>
+                                        <input type="text" class="form-control" name="weight" id="weight">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Civil Status</label>
+                                        <select name="cs" class="form-control" id="cs">
+                                            @foreach($CivilStatus as $key => $CS)
+                                                <option>{{$CS->csName}}</option>
+                                            @endforeach
+                                        </select>
+                                        <!--<input type="text" class="form-control" name="cs" id="cs">-->
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" name="email" id="email">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" name="address" id="address">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Contact Number</label>
+                                        <input type="text" class="form-control" name="cn" id="cn">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>In Case of Emergency:Name</label>
+                                        <input type="text" class="form-control" name="eName" id="eName">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>In Case of Emergency:Contact Number</label>
+                                        <input type="text" class="form-control" name="EmergCN" id="EmergCN">
+                                        </div>
+                                        <div class="form-group">
+                                        <input type="submit" value="Submit" class="btn btn-success">
+                                        </div>
+                                </form>
+                                </div>
+                        </div>  
+                </div>
         </div>
     </div>
 @endsection

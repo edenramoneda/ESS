@@ -18,7 +18,7 @@
             <a class="nav-link active" data-toggle="tab" href="#profile_changes">Profile Changes</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#archive_pc">Archive Profile Changes</a>
+            <a class="nav-link" data-toggle="tab" href="#archive_pc">Archive</a>
             </li>
         </ul>
 
@@ -26,7 +26,7 @@
         <div class="tab-content">
             <div id="profile_changes" class="container-fluid tab-pane active"><br>
                 <div class="card">
-                    <div class="card-header"><strong>Your Under Employees</strong>
+                    <div class="card-header"><strong>Requests</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="height:80vh;">

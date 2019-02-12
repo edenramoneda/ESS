@@ -54,10 +54,10 @@ class InboxController extends Controller
            ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_req_inbox.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
            ->join('aerolink.tbl_hr4_jobs','aerolink.tbl_hr4_employee_jobs.job_id','=','aerolink.tbl_hr4_jobs.job_id')
-           ->join('aerolink.tbl_hr4_job_classifications','aerolink.tbl_hr4_jobs.classification_id','=','aerolink.tbl_hr4_job_classifications.class_level')
+           ->join('aerolink.tbl_hr4_job_classifications','aerolink.tbl_hr4_jobs.classification_id','=','aerolink.tbl_hr4_job_classifications.id')
            ->join('aerolink.tbl_hr4_department','aerolink.tbl_hr4_jobs.dept_id','=','aerolink.tbl_hr4_department.id')
            ->where([
-            ['aerolink.tbl_hr4_job_classifications.class_level','4'],
+            ['aerolink.tbl_hr4_job_classifications.id','3'],
             ['aerolink.tbl_hr4_department.dept_name','Human Resources'],
             ['aerolink.tbl_hr2_ess_req_inbox.req_status_id','3']
 
@@ -72,10 +72,10 @@ class InboxController extends Controller
            ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_req_inbox.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
            ->join('aerolink.tbl_hr4_jobs','aerolink.tbl_hr4_employee_jobs.job_id','=','aerolink.tbl_hr4_jobs.job_id')
-           ->join('aerolink.tbl_hr4_job_classifications','aerolink.tbl_hr4_jobs.classification_id','=','aerolink.tbl_hr4_job_classifications.class_level')
+           ->join('aerolink.tbl_hr4_job_classifications','aerolink.tbl_hr4_jobs.classification_id','=','aerolink.tbl_hr4_job_classifications.id')
            ->join('aerolink.tbl_hr4_department','aerolink.tbl_hr4_jobs.dept_id','=','aerolink.tbl_hr4_department.id')
            ->where([
-            ['aerolink.tbl_hr4_job_classifications.class_level','4'],
+            ['aerolink.tbl_hr4_job_classifications.id','3'],
             ['aerolink.tbl_hr4_department.dept_name','Human Resources'],
             ['aerolink.tbl_hr2_ess_req_inbox.req_status_id','<>','3']
 

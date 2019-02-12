@@ -404,7 +404,7 @@
                                     <option>Firstname</option>
                                     <option>Height</option>
                                     <option>Weight</option>
-                                    <option>Civil</option>
+                                    <option>Civil Status</option>
                                     <option>Email</option>
                                     <option>Address</option>
                                     <option>My Contact Number</option>
