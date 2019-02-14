@@ -53,12 +53,16 @@
                                                 <td colspan="5">{{$PDSR->req_status}}</td>
                                                 <td colspan="5">{{$PDSR->date_req}}</td>
                                                 <td colspan="5">
-                                                    <a href="" class="btn btn-success btn-sm" title="Edit">
+                                                    <button class="btn btn-success btn-sm" title="Edit" data-empcode="{{$PDSR->employee_code}}"
+                                                    data-fullname="{{$PDSR->fullname}}" data-fc="{{$PDSR->fc}}" data-content="{{$PDSR->content}}"
+                                                    data-reason="{{$PDSR->reason}}" data-request="{{$PDSR->req_status}}"
+                                                    data-toggle="modal" data-target="#InboxModal">
                                                     <i class="fa fa-pencil-alt"></i>
-                                                    </a>
-                                                    <a href="" class="btn btn-info btn-sm " title="Message">
+                                                    </button>
+                                                    <button type="button" class="btn btn-info btn-sm" data-empcode="{{$PDSR->employee_code}}" data-fullname="{{$PDSR->fullname}}"
+                                                    data-toggle="modal" data-target="#MessageModal" title="Message">
                                                     <i class="fa fa-envelope"></i>
-                                                    </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -110,7 +114,7 @@
                                             </tr>
                                         @endforeach
                                     @else
-                                                <td colspan="12">No Results Found</td>
+                                                <td colspan="34">No Results Found</td>
                                     @endif
                                 </tbody>
                             </table>
@@ -119,6 +123,84 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="InboxModal">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                             <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title">Profile Changes Request</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>    
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="empcode" id="empcode" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fullname</label>
+                                            <input type="text" class="form-control" name="fullname" id="fullname" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Field want to change</label>
+                                            <input type="text" class="form-control" name="fc" id="fc" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data want to change to</label>
+                                            <input type="text" class="form-control" name="content" id="content" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="comment">Reason</label>
+                                            <textarea class="form-control" rows="5" name="reason" id="reason" disabled="disabled"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control" name="req_status" id="req_status">
+                                                @foreach($ReqStatus as $key => $RS)
+                                                <option>{{$RS->req_status}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        </form>
+                                </div>
+                        </div>  
+                </div>
+        </div>
+        <div class="modal fade" id="MessageModal">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                             <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title">Send Message</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>    
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form method="POST" id="MessageFormModal">
+                                    @csrf
+                                        <div class="alert alert-danger form-message-err alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            Message Field required!
+                                        </div>
+                                        <div class="alert alert-success form-message-success alert-dismissible">Message Sent!</div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="empcode" id="empcode" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fullname</label>
+                                            <input type="text" class="form-control" name="fullname" id="fullname" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Message</label>
+                                            <textarea class="form-control" rows="5" name="message" id="message"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Send</button>
+                                        </form>
+                                </div>
+                        </div>  
+                </div>
+        </div>
     </div>
 @endsection
 @section('scripts')
@@ -126,4 +208,5 @@
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/Chart.bundle.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/synapse.js') }}"></script>
 @endsection

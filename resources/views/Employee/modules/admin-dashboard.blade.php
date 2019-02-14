@@ -149,6 +149,9 @@
                                     <th>Department</th>
                                     <th>Employees</th>
                                 </tr>
+
+                                
+                     
                                 @foreach($CountEmployees as $key => $CE)
                                     <tr>
                                         <td>{{$CE->dept_name}}</td>

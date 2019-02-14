@@ -82,4 +82,15 @@ class TotalEmployees extends Controller
            
            return view('/Employee/modules/employees',compact('Employee_Profiles','CountMessage','EmpMessage','AllEmployees','CountRankAndFile','CivilStatus'));
     }
+    public function update(Request $request, $id)
+    {
+        $UpdateEU = Employee_Profiles::where("employee_code",$id)->update([
+            "firstname" => $request->input("firstname"),
+            "middlename" => $request->input("middlename"),
+            "lastname" => $request->input("lastname"),
+            "height" => $request->input("height"),
+            "weight" => $request->input("weight"),     
+        ]);
+        
+    }
 }

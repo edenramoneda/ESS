@@ -53,7 +53,8 @@
                                 @foreach($ScheduleRequests as $key => $sr)
                                 <li class="list-group-item">
                                     <span class="day">{{$sr->date}}</span><span class="sched">
-                                    <button type="button" class="btn btn-sm btn-ess text-white" data-toggle="modal" data-target="#myModal">View</button>
+                                    <button type="button" class="btn btn-sm btn-ess text-white" data-schedule="{{$sr->schedule}}"
+                                    data-reason="{{$sr->reason}}" data-status="{{$sr->status}}" data-toggle="modal" data-target="#SchedReqModal">View</button>
                                     </span>
                                 </li>
                                 @endforeach
@@ -129,18 +130,49 @@
                                 </div>
                                 <div class="alert alert-success form-feedback-success alert-dismissible">Request successfully Submitted!</div>
                                 <div class="form-group">
-                                <label>Schedule</label>
-                                <select class="form-control" name="sched_name" id="sched_name">
-                                    <option selected>8:00 AM - 5:00 PM</option>
-                                    <option>9:00 AM - 6:00 PM</option>
-                                    <option>10:00 AM - 7:00 PM</option>
-                                </select>
+                                    <label>Schedule</label>
+                                    <select class="form-control" name="sched_name" id="sched_name">
+                                        <option selected>8:00 AM - 5:00 PM</option>
+                                        <option>9:00 AM - 6:00 PM</option>
+                                        <option>10:00 AM - 7:00 PM</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                 <label>Reason</label>
-                                <input type="text" class="form-control" name="sched_reason" id="sched_reason">
+                                    <input type="text" class="form-control" name="sched_reason" id="sched_reason">
                                 </div>
-                                <input type="submit" value="Submit" id="submit_rsched" class="btn btn-success">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="Submit">
+                                </div>
+                        <form>
+                        </div>
+                </div>  
+                </div>
+        </div>
+        <div class="modal fade" id="SchedReqModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Schedule Requests</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>  
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                        <form id="resched-form" method="POST">
+                            @csrf
+                                <div class="form-group">
+                                    <label>Schedule</label>
+                                    <input type="text" class="form-control" name="sched_name" id="sched_name" disabled>
+                                </div>
+                                <div class="form-group">
+                                <label>Reason</label>
+                                    <input type="text" class="form-control" name="sched_reason" id="sched_reason" disabled>
+                                </div>
+                                <div class="form-group">
+                                <label>Status</label>
+                                    <input type="text" class="form-control" name="sched_status" id="sched_status" disabled>
                                 </div>
                         <form>
                         </div>

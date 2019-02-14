@@ -73,7 +73,7 @@ class AdminDashboardController extends Controller
 
            $CountEmployees = Employee_Profiles::select(DB::raw("COUNT(*) as no_of_employees, aerolink.tbl_hr4_department.dept_name"))
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
-           ->join('aerolink.tbl_hr4_jobs','aerolink.tbl_hr4_employee_jobs.job_id','=','aerolink.tbl_hr4_employee_jobs.job_id')
+           ->join('aerolink.tbl_hr4_jobs','aerolink.tbl_hr4_employee_jobs.job_id','=','aerolink.tbl_hr4_jobs.job_id')
            ->join('aerolink.tbl_hr4_department','aerolink.tbl_hr4_jobs.dept_id','=','aerolink.tbl_hr4_department.id')
            ->groupBy('aerolink.tbl_hr4_department.dept_name')
            ->get();

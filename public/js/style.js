@@ -157,35 +157,101 @@ $(document).ready(function(){
             });
         }
     });
+    //for schedule requests
+    $('#SchedReqModal').on('show.bs.modal',function(event){
+        var button = $(event.relatedTarget)
+        var schedule = button.data('schedule')
+        var schedreason = button.data('reason')
+        var schedstatus = button.data('status')
+        var modal = $(this)
+
+        modal.find('.modal-body #sched_name').val(schedule);
+        modal.find('.modal-body #sched_reason').val(schedreason);
+        modal.find('.modal-body #sched_status').val(schedstatus);
+    });
+
+    //for Under Employees Form
+    $('#editEmp').on('show.bs.modal',function(event){
+        var button = $(event.relatedTarget)
+        var empCode = button.data('empcode')
+        var empFN = button.data('firstname')
+        var empMN = button.data('middlename')
+        var empLN = button.data('lastname')
+        var height = button.data('height')
+        var weight = button.data('weight')
+        var cs = button.data('cs')
+        var email = button.data('email')
+        var address = button.data('address')
+        var contact_number = button.data('cn')
+        var ename = button.data('ename')
+        var ecn = button.data('ecn')
+        var modal = $(this)
+
+        modal.find('.modal-body #employee_code').val(empCode);
+        modal.find('.modal-body #firstname').val(empFN);
+        modal.find('.modal-body #middlename').val(empMN);
+        modal.find('.modal-body #lastname').val(empLN);
+        modal.find('.modal-body #height').val(height);
+        modal.find('.modal-body #weight').val(weight);
+        modal.find('.modal-body #cs').val(cs);
+        modal.find('.modal-body #email').val(email);
+        modal.find('.modal-body #address').val(address);
+        modal.find('.modal-body #cn').val(contact_number);
+        modal.find('.modal-body #eName').val(ename);
+        modal.find('.modal-body #EmergCN').val(ecn);
+
+        $("#overtime-req-form").attr("action", "/Employee/modules/employees/" + empCode);
+    })
+
+    $('#InboxModal').on('show.bs.modal',function(event){
+        var button = $(event.relatedTarget)
+        var empcode = button.data('empcode')
+        var fullname = button.data('fullname')
+        var Fwtc = button.data('fc')
+        var dwtct = button.data('content')
+        var r = button.data('reason')
+        var s = button.data('request')
+        var modal = $(this)
+
+        modal.find('.modal-body #empcode').val(empcode);
+        modal.find('.modal-body #fullname').val(fullname);
+        modal.find('.modal-body #fc').val(Fwtc);
+        modal.find('.modal-body #content').val(dwtct);
+        modal.find('.modal-body #reason').val(r);
+        modal.find('.modal-body #req_status').val(s);   
+    })
+
+    $('#MessageModal').on('show.bs.modal',function(event){
+        var button = $(event.relatedTarget)
+        var empcode = button.data('empcode')
+        var fullname = button.data('fullname')
+        var modal = $(this)
+
+        modal.find('.modal-body #empcode').val(empcode);
+        modal.find('.modal-body #fullname').val(fullname);
+
+        
+        $("#MessageFormModal").submit(function(e){
+            e.preventDefault();
+
+            var messageSend = $("#message").val();   
+
+            if(messageSend == ''){
+                //   $(".form-feedback-err").html("All fields are required")
+                $(".form-message-err").fadeIn(1000);
+                $(".form-message-err").fadeOut(5000);
+               }
+               else{
+                   httpAjax('post', '/Employee/modules/inbox/', {
+                       data:{ message:messageSend},
+                   }).then( res => {
+                       $(".form-message-success").fadeIn(1000);
+                       $("#MessageFormModal").trigger("reset");
+                       $(".form-message-err").hide();
+                       $(".form-message-success").fadeOut(6000);
+                   });
+               }
+        });
+    })
+
 });
-
-//for Under Employees Form
-$('#editEmp').on('show.bs.modal',function(event){
-    var button = $(event.relatedTarget)
-    var empCode = button.data('empcode')
-    var empFN = button.data('firstname')
-    var empMN = button.data('middlename')
-    var empLN = button.data('lastname')
-    var height = button.data('height')
-    var weight = button.data('weight')
-    var cs = button.data('cs')
-    var email = button.data('email')
-    var address = button.data('address')
-    var contact_number = button.data('cn')
-    var ename = button.data('ename')
-    var ecn = button.data('ecn')
-    var modal = $(this)
-
-    modal.find('.modal-body #employee_code').val(empCode);
-    modal.find('.modal-body #firstname').val(empFN);
-    modal.find('.modal-body #middlename').val(empMN);
-    modal.find('.modal-body #lastname').val(empLN);
-    modal.find('.modal-body #height').val(height);
-    modal.find('.modal-body #weight').val(weight);
-    modal.find('.modal-body #cs').val(cs);
-    modal.find('.modal-body #email').val(email);
-    modal.find('.modal-body #address').val(address);
-    modal.find('.modal-body #cn').val(contact_number);
-    modal.find('.modal-body #eName').val(ename);
-    modal.find('.modal-body #EmergCN').val(ecn);
-})

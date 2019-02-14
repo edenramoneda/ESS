@@ -103,7 +103,7 @@
                                                     data-firstname="{{$CRA->firstname}}" data-middlename="{{$CRA->middlename}}" data-lastname="{{$CRA->lastname}}"
                                                     data-height="{{$CRA->height}}" data-weight="{{$CRA->weight}}" data-cs="{{$CRA->csName}}" data-email="{{$CRA->email}}" 
                                                     data-address="{{$CRA->address}}" data-cn="{{$CRA->epCN}}" data-ename="{{$CRA->complete_name}}" data-ecn="{{$CRA->EmergCN}}"
-                                                    data-toggle="modal" data-target="#editEmp"title="Edit">
+                                                    data-toggle="modal" data-target="#editEmp" title="Edit">
                                                     <i class="fa fa-pencil-alt"></i>
                                                     </button>
                                                 </td>
@@ -131,7 +131,7 @@
                                 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                <form method="POST" id="overtime-req-form">
+                                <form method="PUT">
                                 @csrf
                                         <div class="alert alert-danger form-ot-err alert-dismissible">
                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -183,11 +183,11 @@
                                         <input type="text" class="form-control" name="cn" id="cn">
                                         </div>
                                         <div class="form-group">
-                                        <label>In Case of Emergency:Name</label>
+                                        <label>In Case of Emergency : Name</label>
                                         <input type="text" class="form-control" name="eName" id="eName">
                                         </div>
                                         <div class="form-group">
-                                        <label>In Case of Emergency:Contact Number</label>
+                                        <label>In Case of Emergency : Contact Number</label>
                                         <input type="text" class="form-control" name="EmergCN" id="EmergCN">
                                         </div>
                                         <div class="form-group">
@@ -203,6 +203,7 @@
 @section('scripts')
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/synapse.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/Chart.bundle.js') }}"></script>
 @endsection

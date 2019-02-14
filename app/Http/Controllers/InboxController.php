@@ -10,6 +10,7 @@ use Auth;
 use DB;
 use App\PDSInbox;
 use App\EmployeeMessage;
+use App\RequestStatus;
 
 class InboxController extends Controller
 {
@@ -47,9 +48,10 @@ class InboxController extends Controller
            ->latest('aerolink.tbl_hr2_ess_message.created_at')
            ->paginate(5);
 
-           $PDSReq = PDSInbox::select(DB::raw("aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS fullname"),
+           $PDSReq = PDSInbox::select(DB::raw("CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status,
+           aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS fullname"),
            'aerolink.tbl_hr2_ess_req_inbox.field_want_to_change as fc','aerolink.tbl_hr2_ess_req_inbox.data_want_to_change_to as content',
-           'aerolink.tbl_hr2_ess_req_inbox.reason','aerolink.tbl_eis_request_status.req_status','aerolink.tbl_hr2_ess_req_inbox.date_req')
+           'aerolink.tbl_hr2_ess_req_inbox.reason','aerolink.tbl_hr2_ess_req_inbox.date_req')
            ->join('aerolink.tbl_eis_request_status','aerolink.tbl_hr2_ess_req_inbox.req_status_id','=','aerolink.tbl_eis_request_status.req_status_id')
            ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_req_inbox.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
@@ -65,9 +67,10 @@ class InboxController extends Controller
            ->orderBy('aerolink.tbl_hr2_ess_req_inbox.req_status_id','desc')
            ->get();
 
-           $PDSReqArchive = PDSInbox::select(DB::raw("aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS fullname"),
+           $PDSReqArchive = PDSInbox::select(DB::raw("CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status,
+           aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS fullname"),
            'aerolink.tbl_hr2_ess_req_inbox.field_want_to_change as fc','aerolink.tbl_hr2_ess_req_inbox.data_want_to_change_to as content',
-           'aerolink.tbl_hr2_ess_req_inbox.reason','aerolink.tbl_eis_request_status.req_status','aerolink.tbl_hr2_ess_req_inbox.date_req')
+           'aerolink.tbl_hr2_ess_req_inbox.reason','aerolink.tbl_hr2_ess_req_inbox.date_req')
            ->join('aerolink.tbl_eis_request_status','aerolink.tbl_hr2_ess_req_inbox.req_status_id','=','aerolink.tbl_eis_request_status.req_status_id')
            ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_req_inbox.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
@@ -83,6 +86,17 @@ class InboxController extends Controller
            ->orderBy('aerolink.tbl_hr2_ess_req_inbox.req_status_id','desc')
            ->get();
 
-           return view('/Employee/modules/inbox',compact('Employee_Profiles','CountMessage','EmpMessage','PDSReq','PDSReqArchive'));
+           $ReqStatus = RequestStatus::select(DB::raw("CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status"))->get();
+           return view('/Employee/modules/inbox',compact('Employee_Profiles','CountMessage','EmpMessage','PDSReq','PDSReqArchive','ReqStatus'));
+    }
+    public function store(Request $request){
+        $this->validate($request, [
+            'message' => 'required',
+        ]); 
+        $m = new EmployeeMessage;
+        $m->message = $request->input('message');
+        $m->sender =  Auth::user()->employee_code;
+     //  $m->receiver = $request->input('empcode');
+        $m->save();
     }
 }

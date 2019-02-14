@@ -405,7 +405,8 @@ a:hover {
 
 .form-feedback-err, .form-feedback-success, .form-leave-err, .form-leave-success,
 .form-ot-err, .form-ot-success, .form-reimburse-success, .form-reimburse-err,
-.form-pds-err, .form-pds-success, .form-announcement-err, .form-announcement-success {
+.form-pds-err, .form-pds-success, .form-announcement-err, .form-announcement-success,
+.form-message-err, .form-message-success {
   display: none;
 }
 
