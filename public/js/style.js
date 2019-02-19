@@ -21,7 +21,7 @@ $(document).ready(function(){
         if(a_title == '' || a_content == ''){
          //   $(".form-feedback-err").html("All fields are required")
          $(".form-announcement-err").fadeIn(1000);
-         $(".form-announcement-err").fadeOut(5000);
+         $(".form-announcement-err").fadeOut(3000);
         }
         else{
             httpAjax('post', '/Employee/modules/admin-dashboard/', {
@@ -30,7 +30,10 @@ $(document).ready(function(){
                 $(".form-announcement-success").fadeIn(1000);
                 $("#announcement_form").trigger("reset");
                 $(".form-announcent-err").hide();
-                $(".form-announcement-success").fadeOut(6000);
+                $(".form-announcement-success").fadeOut(3000);
+                setTimeout(() => {
+                    window.location.href = "/Employee/modules/admin-dashboard";
+                  }, 1000);
             });
         }
     });
@@ -45,7 +48,7 @@ $(document).ready(function(){
         if(pds_field == '' || pds_change_data == '' || pds_reason == ''){
          //   $(".form-feedback-err").html("All fields are required")
          $(".form-pds-err").fadeIn(1000);
-         $(".form-pds-err").fadeOut(5000);
+         $(".form-pds-err").fadeOut(3000);
         }
         else{
             httpAjax('post', '/Employee/modules/pds/', {
@@ -54,7 +57,10 @@ $(document).ready(function(){
                 $(".form-pds-success").fadeIn(1000);
                 $("#pds_form").trigger("reset");
                 $(".form-pds-err").hide();
-                $(".form-pds-success").fadeOut(6000);
+                $(".form-pds-success").fadeOut(3000);
+                setTimeout(() => {
+                    window.location.href = "/Employee/modules/pds";
+                  }, 1000);
             });
         }
     });
@@ -68,7 +74,7 @@ $(document).ready(function(){
         if(sched_namex == '' || sched_reasonx == ''){
          //   $(".form-feedback-err").html("All fields are required")
          $(".form-feedback-err").fadeIn(1000);
-         $(".form-feedback-err").fadeOut(5000);
+         $(".form-feedback-err").fadeOut(3000);
         }
         else{
             httpAjax('post', '/Employee/modules/schedule/', {
@@ -77,7 +83,10 @@ $(document).ready(function(){
                 $(".form-feedback-success").fadeIn(1000);
                 $("#resched-form").trigger("reset");
                 $(".form-feedback-err").hide();
-                $(".form-feedback-success").fadeOut(6000);
+                $(".form-feedback-success").fadeOut(3000);
+                setTimeout(() => {
+                    window.location.href = "/Employee/modules/schedule";
+                  }, 1000);
             });
         }
     });
@@ -94,7 +103,7 @@ $(document).ready(function(){
         if(type_of_leavex == '' || reason_leavex == '' || days_of_leavex == '' || start_datex == '' || end_datex == ''){
          //   $(".form-feedback-err").html("All fields are required")
          $(".form-leave-err").fadeIn(1000);
-         $(".form-leave-err").fadeOut(5000);
+         $(".form-leave-err").fadeOut(3000);
         }
         else{
             httpAjax('post', '/Employee/modules/leave/', {
@@ -104,7 +113,10 @@ $(document).ready(function(){
                 $(".form-leave-success").fadeIn(1000);
                 $("#leave-form").trigger("reset");
                 $(".form-leave-err").hide();
-                $(".form-feedback-success").fadeOut(6000);
+                $(".form-feedback-success").fadeOut(3000);
+                setTimeout(() => {
+                    window.location.href = "/Employee/modules/leave";
+                  }, 1000);
             });
         }
     });
@@ -118,7 +130,7 @@ $(document).ready(function(){
         if(ot_hours == '' || ot_reason == ''){
          //   $(".form-feedback-err").html("All fields are required")
          $(".form-ot-err").fadeIn(1000);
-         $(".form-ot-err").fadeOut(5000);
+         $(".form-ot-err").fadeOut(3000);
         }
         else{
             httpAjax('post', '/Employee/modules/overtime/', {
@@ -127,7 +139,10 @@ $(document).ready(function(){
                 $(".form-ot-success").fadeIn(1000);
                 $("#overtime-req-form").trigger("reset");
                 $(".form-ot-err").hide();
-                $(".form-ot-success").fadeOut(6000);
+                $(".form-ot-success").fadeOut(3000);
+                setTimeout(() => {
+                    window.location.href = "/Employee/modules/overtime";
+                  }, 1000);
             });
         }
     });
@@ -144,7 +159,7 @@ $(document).ready(function(){
         if(f_or_no == '' || f_cash_received == '' || f_particulars == '' || f_attachment == '' || f_total_amount == ''){
          //   $(".form-feedback-err").html("All fields are required")
          $(".form-reimburse-err").fadeIn(1000);
-         $(".form-reimburse-err").fadeOut(5000);
+         $(".form-reimburse-err").fadeOut(3000);
         }
         else{
             httpAjax('post', '/Employee/modules/reimbursement/', {
@@ -153,7 +168,10 @@ $(document).ready(function(){
                 $(".form-reimburse-success").fadeIn(1000);
                 $("#reimbursement-form").trigger("reset");
                 $(".form-reimburse-err").hide();
-                $(".form-reimburse-success").fadeOut(6000);
+                $(".form-reimburse-success").fadeOut(3000);
+                setTimeout(() => {
+                    window.location.href = "/Employee/modules/reimbursement";
+                  }, 1000);
             });
         }
     });
@@ -227,28 +245,30 @@ $(document).ready(function(){
         var fullname = button.data('fullname')
         var modal = $(this)
 
-        modal.find('.modal-body #empcode').val(empcode);
+        modal.find('.modal-body #inbox_empcode').val(empcode);
         modal.find('.modal-body #fullname').val(fullname);
 
         
         $("#MessageFormModal").submit(function(e){
             e.preventDefault();
-
+            var receiver = $("#inbox_empcode").val();   
             var messageSend = $("#message").val();   
 
-            if(messageSend == ''){
-                //   $(".form-feedback-err").html("All fields are required")
+            if(receiver == '' || messageSend == ''){
                 $(".form-message-err").fadeIn(1000);
-                $(".form-message-err").fadeOut(5000);
+                $(".form-message-err").fadeOut(3000);
                }
                else{
                    httpAjax('post', '/Employee/modules/inbox/', {
-                       data:{ message:messageSend},
+                       data:{ empcode: receiver, message:messageSend},
                    }).then( res => {
                        $(".form-message-success").fadeIn(1000);
                        $("#MessageFormModal").trigger("reset");
                        $(".form-message-err").hide();
-                       $(".form-message-success").fadeOut(6000);
+                       $(".form-message-success").fadeOut(3000);
+                       setTimeout(() => {
+                        window.location.href = "/Employee/modules/inbox";
+                      }, 1000);
                    });
                }
         });

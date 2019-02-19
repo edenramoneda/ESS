@@ -185,7 +185,7 @@
                                         </div>
                                         <div class="alert alert-success form-message-success alert-dismissible">Message Sent!</div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="empcode" id="empcode" disabled="disabled">
+                                            <input type="text" class="form-control" name="inbox_empcode" id="inbox_empcode">
                                         </div>
                                         <div class="form-group">
                                             <label>Fullname</label>

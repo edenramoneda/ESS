@@ -53,7 +53,7 @@
                                                         <td colspan="4">{{$AllE->dept_name}}</td>
                                                         <td colspan="4">{{$AllE->employee_code}}</td>
                                                         <td colspan="5">{{$AllE->fullname}}</td>
-                                                        <th colspan="4">{{$AllE->title}}</th>
+                                                        <td colspan="4">{{$AllE->title}}</td>
                                                         <td colspan="4">{{$AllE->type_name}}</td>
                                                         <td colspan="4">{{$AllE->datehired}}</td>
                                                         <td colspan="4">{{$AllE->designation}}</td>

@@ -77,7 +77,8 @@
                             @if($Announcement->isNotEmpty())
                                 @foreach($Announcement as $key => $announcement)
                                     <li class="list-group-item">
-                                <b>{{ $announcement->announcement_title }} <i class="fa fa-trash" style="float:right;cursor:pointer" data-toggle="modal" data-target="#confirm_drop_announcement"></i></b><br><i style="font-size:11px;">{{ $announcement->date }}</i><br><br>
+                                <b>{{ $announcement->announcement_title }} 
+                                <i class="fa fa-trash" style="float:right;cursor:pointer" data-toggle="modal" data-target="#confirm_drop_announcement"></i></b><br><i style="font-size:11px;">{{ $announcement->date }}</i><br><br>
                                 {{ $announcement->announcement_content}}
                                 @endforeach
                             @else
@@ -164,7 +165,7 @@
                 </div>
         </div>  
 
-        <div class="modal fade" id="announcement_modal" tabindex="-1" role="dialog" aria-labelledby="myPostModal" aria-hidden="true">
+        <div class="modal fade" id="announcement_modal">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -210,7 +211,7 @@
             </div>
         </div>
 
-        <div class="modal fade confirm_drop_announcement" id="confirm_drop_announcement" tabindex="-1" role="dialog" aria-labelledby="myDropModal" aria-hidden="true">
+        <div class="modal fade" id="confirm_drop_announcement">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -218,20 +219,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" id="announcement_form">
-                    @csrf
-                        <div class="form-group">
-                            <label>Announcement Title</label>
-                            <input type="text" class="form-control" name="announcement_title" id="announcement_title">
-                        </div>
-                        <div class="form-group">
-                            <label>Announcement Content</label>
-                            <textarea class="form-control" name="announcement_content" id="announcement_content"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-success" value="Submit">
-                        </div>
-                    </form>
+            
                 </div>
             </div>
         </div>

@@ -96,7 +96,7 @@ class InboxController extends Controller
         $m = new EmployeeMessage;
         $m->message = $request->input('message');
         $m->sender =  Auth::user()->employee_code;
-     //  $m->receiver = $request->input('empcode');
+        $m->receiver = $request->input('empcode');
         $m->save();
     }
 }
