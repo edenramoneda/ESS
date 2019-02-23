@@ -94,7 +94,7 @@
                         </li>
                         <li class="nav-item">
                         <a class="nav-link text-white" href="{{ url('/Employee/modules/company') }}">
-                        <i class="fa fa-inbox" aria-hidden="true"></i> Departments</a>
+                        <i class="fa fa-inbox" aria-hidden="true"></i> Company</a>
                         </li>
                     </ul>
                     @endif
@@ -108,16 +108,48 @@
         </div>
         
         <nav class="navbar justify-content-end ess-navigation">
-           <!-- <li class="nav-item text-white" title="Notifications">
-                    <i class="fa fa-bell"></i><sup> <span class="badge badge-danger">4</span></sup>
-            </li>&ensp;&ensp;-->
-            <li class="nav-item text-white dropdown" title="Messages"  data-toggle="dropdown">
-                <i class="fa fa-envelope"></i>
-                 <sup><span class="badge badge-danger">
-                    @foreach($CountMessage as $key => $CM)
-                        {{$CM->Message}}
-                    @endforeach
-                 </span></sup>
+            <li class="nav-item text-white dropdown" title="Notifications">
+                <i class="fa fa-bell" data-toggle="dropdown" id="notifDrop" aria-haspopup="true" aria-expanded="false"></i><sup> <span class="badge badge-danger" id="number_notifs">0</span></sup>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notifDrop" style="width: 600px">
+                    <div class="card dropdown-item">
+                        <div class="card-header">
+                            <b>Notifications</b>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group" id="notifications-group" style="overflow-y:auto;height:50vh;">
+                                
+                            </div>                    
+                        </div>
+                    </div>
+                </div>
+            </li>&ensp;&ensp;
+
+            <li class="nav-item text-white dropdown" title="RequestNotifs">
+                <i class="fa fa-recycle" data-toggle="dropdown" id="notifDrop" aria-haspopup="true" aria-expanded="false"></i><sup> <span class="badge badge-danger" id="number_requests">0</span></sup>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notifDrop" style="width: 600px">
+                    <div class="card dropdown-item">
+                        <div class="card-header">
+                            <b>Request Notifications</b>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group" id="request-group" style="overflow-y:auto;height:50vh;">
+                                
+                            </div>                    
+                        </div>
+                    </div>
+                </div>
+            </li>&ensp;&ensp;
+
+
+            <li class="nav-item text-white dropdown" title="Messages">
+                <div data-toggle="dropdown">
+                    <i class="fa fa-envelope"></i>
+                    <sup><span class="badge badge-danger">
+                        @foreach($CountMessage as $key => $CM)
+                            {{$CM->Message}}
+                        @endforeach
+                    </span></sup>
+                </div>
                  <div class="dropdown-menu dropdown-menu-right" style="width:400px;overflow-y:auto;height:50vh;">
                         <div class="card">
                             <div class="card-header">
@@ -146,6 +178,7 @@
                         </div>
                 </div>
             </li>&ensp;&ensp;
+
             <li class="nav-item text-white mr-3">
                 <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{ asset('image/m.jpg') }}" height="20" width="20" class="rounded-circle"> 

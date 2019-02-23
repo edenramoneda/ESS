@@ -71,12 +71,23 @@
                 <div class="card mt-2 schedule-card">
                         <div class="card-header">
                                 <strong>DAILY TIME RECORD</strong>
-                                <select class="form-control-sm dtr-filter" name="dtr-filter">
-                                    <option selected>Filter by Month</option>
-                                    @foreach($TimeSheetCB as $key=> $EmpTS)
-                                        <option selected>{{$EmpTS->date}}</option>
-                                    @endforeach
-                                </select>
+                                <div class="filter">
+                                    <select class="form-control-sm" id="dtr-filter">
+                                        <option selected value="x">Filter by Month</option>
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive" style="height:80vh;">
@@ -92,7 +103,7 @@
                                                 <th colspan="4">Late</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="timesheetTable">
                                         @foreach($TimeSheet as $key => $ts)
                                                 <tr>
                                                 <td colspan="4">{{ $ts-> date}}</td>

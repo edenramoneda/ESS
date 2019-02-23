@@ -34,7 +34,9 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::group(['prefix' => 'admin-dashboard'],function(){
         Route::resource('/','AdminDashboardController');
     });
+
     Route::get('payslip','payslip@emp_payslip');
+    Route::post('viewPayslip', 'payslip@getPayslip');
 
     Route::group(['prefix' => 'pds'],function(){
         Route::get('/','EmployeeController@pds');
@@ -46,10 +48,12 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     });
     Route::group(['prefix' => 'schedule'], function(){
         Route::resource('/' , 'EmployeeSchedule');
+        Route::get('/reload' , 'EmployeeSchedule@reloadTable');
     }); 
     //for request
     Route::group(['prefix' => 'leave'], function(){
         Route::resource('/' , 'RequestLeave');
+        Route::get('/filterLeaveHistory' , 'RequestLeave@filterLeaveHistory');
     }); 
    /* Route::group(['prefix' => 'shift'],function(){
         Route::resource('/' , 'RequestSchedule@index');
@@ -81,3 +85,7 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/notifications', 'notificationController@callNotifs');
+
+Route::get('/notificationsChange', 'notificationController@callChangeNotifs');

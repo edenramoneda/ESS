@@ -77,4 +77,15 @@ class RequestLeave extends Controller
 
   //   echo $leave_stats->type_of_leave = $request->input('type_leaves');
     }
+    public function filterLeaveHistory(){
+        $LeaveRequestHistoryData =  DB::table('aerolink.tbl_hr3_leave_request_new')
+        ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_request_new.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where([
+            ['aerolink.tbl_hr3_leave_request_new.isCurrent', '=','0'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code],
+            ])
+            ->orderBy("aerolink.tbl_hr3_leave_request_new.created_at","desc")
+            ->get();
+        return response($LeaveRequestHistoryData);
+    }
 }
