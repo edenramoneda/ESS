@@ -36,5 +36,6 @@
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/Chart.bundle.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/synapse.js') }}"></script>
        
 @endsection

@@ -9,6 +9,11 @@ use App\PayslipModel;
 use DB;
 class payslip extends Controller
 {
+
+    public function __construct() {
+        //$this->middleware('auth');
+    }
+
     public function emp_payslip()
     {
         $Employee_Profiles = Employee_Profiles::
@@ -43,4 +48,14 @@ class payslip extends Controller
         ->get();
         return view('Employee/modules/payslip', compact('Payslip','CountMessage','EmpMessage','Employee_Profiles'));
     }
-}
+
+    public function getPayslip(Request $request) {
+        $data = DB::table('aerolink.tbl_hr2_dummy_payroll')->where([
+            ['employee_code', '=', Auth::user()->employee_code]
+        ])->whereIn('date_released', json_decode($request->input('dates_selected')))->get();
+        return response([
+            'data' => $data
+        ]); 
+    }
+
+} 
