@@ -68,4 +68,16 @@ class OvertimeController extends Controller
         $ot->status = "Pending";
         $ot->save();
     }
+    public function filterOvertimeData(){
+        $OvertimeData =  DB::table('aerolink.tbl_hr3_overtime')
+        ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_overtime.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where([
+            ['aerolink.tbl_hr3_overtime.isCurrent', '=','0'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code]
+            ])
+            ->orderBy("aerolink.tbl_hr3_overtime.created_at","desc")
+            ->get();
+       
+        return response($OvertimeData);
+    }
 }

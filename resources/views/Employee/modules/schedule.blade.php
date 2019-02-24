@@ -72,7 +72,7 @@
                         <div class="card-header">
                                 <strong>DAILY TIME RECORD</strong>
                                 <div class="filter">
-                                    <select class="form-control-sm" id="dtr-filter">
+                                    <select class="form-control" id="dtr-filter">
                                         <option selected value="x">Filter by Month</option>
                                         <option value="1">January</option>
                                         <option value="2">February</option>

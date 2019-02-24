@@ -89,6 +89,7 @@ class InboxController extends Controller
            $ReqStatus = RequestStatus::select(DB::raw("CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status"))->get();
            return view('/Employee/modules/inbox',compact('Employee_Profiles','CountMessage','EmpMessage','PDSReq','PDSReqArchive','ReqStatus'));
     }
+    //For Message
     public function store(Request $request){
         $this->validate($request, [
             'message' => 'required',
@@ -98,5 +99,9 @@ class InboxController extends Controller
         $m->sender =  Auth::user()->employee_code;
         $m->receiver = $request->input('empcode');
         $m->save();
+    }
+    //For Editing Status
+    public function update(){
+        
     }
 }

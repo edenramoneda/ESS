@@ -154,9 +154,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <b>Messages</b>
-                              <!--  <span>
-                                <i class="fa fa-pencil-alt f-right"></i> <b title="compose message">Compose</b>
-                                </span>-->
+                                <span>
+                                    <i class="fa fa-pencil-alt" title="compose message" style="float:right"></i>
+                                </span>
                             </div>
                             <div class="card-body p-0">
                                 <ul class="list-group">
@@ -165,7 +165,7 @@
                                             <li class="list-group-item">
                                             <b>{{ $EM->sender }}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
                                             <p>{{ $EM->message}}</p>
-                                        <!-- <a href="" class="f-right text-primary">Reply</a>-->
+                                         <a href="" class="f-right text-primary" style="float:right">Reply</a>
                                             </li>
                                         @endforeach
                                     @else

@@ -148,6 +148,23 @@ $(document).ready(function() {
             }
         });
     })
+    $('#overtime-filter').on('change',function() {    
+        httpAjax('get', '/Employee/modules/overtime/filterOvertimeData', {}).then(res => {
+            var od = $('#overtime-filter').val();
+            $('#overtimeTable').empty();
+            for(var overtime in res) {
+                var fod = new Date(res[overtime].date.split(" ")[1]);
+                if((od - 1) == fod.getMonth()) {
+                    $('#overtimeTable').append("<tr>" + 
+                        "<td>" + res[overtime].date + "</td>" + 
+                        "<td>" + res[overtime].overtime_hours + "</td>" + 
+                        "<td colspan='4'>" + res[overtime].reason + "</td>" + 
+                        "<td colspan='4'>" + res[overtime].status + "</td>" + 
+                    +"</tr>");
+                }
+            }
+        });
+    })
     //Announcement
     $("#announcement_form").submit(function(e) {
         e.preventDefault();
@@ -295,17 +312,13 @@ $(document).ready(function() {
     //reimburse requests
     $("#reimbursement-form").submit(function(e) {
         e.preventDefault();
-        var f_or_no = $("#or_no").val();
-        var f_cash_received = $("#cash_received").val();
+        var f_expenses = $("#expenses").val();
         var f_particulars = $("#particulars").val();
         var f_attachment = $("#attachment").val();
-        var f_total_amount = $("#total_amount").val();
         if (
-            f_or_no == "" ||
-            f_cash_received == "" ||
+            f_expenses == "" ||
             f_particulars == "" ||
-            f_attachment == "" ||
-            f_total_amount == ""
+            f_attachment == "" 
         ) {
             //   $(".form-feedback-err").html("All fields are required")
             $(".form-reimburse-err").fadeIn(1000);
@@ -313,11 +326,9 @@ $(document).ready(function() {
         } else {
             httpAjax("post", "/Employee/modules/reimbursement/", {
                 data: {
-                    or_no: f_or_no,
-                    cash_received: f_cash_received,
+                    expenses: f_expenses,
                     particulars: f_particulars,
                     attachment: f_attachment,
-                    total_amount: f_total_amount
                 }
             }).then(res => {
                 $(".form-reimburse-success").fadeIn(1000);
@@ -373,9 +384,9 @@ $(document).ready(function() {
         modal.find(".modal-body #eName").val(ename);
         modal.find(".modal-body #EmergCN").val(ecn);
 
-        $("#overtime-req-form").attr(
+        $("#UnderEmployeeForm").attr(
             "action",
-            "/Employee/modules/employees/" + empCode
+            "/Employee/modules/employees/update/" + empCode
         );
     });
 

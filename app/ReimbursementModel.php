@@ -9,6 +9,6 @@ class ReimbursementModel extends Model
     protected $table = "aerolink.tbl_hr3_reimbursement_request";
 
     protected $fillable = [
-        'id','date_requested','employee_code','or_no','date','recieved','particulars','attachment','total_amount','status'
+        'id','date_requested','employee_code','date','expenses','particulars','attachment','status'
     ];
 }
