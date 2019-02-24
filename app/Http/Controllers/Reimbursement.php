@@ -72,6 +72,16 @@ class Reimbursement extends Controller
         $reimburse->attachment = $request->input('attachment');
         $reimburse->status = "Pending";
         $reimburse->save();
-
+    }
+    public function filterReimburseHData(){
+        $ReimbursementHData =  DB::table('aerolink.tbl_hr3_reimbursement_request')
+        ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_reimbursement_request.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
+        ->where([
+            ['aerolink.tbl_hr3_reimbursement_request.isCurrent','=','0'],
+            ['aerolink.tbl_hr4_employee_profiles.employee_code', '=', Auth::user()->employee_code]
+            ])
+        ->orderBy('aerolink.tbl_hr3_reimbursement_request.created_at','desc')
+        ->get();
+        return response($ReimbursementHData);
     }
 }

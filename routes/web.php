@@ -65,6 +65,7 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     });
     Route::group(['prefix' => 'reimbursement'], function(){
         Route::resource('/' , 'Reimbursement');
+        Route::get('/filterReimburseHData' , 'Reimbursement@filterReimburseHData');
     });
     
     Route::group(['prefix' => 'employees'], function(){
