@@ -60,20 +60,16 @@ class Reimbursement extends Controller
     }
     public function store(Request $request){
         $this->validate($request, [
-            'or_no' => 'required',
-            'cash_received' => 'required',
+            'expenses' => 'required',
             'particulars' => 'required',
             'attachment' => 'required',
-            'total_amount' => 'required'
         ]); 
         $reimburse = new ReimbursementModel;
         $reimburse->date = date('l Y-m-d');
         $reimburse->employee_code = Auth::user()->employee_code;
-        $reimburse->or_no = $request->input('or_no');
-        $reimburse->recieved = $request->input('cash_received');
+        $reimburse->expenses = $request->input('expenses');
         $reimburse->particulars = $request->input('particulars');
         $reimburse->attachment = $request->input('attachment');
-        $reimburse->total_amount = $request->input('total_amount');
         $reimburse->status = "Pending";
         $reimburse->save();
 

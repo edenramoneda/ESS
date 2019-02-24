@@ -18,7 +18,7 @@
             <a class="nav-link active" data-toggle="tab" href="#ListEmployees">List of All Employees</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#UnderEmployees">Your Under Employees</a>
+            <a class="nav-link" data-toggle="tab" href="#UnderEmployees">Your Subordinates</a>
             </li>
         </ul>
 
@@ -70,7 +70,7 @@
             </div>
             <div id="UnderEmployees" class="container-fluid tab-pane fade"><br>
                 <div class="card">
-                    <div class="card-header"><strong>Your Under Employees</strong>
+                    <div class="card-header"><strong>Your Subordinates</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="height:80vh;">
@@ -131,7 +131,7 @@
                                 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                <form method="PUT">
+                                <form id="UnderEmployeeForm" method="POST">
                                 @csrf
                                         <div class="alert alert-danger form-ot-err alert-dismissible">
                                         <button type="button" class="close" data-dismiss="alert">&times;</button>

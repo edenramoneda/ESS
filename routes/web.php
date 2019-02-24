@@ -38,17 +38,18 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::get('payslip','payslip@emp_payslip');
     Route::post('viewPayslip', 'payslip@getPayslip');
 
-    Route::group(['prefix' => 'pds'],function(){
+   /* Route::group(['prefix' => 'pds'],function(){
         Route::get('/','EmployeeController@pds');
         Route::get('generate_pds', 'EmployeeController@generatePDS');
-    });
+    });*/
     Route::group(['prefix' => 'pds'],function(){
         Route::resource('/','EmployeeController');
       //  Route::get('generate_pds', 'EmployeeController@generatePDS');
     });
     Route::group(['prefix' => 'schedule'], function(){
         Route::resource('/' , 'EmployeeSchedule');
-        Route::get('/reload' , 'EmployeeSchedule@reloadTable');
+       // Route::get('/update' , 'EmployeeSchedule@reloadTable');
+       Route::get('/reload' , 'EmployeeSchedule@reloadTable');
     }); 
     //for request
     Route::group(['prefix' => 'leave'], function(){
@@ -60,6 +61,7 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     });*/  
     Route::group(['prefix' => 'overtime'], function(){
         Route::resource('/' , 'OvertimeController');
+        Route::get('/filterOvertimeData' , 'OvertimeController@filterOvertimeData');
     });
     Route::group(['prefix' => 'reimbursement'], function(){
         Route::resource('/' , 'Reimbursement');
@@ -67,6 +69,7 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     
     Route::group(['prefix' => 'employees'], function(){
         Route::resource('/' , 'TotalEmployees');
+        Route::post('/update/{emp}', 'TotalEmployees@updateEmp');
     });
     Route::group(['prefix' => 'inbox'], function(){
         Route::resource('/' , 'InboxController');

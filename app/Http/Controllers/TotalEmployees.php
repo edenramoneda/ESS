@@ -84,6 +84,12 @@ class TotalEmployees extends Controller
     }
     public function update(Request $request, $id)
     {
+        
+        
+    }
+
+    public function updateEmp(Request $request, $id)
+    {
         $UpdateEU = Employee_Profiles::where("employee_code",$id)->update([
             "firstname" => $request->input("firstname"),
             "middlename" => $request->input("middlename"),
@@ -92,5 +98,7 @@ class TotalEmployees extends Controller
             "weight" => $request->input("weight"),     
         ]);
         
+
+        return redirect("/Employee/modules/employees/");
     }
 }

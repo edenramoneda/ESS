@@ -37,11 +37,9 @@
                                                 <thead class="thead-light">
                                                 <tr>
                                                         <th>Date Requested</th>
-                                                        <th>OR No</th>
-                                                        <th>Received</th>
+                                                        <th>Expenses</th>
                                                         <th>Particulars</th>
                                                         <th>Attachment</th>
-                                                        <th>Total Amount</th>
                                                         <th>Status</th>
                                                 </tr>
                                                 </thead>
@@ -50,11 +48,9 @@
                                                                 @foreach($Reimbursement as $key => $r)
                                                                 <tr>
                                                                 <td> {{$r->date }}</td>
-                                                                <td> {{$r->or_no }}</td>
-                                                                <td>{{$r->recieved }}</td>
+                                                                <td> {{$r->expenses }}</td>
                                                                 <td>{{$r->particulars }}</td>
                                                                 <td>{{$r->attachment }}</td>
-                                                                <td>{{$r->total_amount }}</td>
                                                                 <td>{{$r->status }}</td>
                                                                 </tr>
                                                                 @endforeach
@@ -80,11 +76,9 @@
                                         <thead class="thead-light">
                                         <tr>
                                                 <th>Date Requested</th>
-                                                <th>OR No</th>
-                                                <th>Received</th>
+                                                <th>Expenses</th>
                                                 <th>Particulars</th>
                                                 <th>Attachment</th>
-                                                <th>Total Amount</th>
                                                 <th>Status</th>
                                         </tr>
                                         </thead>
@@ -93,11 +87,9 @@
                                                         @foreach($ReimbursementHistory as $key => $r)
                                                         <tr>
                                                         <td> {{$r->date }}</td>
-                                                        <td> {{$r->or_no }}</td>
-                                                        <td>{{$r->recieved }}</td>
+                                                        <td>{{$r->expenses }}</td>
                                                         <td>{{$r->particulars }}</td>
                                                         <td>{{$r->attachment }}</td>
-                                                        <td>{{$r->total_amount }}</td>
                                                         <td>{{$r->status }}</td>
                                                         </tr>
                                                         @endforeach
@@ -134,27 +126,19 @@
                                 </div>
                                 <div class="alert alert-success form-reimburse-success alert-dismissible">Request successfully Submitted!</div>
                                 <div class="form-group">
-                                <label>OR No.</label>
-                                <input type="text" class="form-control" name="or_no" id="or_no">
+                                        <label>Expenses</label>
+                                        <input type="text" class="form-control" name="expenses" id="expenses">
                                 </div>
                                 <div class="form-group">
-                                <label>Cash Received</label>
-                                <input type="text" class="form-control" name="cash_received" id="cash_received">
+                                        <label>Particulars</label>
+                                        <input type="text" class="form-control" name="particulars" id="particulars">
                                 </div>
                                 <div class="form-group">
-                                <label>Particulars</label>
-                                <input type="text" class="form-control" name="particulars" id="particulars">
+                                        <label>Attachment</label>
+                                        <input type="file" class="form-control" name="attachment" id="attachment">
                                 </div>
                                 <div class="form-group">
-                                <label>Attachment</label>
-                                <input type="file" class="form-control" name="attachment" id="attachment">
-                                </div>
-                                <div class="form-group">
-                                <label>Total Amount</label>
-                                <input type="text" class="form-control" name="total_amount" id="total_amount">
-                                </div>
-                                <div class="form-group">
-                                <input type="submit" value="Submit" class="btn btn-success">
+                                        <input type="submit" value="Submit" class="btn btn-success">
                                 </div>
                         </form>
                         </div>
