@@ -96,7 +96,10 @@ class TotalEmployees extends Controller
             "lastname" => $request->input("lastname"),
             "height" => $request->input("height"),
             "weight" => $request->input("weight"),    
-            "civil_status_id" => substr(explode(" - ", $request->input("cs"))[0], 4)
+            "civil_status_id" => substr(explode(" - ", $request->input("cs"))[0], 4),
+            "contact_number" => $request->input("cn"),
+            "email" => $request->input("email"),
+            "address" => $request->input("address"),
         ]);
         return redirect("/Employee/modules/employees/");
     }
