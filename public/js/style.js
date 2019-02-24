@@ -165,6 +165,24 @@ $(document).ready(function() {
             }
         });
     })
+    $('#reimburse-filter').on('change',function() {    
+        httpAjax('get', '/Employee/modules/reimbursement/filterReimburseHData', {}).then(res => {
+            var reimburse = $('#reimburse-filter').val();
+            $('#reimburseHTable').empty();
+            for(var reimbursement in res) {
+                var r = new Date(res[reimbursement].date.split(" ")[1]);
+                if((reimburse - 1) == r.getMonth()) {
+                    $('#reimburseHTable').append("<tr>" + 
+                        "<td>" + res[reimbursement].date + "</td>" + 
+                        "<td>" + res[reimbursement].expenses + "</td>" + 
+                        "<td>" + res[reimbursement].particulars + "</td>" + 
+                        "<td>" + res[reimbursement].attachment + "</td>" + 
+                        "<td>" + res[reimbursement].status + "</td>" + 
+                    +"</tr>");
+                }
+            }
+        });
+    })
     //Announcement
     $("#announcement_form").submit(function(e) {
         e.preventDefault();
