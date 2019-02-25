@@ -67,7 +67,10 @@ class Dashboard extends Controller
 
         $CountLeaveRequests = leave_managementstatus::select(DB::raw("COUNT(*) as count_leave"))
         ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_request_new.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-        ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+        ->where([
+            ['aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code],
+            ['aerolink.tbl_hr3_leave_request_new.isCurrent', "1"],
+            ])
         ->get();
         //dd($Employee_Profiles);
         return view('/Employee/modules/dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles'));

@@ -68,7 +68,10 @@ class AdminDashboardController extends Controller
    
            $CountLeaveRequests = leave_managementstatus::select(DB::raw("COUNT(*) as count_leave"))
            ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr3_leave_request_new.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
-           ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
+           ->where([
+           ['aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code],
+           ['aerolink.tbl_hr3_leave_request_new.isCurrent', "1"],
+           ])
            ->get();
 
            $CountEmployees = Employee_Profiles::select(DB::raw("COUNT(*) as no_of_employees, aerolink.tbl_hr4_department.dept_name"))

@@ -3,7 +3,8 @@
 
 @section('stylesheets')
             
-<link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url('css/jquery-ui.theme.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
         <meta charset="utf-8">
@@ -28,7 +29,7 @@
                 <div class="card schedule-card">
                         <div class="card-header">
                                 <strong>All Employees</strong>
-                                <select class="form-control-sm dtr-filter" name="dtr-filter">
+                                <select class="form-control filter" name="filter">
                                     <option selected>Filter by Department</option>
                                 </select>
                         </div>
@@ -202,6 +203,7 @@
 @endsection
 @section('scripts')
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/jquery-ui.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/synapse.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>

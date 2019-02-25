@@ -4,6 +4,7 @@
 @section('stylesheets')
             
 <link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url('css/jquery-ui.theme.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -196,6 +197,7 @@
 
 @section('scripts')
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/jquery-ui.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/synapse.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
