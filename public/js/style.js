@@ -51,7 +51,6 @@ $(document).ready(function() {
             data: { dates_selected: JSON.stringify($("#sel2").val()) }
         }).then(res => {
             $("#payslip-container").empty();
-
             var data = res.data;
             for (var r in data) {
                 $("#payslip-container").append(
@@ -86,7 +85,7 @@ $(document).ready(function() {
                         "<b>" +
                         data[r].sss_loan +
                         "</b>" +
-                        "<br>Pag ibig Load : " +
+                        "<br>Pag ibig Loan : " +
                         "<b>" +
                         data[r].pag_ibig_loan +
                         "</b>" +
@@ -103,9 +102,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#dtr-filter').on('change',function() {
-        console.log('a'); //when on change
-        
+    $('#dtr-filter').on('change',function() {    
         httpAjax('get', '/Employee/modules/schedule/reload', {}).then(res => {
             var sDate= $('#dtr-filter').val();
             $('#timesheetTable').empty();
@@ -263,6 +260,25 @@ $(document).ready(function() {
             });
         }
     });
+    //disable past date datepicker
+   $( "#start_date" ).datepicker({minDate: 0});
+   //validate type of leave 
+   $("#type_leaves").on('change',function(){
+    var getTypeOfLeave = $("#type_leaves").val();
+    if(getTypeOfLeave == "Sick Leave"){
+       $("#leave_days").attr("max","15");
+        $(".leave-days-error").append("Maximum Sick Leave: 15");
+    }else if(getTypeOfLeave == "Maternity Leave"){
+       $("#leave_days").attr("max","105");
+       $(".leave-days-error").append("Maximum Maternity Leave: 105");
+    }else if(getTypeOfLeave == "Paternity Leave"){
+        $("#leave_days").attr("max","7");
+        $(".leave-days-error").append("Maximum Paternity Leave: 7");
+    }else if(getTypeOfLeave == "Vacation Leave"){
+        $("#leave_days").attr("max","15");
+        $(".leave-days-error").append("Maximum Vacation Leave: 15");
+    }
+   });
     //Leave
     $("#leave-form").submit(function(e) {
         e.preventDefault();

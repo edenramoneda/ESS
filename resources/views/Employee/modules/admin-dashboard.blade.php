@@ -4,6 +4,7 @@
 @section('stylesheets')
             
 <link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url('css/jquery-ui.theme.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
         <meta charset="utf-8">
@@ -57,11 +58,11 @@
                                         {{$CRF->rank_and_files}}
                                 @endforeach
                             </h3>
-                            Your Under Employees
+                            Subordinates
                          </div>
                     </div>
                     <div class="card-header bg-success">
-                        <a href="/Employee/modules/employees" class="text-white">View your under employees</a>
+                        <a href="/Employee/modules/employees" class="text-white">View your Subordinates</a>
                     </div>
                 </div>
             </div>       
@@ -149,10 +150,7 @@
                                 <tr>
                                     <th>Department</th>
                                     <th>Employees</th>
-                                </tr>
-
-                                
-                     
+                                </tr>  
                                 @foreach($CountEmployees as $key => $CE)
                                     <tr>
                                         <td>{{$CE->dept_name}}</td>
@@ -232,6 +230,7 @@
 @foreach($EmpPerformance as $key => $EP)
 @section('scripts')
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/jquery-ui.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/Chart.bundle.js') }}"></script>

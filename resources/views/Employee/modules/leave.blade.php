@@ -4,6 +4,7 @@
 @section('stylesheets')
             
 <link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url('css/jquery-ui.theme.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}"> 
         <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -180,15 +181,16 @@
                         </div>
                         <div class="form-group">
                             <label>Days of Leave</label>
-                            <input type="number" class="form-control" name="leave_days" id="leave_days">
+                            <input type="number" class="form-control" name="leave_days" id="leave_days" min="1" max="15">
+                            <i class="text-danger leave-days-error"></i>
                         </div>
                         <div class="form-group">
                             <label>Start Date</label>
-                            <input type="date" class="form-control" name="start_date" id="start_date">
+                            <input id="start_date" name="start_date" data-provide="datepicker" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>End Date</label>
-                            <input type="date" class="form-control" name="end_date" id="end_date">
+                            <input class="form-control" name="end_date" id="end_date">
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-success" value="Submit">
@@ -202,6 +204,7 @@
 
 @section('scripts')
         <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('js/jquery-ui.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/style.js') }}"></script>
         <script type="text/javascript" src="{{ url('js/Chart.min.js') }}"></script>
