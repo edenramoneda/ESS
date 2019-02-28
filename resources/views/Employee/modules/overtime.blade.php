@@ -141,7 +141,8 @@
                                         <div class="alert alert-success form-ot-success alert-dismissible">Request successfully Submitted!</div>
                                         <div class="form-group">
                                         <label>Overtime Hours</label>
-                                        <input type="number" class="form-control" placeholder="Example: 2" name="overtime_hours" id="overtime_hours">
+                                        <input type="number" class="form-control" placeholder="Example: 2" name="overtime_hours" id="overtime_hours" min="1" max="5">
+                                        <i class="text-success overtime-hours-error">Maximum Overtime Hours: 5</i>
                                         </div>
                                         <div class="form-group">
                                         <label>Reason</label>

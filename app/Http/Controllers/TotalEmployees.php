@@ -50,10 +50,12 @@ class TotalEmployees extends Controller
            $AllEmployees = Employee_Profiles::select(DB::raw("*,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) as fullname"))
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
            ->join('aerolink.tbl_hr4_jobs','aerolink.tbl_hr4_employee_jobs.job_id','=','aerolink.tbl_hr4_jobs.job_id')
+           ->join('aerolink.tbl_hr4_job_classifications','aerolink.tbl_hr4_jobs.classification_id','=','aerolink.tbl_hr4_job_classifications.id')
            ->join('aerolink.tbl_hr4_department','aerolink.tbl_hr4_jobs.dept_id','=','aerolink.tbl_hr4_department.id')
            ->join('aerolink.tbl_hr4_employees','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employees.employee_code')
            ->join('aerolink.tbl_hr4_employeeTypes','aerolink.tbl_hr4_employees.type_id','=','aerolink.tbl_hr4_employeeTypes.type_id')
            ->join('aerolink.tbl_hr4_job_designations','aerolink.tbl_hr4_jobs.designation_id','=','aerolink.tbl_hr4_job_designations.id')
+           ->orderBy('aerolink.tbl_hr4_job_classifications.id','asc')
            ->orderBy('aerolink.tbl_hr4_department.dept_name','asc')
            ->get();
 
@@ -70,6 +72,7 @@ class TotalEmployees extends Controller
            ->join('aerolink.tbl_hr4_employeeTypes','aerolink.tbl_hr4_employees.type_id','=','aerolink.tbl_hr4_employeeTypes.type_id')
            ->join('aerolink.tbl_hr4_job_designations','aerolink.tbl_hr4_jobs.designation_id','=','aerolink.tbl_hr4_job_designations.id')
            ->orderBy('aerolink.tbl_hr4_department.dept_name','asc')
+           ->orderBy('aerolink.tbl_hr4_job_classifications.id','asc')
            ->where([
             ['aerolink.tbl_hr4_employee_FB.isEC','1'],
             ['aerolink.tbl_hr4_job_classifications.id','3'],

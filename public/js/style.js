@@ -56,7 +56,7 @@ $(document).ready(function() {
                 $("#payslip-container").append(
                     '<div class="col-4 mt-2"><div class="card"><div class="card-header">Payslip for ' +
                         data[r].date_period +
-                        '</div></div><div class="card-body bg-light">' +
+                        '</div></div><div class="card-body bg-light" style="padding:3px;">' +
                         "<br>Basic : " +
                         "<b>" +
                         data[r].basic +
@@ -207,6 +207,18 @@ $(document).ready(function() {
             });
         }
     });
+    //Drop Announcement
+    $("#confirm_drop_announcement").on("show.bs.modal", function(event){
+        var button = $(event.relatedTarget);
+        var aID = button.data("aid");
+        var modal = $(this);
+        modal.find(".modal-body #a_ID").val(aID);
+
+        $("#DropAnnouncementForm").attr(
+            "action",
+            "/Employee/modules/admin-dashboard/dropa/" + aID
+        );
+    });
     //Schedule
     $("#pds_form").submit(function(e) {
         e.preventDefault();
@@ -267,15 +279,19 @@ $(document).ready(function() {
     var getTypeOfLeave = $("#type_leaves").val();
     if(getTypeOfLeave == "Sick Leave"){
        $("#leave_days").attr("max","15");
-        $(".leave-days-error").append("Maximum Sick Leave: 15");
+       $(".leave-days-error").empty();
+       $(".leave-days-error").append("Maximum Sick Leave: 15");
     }else if(getTypeOfLeave == "Maternity Leave"){
        $("#leave_days").attr("max","105");
+       $(".leave-days-error").empty();
        $(".leave-days-error").append("Maximum Maternity Leave: 105");
     }else if(getTypeOfLeave == "Paternity Leave"){
         $("#leave_days").attr("max","7");
+        $(".leave-days-error").empty();
         $(".leave-days-error").append("Maximum Paternity Leave: 7");
     }else if(getTypeOfLeave == "Vacation Leave"){
         $("#leave_days").attr("max","15");
+        $(".leave-days-error").empty();
         $(".leave-days-error").append("Maximum Vacation Leave: 15");
     }
    });

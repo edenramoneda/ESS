@@ -63,6 +63,7 @@ class Dashboard extends Controller
         $Announcement = DashboardModel::
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_announcement.posted_by','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->orderBY('aerolink.tbl_hr2_announcement.date','desc')
+        ->where('aerolink.tbl_hr2_announcement.isDeleted','0')
         ->get();
 
         $CountLeaveRequests = leave_managementstatus::select(DB::raw("COUNT(*) as count_leave"))

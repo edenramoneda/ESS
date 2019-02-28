@@ -64,6 +64,7 @@ class AdminDashboardController extends Controller
            $Announcement = DashboardModel::
            join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_announcement.posted_by','=','aerolink.tbl_hr4_employee_profiles.employee_code')
            ->orderBY('aerolink.tbl_hr2_announcement.date','desc')
+           ->where('aerolink.tbl_hr2_announcement.isDeleted','0')
            ->get();
    
            $CountLeaveRequests = leave_managementstatus::select(DB::raw("COUNT(*) as count_leave"))
@@ -117,5 +118,12 @@ class AdminDashboardController extends Controller
         $a->announcement_content= $request->input('announcement_content');
         $a->posted_by = Auth::user()->employee_code;  
         $a->save();
+    }
+    public function DropAnnouncement(Request $request, $id)
+    {
+        $UpdateEU = DashboardModel::where("announcement_id",$id)->update([
+            "isDeleted" => "1"
+        ]);
+        return redirect("/Employee/modules/admin-dashboard/");
     }
 }

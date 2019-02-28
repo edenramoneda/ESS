@@ -79,7 +79,7 @@
                                 @foreach($Announcement as $key => $announcement)
                                     <li class="list-group-item">
                                 <b>{{ $announcement->announcement_title }} 
-                                <i class="fa fa-trash" style="float:right;cursor:pointer" data-toggle="modal" data-target="#confirm_drop_announcement"></i></b><br><i style="font-size:11px;">{{ $announcement->date }}</i><br><br>
+                                <i class="fa fa-trash" style="float:right;cursor:pointer" data-aid="{{ $announcement->announcement_id }}" data-toggle="modal" data-target="#confirm_drop_announcement"></i></b><br><i style="font-size:11px;">{{ $announcement->date }}</i><br><br>
                                 {{ $announcement->announcement_content}}
                                 @endforeach
                             @else
@@ -220,7 +220,19 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        aa
+                        <form method="POST" id="DropAnnouncementForm">
+                        @csrf
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" id="a_ID" name="a_ID">
+                            </div>
+                            <div class="form-group">
+                                <label>Are you sure you want to drop this announcement?</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success btn-sm" value="Yes">
+                                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>&ensp;
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
