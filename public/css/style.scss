@@ -287,6 +287,7 @@ a:hover{
 }
 .payroll{
     font-family: Lato-Regular;
+    padding:2px!important;
     .card-header{
         line-height: 10px;
         color: #008040!important;
@@ -296,7 +297,9 @@ a:hover{
 
     }
     .card-body{
-        padding:0!important;
+       span{
+           float: right;
+       }
     }
     th,tr,td{
         border:1px solid #dee2e6;

@@ -52,51 +52,65 @@ $(document).ready(function() {
         }).then(res => {
             $("#payslip-container").empty();
             var data = res.data;
+         
             for (var r in data) {
+               // var earnings = data[r].basic.parseInt();
+             //   return console.log(Number(data[r].basic));
                 $("#payslip-container").append(
-                    '<div class="col-4 mt-2"><div class="card"><div class="card-header">Payslip for ' +
+                    '<div class="col-6 mt-2"><div class="card"><div class="card-header">Period Covered: ' +
                         data[r].date_period +
-                        '</div></div><div class="card-body bg-light" style="padding:3px;">' +
+                        '</div></div><div class="card-body bg-light">' +
+                        "<b>Earnings</b> " +
                         "<br>Basic : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].basic +
-                        "</b>" +
+                        "</span>" +
                         "<br>Overtime : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].overtime +
-                        "</b>" +
+                        "</span>" +
                         "<br>Allowance : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].allowance +
-                        "</b>" +
-                        "<br>SSS : " +
-                        "<b>" +
+                        "</span>" +
+                        "<hr>" +
+                        "<b>Total Earnings:</b>" +
+                        "<span>Total Here</span><hr>" +
+                        "<b>Deductions</b><br>" +
+                        "SSS : " +
+                        "<span>" +
                         data[r].sss +
-                        "</b>" +
+                        "</span>" +
                         "<br>Pag ibig : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].pag_ibig +
-                        "</b>" +
+                        "</span>" +
                         "<br>Philhealth : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].philhealth +
-                        "</b>" +
+                        "</span>" +
                         "<br>SSS Loan : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].sss_loan +
-                        "</b>" +
+                        "</span>" +
                         "<br>Pag ibig Loan : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].pag_ibig_loan +
-                        "</b>" +
+                        "</span>" +
                         "<br>Tax : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].tax +
-                        "</b>" +
+                        "</span>" +
                         "<br>Late : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].late +
-                        "</b></div></div>"
+                        "</span>" +
+                        "<hr>" +
+                        "<b>Total Deductions:</b>" +
+                        "<span>Total Here</span><hr>" +
+                        "<b>Net Pay:</b>" +
+                        "<span>Total Here</span><hr>" +
+                        "</div></div>"
                 );
             }
         });

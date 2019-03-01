@@ -350,6 +350,7 @@ a:hover {
 
 .payroll {
   font-family: Lato-Regular;
+  padding: 2px !important;
 }
 
 .payroll .card-header {
@@ -360,8 +361,8 @@ a:hover {
   border-bottom-width: 2px;
 }
 
-.payroll .card-body {
-  padding: 0 !important;
+.payroll .card-body span {
+  float: right;
 }
 
 .payroll th, .payroll tr, .payroll td {
