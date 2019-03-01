@@ -456,6 +456,7 @@ $(document).ready(function() {
 
     $("#InboxModal").on("show.bs.modal", function(event) {
         var button = $(event.relatedTarget);
+        var pds_id = button.data("pdsid");
         var empcode = button.data("empcode");
         var fullname = button.data("fullname");
         var Fwtc = button.data("fc");
@@ -464,12 +465,18 @@ $(document).ready(function() {
         var s = button.data("request");
         var modal = $(this);
 
+        modal.find(".modal-body #pds_id").val(pds_id);
         modal.find(".modal-body #empcode").val(empcode);
         modal.find(".modal-body #fullname").val(fullname);
         modal.find(".modal-body #fc").val(Fwtc);
         modal.find(".modal-body #content").val(dwtct);
         modal.find(".modal-body #reason").val(r);
         modal.find(".modal-body #req_status").val(s);
+
+        $("#ReqInboxForm").attr(
+            "action",
+            "/Employee/modules/inbox/update/" + pds_id
+        )
     });
 
     $("#MessageModal").on("show.bs.modal", function(event) {

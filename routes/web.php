@@ -75,6 +75,7 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     });
     Route::group(['prefix' => 'inbox'], function(){
         Route::resource('/' , 'InboxController');
+        Route::post('/update/{reqid}', 'InboxController@updateStatus');
     });
     Route::group(['prefix' => 'company'], function(){
         Route::resource('/' , 'DepartmentController');
