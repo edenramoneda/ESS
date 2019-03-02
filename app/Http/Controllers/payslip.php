@@ -46,7 +46,11 @@ class payslip extends Controller
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_dummy_payroll.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
         ->get();
-        return view('Employee/modules/payslip', compact('Payslip','CountMessage','EmpMessage','Employee_Profiles'));
+
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
+
+        return view('Employee/modules/payslip', compact('Payslip','CountMessage','EmpMessage','Employee_Profiles','ComposeMessage'));
     }
 
     public function getPayslip(Request $request) {

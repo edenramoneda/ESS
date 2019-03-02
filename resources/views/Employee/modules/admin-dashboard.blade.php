@@ -80,7 +80,7 @@
                                     <li class="list-group-item">
                                 <b>{{ $announcement->announcement_title }} 
                                 <i class="fa fa-trash" style="float:right;cursor:pointer" data-aid="{{ $announcement->announcement_id }}" data-toggle="modal" data-target="#confirm_drop_announcement"></i></b><br><i style="font-size:11px;">{{ $announcement->date }}</i><br><br>
-                                {{ $announcement->announcement_content}}
+                                <p class="announcement-content">{{ $announcement->announcement_content}}</p>
                                 @endforeach
                             @else
                                 No Announcements

@@ -72,6 +72,7 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::group(['prefix' => 'employees'], function(){
         Route::resource('/' , 'TotalEmployees');
         Route::post('/update/{emp}', 'TotalEmployees@updateEmp');
+        Route::get('/filterEmployeeByDept', 'TotalEmployees@filterEmployeeByDept');
     });
     Route::group(['prefix' => 'inbox'], function(){
         Route::resource('/' , 'InboxController');
@@ -81,13 +82,7 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
         Route::resource('/' , 'DepartmentController');
     });
 });
-//Employee Dashboard
-//Route::get('/Employee/modules/dashboard', 'Dashboard@index');
-//Employee Profile
-//Route::get('/Employee/modules/info','EmployeeController@info');
-//Route::get('/Employee/modules/pds', 'EmployeeController@pds');
-//Employee Payslip
-//Route::get('Employee/modules/payslip', 'payslip@emp_payslip');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

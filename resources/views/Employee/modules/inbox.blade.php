@@ -68,7 +68,7 @@
                                             </tr>
                                         @endforeach
                                     @else
-                                                <td colspan="12">No Results Found</td>
+                                                <td colspan="34">No Results Found</td>
                                     @endif
                                 </tbody>
                             </table>

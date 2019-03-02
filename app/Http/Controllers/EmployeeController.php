@@ -107,8 +107,13 @@ class EmployeeController extends Controller
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code)->get();
 
       //  $employee = $temp_PDS[0];
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
+        
         return view('Employee/modules/pds', compact('CountMessage','Employee_Profiles','EmpMessage', 'temp_PDS','FamilyBackground','EmployeeTraining'
-    ,'EducationalAttainment','EmployeeWorkExp','AcademicAwards','GovIDs'));
+    ,'EducationalAttainment','EmployeeWorkExp','AcademicAwards','GovIDs','ComposeMessage'));
+
+    
   //  $temp_PDS = PDF::loadView('Employee/modules/pds',compact('temp_PDS'));
     return $temp_PDS->download('PDS.pdf');
     }

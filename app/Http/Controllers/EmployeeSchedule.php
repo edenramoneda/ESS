@@ -60,11 +60,10 @@ class EmployeeSchedule extends Controller
         ->orderBy("aerolink.tbl_hr3_shifting_request.created_at","desc")
         ->get();
 
-        //filter dtr
-     /*   if ($request->has('month')) {
-            $EmpTimeSheet =  timesheetModel::->get();
-         }*/
-        return view('Employee/modules/schedule', compact('TimeSheetCB','ScheduleRequests','CountMessage','EmpMessage','Schedule','TimeSheet','Employee_Profiles'));
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
+
+        return view('Employee/modules/schedule', compact('TimeSheetCB','ScheduleRequests','CountMessage','EmpMessage','Schedule','TimeSheet','Employee_Profiles','ComposeMessage'));
     }
     public function store(Request $request){
         $this->validate($request, [

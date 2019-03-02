@@ -11,6 +11,9 @@ body
 {
     width:100%;
 }
+.ui-widget-content{
+    border:none!important;
+}
 .login-form
 { 
     z-index: 10; 
@@ -257,6 +260,9 @@ a:hover{
             b{
                 color:#00994d!important;
             }
+            .announcement-content{
+                font-size: 14px;
+            }
         }
     }
 }
@@ -337,7 +343,7 @@ a:hover{
 .form-feedback-err, .form-feedback-success , .form-leave-err, .form-leave-success,
 .form-ot-err, .form-ot-success,.form-reimburse-success, .form-reimburse-err,
 .form-pds-err, .form-pds-success, .form-announcement-err, .form-announcement-success,
-.form-message-err, .form-message-success{
+.form-message-err, .form-message-success,.form-cmMessage-success,.form-cmMessage-err{
 display: none;
 }
 .dtr

@@ -104,9 +104,11 @@ class AdminDashboardController extends Controller
             ['aerolink.tbl_hr4_department.dept_name','Human Resources']
            ])
            ->get();
-           //return $CountEmployees;
+
+           $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+           ->orderBy('lastname','ASC')->get();
            return view('/Employee/modules/admin-dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles',
-           'CountEmployees','Department','Employees','CountRankAndFile'));
+           'CountEmployees','Department','Employees','CountRankAndFile','ComposeMessage'));
     }
     public function store(Request $request){
         $this->validate($request, [

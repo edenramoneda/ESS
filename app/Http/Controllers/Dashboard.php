@@ -73,7 +73,9 @@ class Dashboard extends Controller
             ['aerolink.tbl_hr3_leave_request_new.isCurrent', "1"],
             ])
         ->get();
-        //dd($Employee_Profiles);
-        return view('/Employee/modules/dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles'));
+        
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
+        return view('/Employee/modules/dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles','ComposeMessage'));
     }
 }

@@ -55,8 +55,11 @@ class Reimbursement extends Controller
             ])
         ->orderBy('aerolink.tbl_hr3_reimbursement_request.created_at','desc')
         ->get();
+        
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
 
-        return view('Employee/modules/reimbursement', compact('CountMessage','EmpMessage','Reimbursement','ReimbursementHistory','Employee_Profiles'));
+        return view('Employee/modules/reimbursement', compact('CountMessage','EmpMessage','Reimbursement','ReimbursementHistory','Employee_Profiles','ComposeMessage'));
     }
     public function store(Request $request){
         $this->validate($request, [

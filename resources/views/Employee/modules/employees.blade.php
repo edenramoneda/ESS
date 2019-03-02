@@ -28,9 +28,15 @@
             <div id="ListEmployees" class="container-fluid tab-pane active"><br>
                 <div class="card schedule-card">
                         <div class="card-header">
-                                <strong>All Employees</strong>
-                                <select class="form-control filter" name="filter">
-                                    <option selected>Filter by Department</option>
+                                <strong>All Employees: </strong>
+                                    @foreach($CountEP as $key => $te)
+                                        {{$te->total_employees}}
+                                    @endforeach
+                                <select class="form-control filter" id="emp-filter">
+                                    <option selected value="x">Filter by Department</option>
+                                    @foreach($FilterEmployee as $key=> $FE)
+                                        <option selected value="x">{{$FE->dept_name}}</option>
+                                    @endforeach
                                 </select>
                         </div>
                         <div class="card-body">
@@ -47,7 +53,7 @@
                                                 <th colspan="4">Designation</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="AllEmployeeData">
                                             @if($AllEmployees->isNotEmpty())
                                                 @foreach($AllEmployees as $key => $AllE)
                                                     <tr>    

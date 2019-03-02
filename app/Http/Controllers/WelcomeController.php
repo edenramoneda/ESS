@@ -13,7 +13,7 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $Employee_Profiles = Employee_Profiles::
+           $Employee_Profiles = Employee_Profiles::
         //   join('aerolink.tbl_hr2_announcement','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr2_announcement.posted_by')
            join('aerolink.tbl_hr4_employee_jobs', 'aerolink.tbl_hr4_employee_profiles.employee_code', '=', 'aerolink.tbl_hr4_employee_jobs.employee_code')
            ->join('aerolink.tbl_hr4_jobs', 'aerolink.tbl_hr4_employee_jobs.job_id', '=', 'aerolink.tbl_hr4_jobs.job_id')
@@ -46,7 +46,10 @@ class WelcomeController extends Controller
            ->latest('aerolink.tbl_hr2_ess_message.created_at')
            ->paginate(5);
 
-           return view('/Employee/modules/welcome', compact('CountMessage','EmpMessage','Employee_Profiles'));
+           $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+            ->orderBy('lastname','ASC')->get();
+
+           return view('/Employee/modules/welcome', compact('CountMessage','EmpMessage','Employee_Profiles','ComposeMessage'));
 
     }
 }

@@ -30,12 +30,10 @@ $(document).ready(function() {
         });
 
         httpAjax("get", "/notificationsChange", {}).then(res => {
-            $("#request-group").empty();
-
             var sets = res.notifs;
             $("#number_requests").text(sets.length);
-
             for (set in sets) {
+                $("#request-group").empty();
                 $("#request-group").append(
                     '<a class="list-group-item"><h6 class="p-2 text-center bg-primary text-white">REQUEST</h6><p>' +
                         sets[set].notif_message +
@@ -116,6 +114,38 @@ $(document).ready(function() {
         });
     });
 
+
+    
+    //For Compose Message
+        var getEmpCode = $("#send_to").val().split(" - ")[0];
+        var modal = $("#ComposeMessageModal");
+        var message = $("#send_message").val();
+        $("#emp_receiver").empty();
+        modal.find(".modal-body #emp_receiver").val(getEmpCode);
+
+        $("#send_to").on('change',function(){
+            var getEmpCode = $("#send_to").val().split(" - ")[0];
+            var modal = $("#ComposeMessageModal");
+            $("#emp_receiver").empty();
+            modal.find(".modal-body #emp_receiver").val(getEmpCode);
+        });
+        $("#composeMessageForm").submit(function(e){
+            e.preventDefault();
+            if(getEmpCode == "" || message == ""){
+                $(".form-cmMessage-err").fadeIn(1000);
+                $(".form-cmMessage-err").fadeOut(3000);
+            }else{
+                httpAjax("post","", {
+                    data: {
+
+                    }
+                }).then(res => {
+                    
+                });
+            }
+        });
+
+
     $('#dtr-filter').on('change',function() {    
         httpAjax('get', '/Employee/modules/schedule/reload', {}).then(res => {
             var sDate= $('#dtr-filter').val();
@@ -137,8 +167,6 @@ $(document).ready(function() {
         });
     })
     $('#leave-filter').on('change',function() {
-        console.log('a'); //when on change
-        
         httpAjax('get', '/Employee/modules/leave/filterLeaveHistory', {}).then(res => {
             var sDateLeaveHistory= $('#leave-filter').val();
             $('#LeaveHistoryTable').empty();
@@ -192,6 +220,28 @@ $(document).ready(function() {
                     +"</tr>");
                 }
             }
+        });
+    })
+    $('#emp-filter').on('change',function() {   
+        console.log('a'); //when on change
+         
+        httpAjax('get', '/Employee/modules/employees/filterEmployeeByDept', {}).then(res => {
+            var emp = $('#emp-filter').val();
+            $('#AllEmployeeData').empty();
+            for(var allEmp in res) {
+                if(emp != null){
+                    $('#AllEmployeeData').append("<tr>" + 
+                        "<td colspan='4'>" + res[allEmp].dept_name + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].employee_code + "</td>" + 
+                        "<td colspan='5'>" + res[allEmp].fullname + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].title + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].type_name + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].datehired + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].designation + "</td>" +
+                    +"</tr>");
+                }
+            }
+            
         });
     })
     //Announcement

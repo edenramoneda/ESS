@@ -44,7 +44,10 @@ class DepartmentController extends Controller
         ->join('aerolink.tbl_hr4_department','aerolink.tbl_hr4_jobs.dept_id','aerolink.tbl_hr4_department.id')
         ->orderBy('aerolink.tbl_hr4_department.dept_name','asc')
         ->get();
+
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
         
-        return view('/Employee/modules/company', compact('CountMessage','EmpMessage','Employee_Profiles','Department','Jobs'));
+        return view('/Employee/modules/company', compact('CountMessage','EmpMessage','Employee_Profiles','Department','Jobs','ComposeMessage'));
     }
 }

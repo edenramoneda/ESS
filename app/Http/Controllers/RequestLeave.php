@@ -54,8 +54,10 @@ class RequestLeave extends Controller
         ->get();
 
        $TypeOfLeaves = TypeOfLeaves::get();
+       $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
        
-        return view('Employee/modules/leave', compact('LeaveRequestHistory','CountMessage','EmpMessage','TypeOfLeaves','LeaveRequestNew','Employee_Profiles'));
+        return view('Employee/modules/leave', compact('LeaveRequestHistory','CountMessage','EmpMessage','TypeOfLeaves','LeaveRequestNew','Employee_Profiles','ComposeMessage'));
     }
     public function store(Request $request){
         $this->validate($request, [

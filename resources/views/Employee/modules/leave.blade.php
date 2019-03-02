@@ -161,7 +161,7 @@
                             </div>
                         @endif
                     <form method="POST" id="leave-form">
-                    @csrf
+                         @csrf
                         <div class="alert alert-danger form-leave-err alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
                             All fields are required!

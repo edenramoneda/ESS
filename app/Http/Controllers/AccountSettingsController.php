@@ -41,6 +41,9 @@ class AccountSettingsController extends Controller
         $AccountSettings = AccountSettings::
         join('aerolink.tbl_hr4_employee_profiles','dbo.ess_users.employee_code','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
-        return view('/Employee/AccountSettings',compact('Employee_Profiles','CountMessage','EmpMessage','AccountSettings'));
+
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
+        return view('/Employee/AccountSettings',compact('Employee_Profiles','CountMessage','EmpMessage','AccountSettings','ComposeMessage'));
     }
 }
