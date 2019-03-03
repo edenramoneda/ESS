@@ -145,9 +145,10 @@ $(document).ready(function() {
         $("#ReplyModalForm").on('show.bs.modal',function(e){
             var button = $(e.relatedTarget);
             var empcode = button.data("replysender");
-            var modal = $(this);
-            
+            var sendername = button.data("replysendername");
+            var modal = $(this);    
             modal.find(".modal-body #replyempcode").val(empcode);
+            modal.find(".modal-header #sendername").val(sendername);
 
         });
 

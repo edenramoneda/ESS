@@ -165,7 +165,7 @@
                                             <li class="list-group-item">    
                                                 <b>{{$EM->sender}}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
                                                 <p>{{ $EM->message}}</p>
-                                                <i class="f-right fa fa-reply text-success" data-replysender="{{ $EM->employee_code }}" style="float:right" title="Reply" data-toggle="modal" data-target="#ReplyModalForm"></i>
+                                                <i class="f-right fa fa-reply text-success" data-replysendername="{{$EM->sender}}" data-replysender="{{ $EM->employee_code }}" style="float:right" title="Reply" data-toggle="modal" data-target="#ReplyModalForm"></i>
                                             </li>
                                         @endforeach
                                     @else
@@ -234,7 +234,8 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <strong>Reply to: {{ $EM->sender }}</strong>
+                        <label><strong>Reply To:</strong></label>
+                        <input type="text" class="form-control" id="sendername" name="sendername">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
