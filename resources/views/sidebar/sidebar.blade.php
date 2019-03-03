@@ -162,10 +162,10 @@
                                 <ul class="list-group">
                                     @if($EmpMessage->isNotEmpty())
                                         @foreach($EmpMessage as $key => $EM)
-                                            <li class="list-group-item">
-                                            <b>{{ $EM->sender }}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
-                                            <p>{{ $EM->message}}</p>
-                                         <a href="" class="f-right text-primary" style="float:right">Reply</a>
+                                            <li class="list-group-item">    
+                                                <b>{{$EM->sender}}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
+                                                <p>{{ $EM->message}}</p>
+                                                <i class="f-right fa fa-reply text-success" data-replysender="{{ $EM->employee_code }}" style="float:right" title="Reply" data-toggle="modal" data-target="#ReplyModalForm"></i>
                                             </li>
                                         @endforeach
                                     @else
@@ -215,6 +215,44 @@
                                 <select name="send_to" id="send_to" class="custom-select">
                                 @foreach($ComposeMessage as $key => $cm)
                                     <option>{{ $cm->employee}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-control" name="send_message" id="send_message" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Send">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ReplyModalForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>Reply to: {{ $EM->sender }}</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" id="ReplyForm">
+                            @csrf
+                            <div class="alert alert-danger form-cmMessage-err alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                All fields are required!
+                            </div>
+                            <div class="alert alert-success form-cmMessage-success alert-dismissible">Message Sent!</div>
+                            <div class="form-group">
+                                <input type="text" id="replyempcode" name="replyempcode">
+                            </div>
+                            <div class="form-group">
+                                <label>Send to</label>
+                                <select name="send_to" id="send_to" class="custom-select">
+                                @foreach($ComposeMessage as $key => $cm)
+                                    <option>{{ $cm->receiver}}</option>
                                     @endforeach
                                 </select>
                             </div>

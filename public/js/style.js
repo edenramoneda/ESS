@@ -141,6 +141,15 @@ $(document).ready(function() {
                 });
             }
         });
+    //For Reply Message
+        $("#ReplyModalForm").on('show.bs.modal',function(e){
+            var button = $(e.relatedTarget);
+            var empcode = button.data("replysender");
+            var modal = $(this);
+            
+            modal.find(".modal-body #replyempcode").val(empcode);
+
+        });
 
 
     $('#dtr-filter').on('change',function() {    
