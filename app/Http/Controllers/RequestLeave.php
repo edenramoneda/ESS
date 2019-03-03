@@ -54,8 +54,9 @@ class RequestLeave extends Controller
         ->get();
 
        $TypeOfLeaves = TypeOfLeaves::get();
-       $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
-        ->orderBy('lastname','ASC')->get();
+
+      $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+           ->orderBy('lastname','ASC')->get();
        
         return view('Employee/modules/leave', compact('LeaveRequestHistory','CountMessage','EmpMessage','TypeOfLeaves','LeaveRequestNew','Employee_Profiles','ComposeMessage'));
     }
@@ -89,5 +90,17 @@ class RequestLeave extends Controller
             ->orderBy("aerolink.tbl_hr3_leave_request_new.created_at","desc")
             ->get();
         return response($LeaveRequestHistoryData);
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 }

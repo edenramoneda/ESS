@@ -44,6 +44,19 @@ class AccountSettingsController extends Controller
 
         $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
         ->orderBy('lastname','ASC')->get();
+
         return view('/Employee/AccountSettings',compact('Employee_Profiles','CountMessage','EmpMessage','AccountSettings','ComposeMessage'));
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 }

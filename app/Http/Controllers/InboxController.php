@@ -86,8 +86,8 @@ class InboxController extends Controller
            ->orderBy('aerolink.tbl_hr2_ess_req_inbox.req_status_id','desc')
            ->get();
 
-           $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename)"))
-            ->orderBy('lastname','ASC')->get();
+           $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+           ->orderBy('lastname','ASC')->get();
 
            $ReqStatus = RequestStatus::select(DB::raw("CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status"))->get();
            return view('/Employee/modules/inbox',compact('Employee_Profiles','CountMessage','EmpMessage','PDSReq','PDSReqArchive','ReqStatus','ComposeMessage'));
@@ -109,5 +109,17 @@ class InboxController extends Controller
             "req_status_id" => substr(explode(" - ", $request->input("req_status"))[0], 3)
         ]);
         return redirect("/Employee/modules/inbox/");
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 }

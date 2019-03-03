@@ -117,30 +117,27 @@ $(document).ready(function() {
 
     
     //For Compose Message
-        var getEmpCode = $("#send_to").val().split(" - ")[0];
-        var modal = $("#ComposeMessageModal");
-        var message = $("#send_message").val();
-        $("#emp_receiver").empty();
-        modal.find(".modal-body #emp_receiver").val(getEmpCode);
-
-        $("#send_to").on('change',function(){
-            var getEmpCode = $("#send_to").val().split(" - ")[0];
-            var modal = $("#ComposeMessageModal");
-            $("#emp_receiver").empty();
-            modal.find(".modal-body #emp_receiver").val(getEmpCode);
-        });
         $("#composeMessageForm").submit(function(e){
+            var getEmpCode = $("#send_to").val().split(" - ")[0];
+             var message = $("#send_message").val();
             e.preventDefault();
             if(getEmpCode == "" || message == ""){
                 $(".form-cmMessage-err").fadeIn(1000);
                 $(".form-cmMessage-err").fadeOut(3000);
             }else{
-                httpAjax("post","", {
+                httpAjax("post","/Employee/modules/admin-dashboard/composeMessage", {
                     data: {
-
+                        send_to: getEmpCode,
+                        send_message: message,
                     }
                 }).then(res => {
-                    
+                    $(".form-cmMessage-success").fadeIn(1000);
+                    $("#composeMessageForm").trigger("reset");
+                    $(".form-cmMessage-err").hide();
+                    $(".form-cmMessage-success").fadeOut(3000);
+                    setTimeout(() => {
+                        window.location.href = "/Employee/modules/admin-dashboard";
+                    }, 1000);
                 });
             }
         });
@@ -174,14 +171,13 @@ $(document).ready(function() {
                 var sdlh = new Date(res[leaveH].date.split(" ")[1]);
                 if((sDateLeaveHistory - 1) == sdlh.getMonth()) {
                     $('#LeaveHistoryTable').append("<tr>" + 
-                        "<td>" + res[leaveH].leave_name + "</td>" + 
-                        "<td>" + res[leaveH].range_leave + "</td>" + 
                         "<td>" + res[leaveH].date + "</td>" + 
+                        "<td>" + res[leaveH].leave_name + "</td>" + 
+                        "<td colspan='4'>" + res[leaveH].reason + "</td>" + 
+                        "<td>" + res[leaveH].range_leave + "</td>" + 
                         "<td>" + res[leaveH].date_start + "</td>" + 
                         "<td>" + res[leaveH].date_end + "</td>" + 
-                        "<td colspan='4'>" + res[leaveH].reason + "</td>" + 
                         "<td>" + res[leaveH].status + "</td>" +
-                        "<td>" + res[leaveH].isCurrent + "</td>" +
                     +"</tr>");
                 }
             }

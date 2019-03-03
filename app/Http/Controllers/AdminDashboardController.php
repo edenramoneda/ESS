@@ -107,6 +107,7 @@ class AdminDashboardController extends Controller
 
            $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
            ->orderBy('lastname','ASC')->get();
+
            return view('/Employee/modules/admin-dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles',
            'CountEmployees','Department','Employees','CountRankAndFile','ComposeMessage'));
     }
@@ -127,5 +128,17 @@ class AdminDashboardController extends Controller
             "isDeleted" => "1"
         ]);
         return redirect("/Employee/modules/admin-dashboard/");
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 }

@@ -88,9 +88,9 @@ class TotalEmployees extends Controller
            ->get();
            //filter employee by department
            $FilterEmployee = Department::all();
-
+          
            $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
-            ->orderBy('lastname','ASC')->get();
+           ->orderBy('lastname','ASC')->get();
             
            return view('/Employee/modules/employees',compact('Employee_Profiles','CountMessage','EmpMessage','AllEmployees','CountRankAndFile','CivilStatus','FilterEmployee','CountEP','ComposeMessage'));
     }
@@ -129,5 +129,17 @@ class TotalEmployees extends Controller
         ->get();
 
         return response($AllEmployees);
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 }

@@ -211,9 +211,6 @@
                             </div>
                             <div class="alert alert-success form-cmMessage-success alert-dismissible">Message Sent!</div>
                             <div class="form-group">
-                                <input type="text" id="emp_receiver" name="emp_receiver">
-                            </div>
-                            <div class="form-group">
                                 <label>Send to</label>
                                 <select name="send_to" id="send_to" class="custom-select">
                                 @foreach($ComposeMessage as $key => $cm)

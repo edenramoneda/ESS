@@ -34,6 +34,7 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::group(['prefix' => 'admin-dashboard'],function(){
         Route::resource('/','AdminDashboardController');
         Route::post('/dropa/{aid}','AdminDashboardController@DropAnnouncement');
+        Route::post('/composeMessage','AdminDashboardController@composeMessage');
     });
 
     Route::get('payslip','payslip@emp_payslip');
