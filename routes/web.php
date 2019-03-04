@@ -33,6 +33,9 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
 
     Route::group(['prefix' => 'admin-dashboard'],function(){
         Route::resource('/','AdminDashboardController');
+        Route::post('/dropa/{aid}','AdminDashboardController@DropAnnouncement');
+        Route::post('/composeMessage','AdminDashboardController@composeMessage');
+        Route::post('/replyMessage','AdminDashboardController@replyMessage');
     });
 
     Route::get('payslip','payslip@emp_payslip');
@@ -71,21 +74,17 @@ Route::group(['prefix' => '/Employee/modules/'],function(){
     Route::group(['prefix' => 'employees'], function(){
         Route::resource('/' , 'TotalEmployees');
         Route::post('/update/{emp}', 'TotalEmployees@updateEmp');
+        Route::get('/filterEmployeeByDept', 'TotalEmployees@filterEmployeeByDept');
     });
     Route::group(['prefix' => 'inbox'], function(){
         Route::resource('/' , 'InboxController');
+        Route::post('/update/{reqid}', 'InboxController@updateStatus');
     });
     Route::group(['prefix' => 'company'], function(){
         Route::resource('/' , 'DepartmentController');
     });
 });
-//Employee Dashboard
-//Route::get('/Employee/modules/dashboard', 'Dashboard@index');
-//Employee Profile
-//Route::get('/Employee/modules/info','EmployeeController@info');
-//Route::get('/Employee/modules/pds', 'EmployeeController@pds');
-//Employee Payslip
-//Route::get('Employee/modules/payslip', 'payslip@emp_payslip');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

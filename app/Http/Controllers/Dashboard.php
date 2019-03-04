@@ -30,7 +30,7 @@ class Dashboard extends Controller
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)->get();
         \ACL::newACL($Employee_Profiles);
 
-        $EmpMessage = EmployeeMessage::select(DB::raw("CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
+        $EmpMessage = EmployeeMessage::select(DB::raw("aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
         'aerolink.tbl_hr4_jobs.title','aerolink.tbl_hr2_ess_message.message','aerolink.tbl_hr2_ess_message.date_sent')
         ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_message.sender','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
@@ -63,6 +63,7 @@ class Dashboard extends Controller
         $Announcement = DashboardModel::
         join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_announcement.posted_by','=','aerolink.tbl_hr4_employee_profiles.employee_code')
         ->orderBY('aerolink.tbl_hr2_announcement.date','desc')
+        ->where('aerolink.tbl_hr2_announcement.isDeleted','0')
         ->get();
 
         $CountLeaveRequests = leave_managementstatus::select(DB::raw("COUNT(*) as count_leave"))
@@ -72,7 +73,34 @@ class Dashboard extends Controller
             ['aerolink.tbl_hr3_leave_request_new.isCurrent', "1"],
             ])
         ->get();
-        //dd($Employee_Profiles);
-        return view('/Employee/modules/dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles'));
+        
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+           ->orderBy('lastname','ASC')->get();
+
+        return view('/Employee/modules/dashboard', compact('EmpPerformance','Schedule','CountMessage','CountLeaveRequests','EmpMessage','Announcement','Employee_Profiles','ComposeMessage'));
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
+    }
+    public function replyMessage(Request $request){
+        $this->validate($request, [
+            'replyempcode' => 'required',
+            'reply_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("replyempcode");
+        $SendMessage->message = $request->input("reply_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 }

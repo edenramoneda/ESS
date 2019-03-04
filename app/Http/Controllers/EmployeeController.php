@@ -66,7 +66,7 @@ class EmployeeController extends Controller
                 ['aerolink.tbl_hr4_employee_FB.isEC ', '=', '1']
             ])->get();
            // return $temp_PDS;
-           $EmpMessage = EmployeeMessage::select(DB::raw("CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
+           $EmpMessage = EmployeeMessage::select(DB::raw("aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
            'aerolink.tbl_hr4_jobs.title','aerolink.tbl_hr2_ess_message.message','aerolink.tbl_hr2_ess_message.date_sent')
            ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_message.sender','=','aerolink.tbl_hr4_employee_profiles.employee_code')
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
@@ -107,8 +107,13 @@ class EmployeeController extends Controller
         ->where('aerolink.tbl_hr4_employee_profiles.employee_code ', '=', Auth::user()->employee_code)->get();
 
       //  $employee = $temp_PDS[0];
+        $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+        ->orderBy('lastname','ASC')->get();
+        
         return view('Employee/modules/pds', compact('CountMessage','Employee_Profiles','EmpMessage', 'temp_PDS','FamilyBackground','EmployeeTraining'
-    ,'EducationalAttainment','EmployeeWorkExp','AcademicAwards','GovIDs'));
+    ,'EducationalAttainment','EmployeeWorkExp','AcademicAwards','GovIDs','ComposeMessage'));
+
+    
   //  $temp_PDS = PDF::loadView('Employee/modules/pds',compact('temp_PDS'));
     return $temp_PDS->download('PDS.pdf');
     }
@@ -160,6 +165,30 @@ class EmployeeController extends Controller
         $req_pds->reason = $request->input('pds_reason');
         $req_pds->date_req = date('l Y-m-d');  
         $req_pds->save();
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
+    }
+    public function replyMessage(Request $request){
+        $this->validate($request, [
+            'replyempcode' => 'required',
+            'reply_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("replyempcode");
+        $SendMessage->message = $request->input("reply_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 
 }

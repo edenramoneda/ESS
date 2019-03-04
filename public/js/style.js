@@ -30,12 +30,10 @@ $(document).ready(function() {
         });
 
         httpAjax("get", "/notificationsChange", {}).then(res => {
-            $("#request-group").empty();
-
             var sets = res.notifs;
             $("#number_requests").text(sets.length);
-
             for (set in sets) {
+                $("#request-group").empty();
                 $("#request-group").append(
                     '<a class="list-group-item"><h6 class="p-2 text-center bg-primary text-white">REQUEST</h6><p>' +
                         sets[set].notif_message +
@@ -52,55 +50,140 @@ $(document).ready(function() {
         }).then(res => {
             $("#payslip-container").empty();
             var data = res.data;
+         
             for (var r in data) {
+               // var earnings = data[r].basic.parseInt();
+             //   return console.log(Number(data[r].basic));
                 $("#payslip-container").append(
-                    '<div class="col-4 mt-2"><div class="card"><div class="card-header">Payslip for ' +
+                    '<div class="col-6 mt-2"><div class="card"><div class="card-header">Period Covered: ' +
                         data[r].date_period +
                         '</div></div><div class="card-body bg-light">' +
+                        "<b>Earnings</b> " +
                         "<br>Basic : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].basic +
-                        "</b>" +
+                        "</span>" +
                         "<br>Overtime : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].overtime +
-                        "</b>" +
+                        "</span>" +
                         "<br>Allowance : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].allowance +
-                        "</b>" +
-                        "<br>SSS : " +
-                        "<b>" +
+                        "</span>" +
+                        "<hr>" +
+                        "<b>Total Earnings:</b>" +
+                        "<span>Total Here</span><hr>" +
+                        "<b>Deductions</b><br>" +
+                        "SSS : " +
+                        "<span>" +
                         data[r].sss +
-                        "</b>" +
+                        "</span>" +
                         "<br>Pag ibig : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].pag_ibig +
-                        "</b>" +
+                        "</span>" +
                         "<br>Philhealth : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].philhealth +
-                        "</b>" +
+                        "</span>" +
                         "<br>SSS Loan : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].sss_loan +
-                        "</b>" +
+                        "</span>" +
                         "<br>Pag ibig Loan : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].pag_ibig_loan +
-                        "</b>" +
+                        "</span>" +
                         "<br>Tax : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].tax +
-                        "</b>" +
+                        "</span>" +
                         "<br>Late : " +
-                        "<b>" +
+                        "<span>" +
                         data[r].late +
-                        "</b></div></div>"
+                        "</span>" +
+                        "<hr>" +
+                        "<b>Total Deductions:</b>" +
+                        "<span>Total Here</span><hr>" +
+                        "<b>Net Pay:</b>" +
+                        "<span>Total Here</span><hr>" +
+                        "</div></div>"
                 );
             }
         });
     });
+
+
+    
+    //For Compose Message
+        $("#composeMessageForm").submit(function(e){
+            var getEmpCode = $("#send_to").val().split(" - ")[0];
+             var message = $("#send_message").val();
+            e.preventDefault();
+            if(getEmpCode == "" || message == ""){
+                $(".form-cmMessage-err").fadeIn(1000);
+                $(".form-cmMessage-err").fadeOut(3000);
+            }else{
+                httpAjax("post","/Employee/modules/admin-dashboard/composeMessage", {
+                    data: {
+                        send_to: getEmpCode,
+                        send_message: message,
+                    }
+                }).then(res => {
+                    $(".form-cmMessage-success").fadeIn(1000);
+                    $("#composeMessageForm").trigger("reset");
+                    $(".form-cmMessage-err").hide();
+                    $(".form-cmMessage-success").fadeOut(3000);
+                    setTimeout(() => {
+                        window.location.href = "/Employee/modules/admin-dashboard";
+                    }, 1000);
+                });
+            }
+        });
+    //For Reply Message
+        $("#ReplyModalForm").on('show.bs.modal',function(e){
+            var button = $(e.relatedTarget);
+            var empcode = button.data("replysender");
+            var sendername = button.data("replysendername");
+            var sendermessage = button.data("replysendermessage");
+            var modal = $(this);
+            
+            /*if(sendermessage.length >=2){
+                console.log("Hoola");
+            }*/
+            
+            modal.find(".modal-body #replyempcode").val(empcode);
+            modal.find(".modal-header #sendername").val(sendername);
+            modal.find(".modal-body #sender_message").val(sendermessage);
+
+            $("#ReplyForm").submit(function(e){
+                var senderEC = $("#replyempcode").val();
+                var reply = $("#reply_message").val();
+                e.preventDefault();
+
+                if(senderEC == "" || reply == ""){
+                    $(".form-cmMessageReply-err").fadeIn(1000);
+                    $(".form-cmMessageReply-err").fadeOut(3000);   
+                }else{
+                    httpAjax("post","/Employee/modules/admin-dashboard/replyMessage",{
+                        data: {
+                            replyempcode: senderEC,
+                            reply_message: reply,
+                        }
+                    }).then(res => {
+                        $(".form-cmMessageReply-success").fadeIn(1000);
+                        $("#ReplyForm").trigger("reset");
+                        $(".form-cmMessageReply-err").hide();
+                        $(".form-cmMessageReply-success").fadeOut(3000);
+                        setTimeout(() => {
+                            window.location.href = "/Employee/modules/admin-dashboard";
+                        }, 1000);
+                    });
+                }
+            })
+        });
+
 
     $('#dtr-filter').on('change',function() {    
         httpAjax('get', '/Employee/modules/schedule/reload', {}).then(res => {
@@ -123,8 +206,6 @@ $(document).ready(function() {
         });
     })
     $('#leave-filter').on('change',function() {
-        console.log('a'); //when on change
-        
         httpAjax('get', '/Employee/modules/leave/filterLeaveHistory', {}).then(res => {
             var sDateLeaveHistory= $('#leave-filter').val();
             $('#LeaveHistoryTable').empty();
@@ -132,14 +213,13 @@ $(document).ready(function() {
                 var sdlh = new Date(res[leaveH].date.split(" ")[1]);
                 if((sDateLeaveHistory - 1) == sdlh.getMonth()) {
                     $('#LeaveHistoryTable').append("<tr>" + 
-                        "<td>" + res[leaveH].leave_name + "</td>" + 
-                        "<td>" + res[leaveH].range_leave + "</td>" + 
                         "<td>" + res[leaveH].date + "</td>" + 
+                        "<td>" + res[leaveH].leave_name + "</td>" + 
+                        "<td colspan='4'>" + res[leaveH].reason + "</td>" + 
+                        "<td>" + res[leaveH].range_leave + "</td>" + 
                         "<td>" + res[leaveH].date_start + "</td>" + 
                         "<td>" + res[leaveH].date_end + "</td>" + 
-                        "<td colspan='4'>" + res[leaveH].reason + "</td>" + 
                         "<td>" + res[leaveH].status + "</td>" +
-                        "<td>" + res[leaveH].isCurrent + "</td>" +
                     +"</tr>");
                 }
             }
@@ -180,6 +260,28 @@ $(document).ready(function() {
             }
         });
     })
+    $('#emp-filter').on('change',function() {   
+        console.log('a'); //when on change
+         
+        httpAjax('get', '/Employee/modules/employees/filterEmployeeByDept', {}).then(res => {
+            var emp = $('#emp-filter').val();
+            $('#AllEmployeeData').empty();
+            for(var allEmp in res) {
+                if(emp != null){
+                    $('#AllEmployeeData').append("<tr>" + 
+                        "<td colspan='4'>" + res[allEmp].dept_name + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].employee_code + "</td>" + 
+                        "<td colspan='5'>" + res[allEmp].fullname + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].title + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].type_name + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].datehired + "</td>" + 
+                        "<td colspan='4'>" + res[allEmp].designation + "</td>" +
+                    +"</tr>");
+                }
+            }
+            
+        });
+    })
     //Announcement
     $("#announcement_form").submit(function(e) {
         e.preventDefault();
@@ -206,6 +308,18 @@ $(document).ready(function() {
                 }, 1000);
             });
         }
+    });
+    //Drop Announcement
+    $("#confirm_drop_announcement").on("show.bs.modal", function(event){
+        var button = $(event.relatedTarget);
+        var aID = button.data("aid");
+        var modal = $(this);
+        modal.find(".modal-body #a_ID").val(aID);
+
+        $("#DropAnnouncementForm").attr(
+            "action",
+            "/Employee/modules/admin-dashboard/dropa/" + aID
+        );
     });
     //Schedule
     $("#pds_form").submit(function(e) {
@@ -267,15 +381,19 @@ $(document).ready(function() {
     var getTypeOfLeave = $("#type_leaves").val();
     if(getTypeOfLeave == "Sick Leave"){
        $("#leave_days").attr("max","15");
-        $(".leave-days-error").append("Maximum Sick Leave: 15");
+       $(".leave-days-error").empty();
+       $(".leave-days-error").append("Maximum Sick Leave: 15");
     }else if(getTypeOfLeave == "Maternity Leave"){
        $("#leave_days").attr("max","105");
+       $(".leave-days-error").empty();
        $(".leave-days-error").append("Maximum Maternity Leave: 105");
     }else if(getTypeOfLeave == "Paternity Leave"){
         $("#leave_days").attr("max","7");
+        $(".leave-days-error").empty();
         $(".leave-days-error").append("Maximum Paternity Leave: 7");
     }else if(getTypeOfLeave == "Vacation Leave"){
         $("#leave_days").attr("max","15");
+        $(".leave-days-error").empty();
         $(".leave-days-error").append("Maximum Vacation Leave: 15");
     }
    });
@@ -426,6 +544,7 @@ $(document).ready(function() {
 
     $("#InboxModal").on("show.bs.modal", function(event) {
         var button = $(event.relatedTarget);
+        var pds_id = button.data("pdsid");
         var empcode = button.data("empcode");
         var fullname = button.data("fullname");
         var Fwtc = button.data("fc");
@@ -434,12 +553,18 @@ $(document).ready(function() {
         var s = button.data("request");
         var modal = $(this);
 
+        modal.find(".modal-body #pds_id").val(pds_id);
         modal.find(".modal-body #empcode").val(empcode);
         modal.find(".modal-body #fullname").val(fullname);
         modal.find(".modal-body #fc").val(Fwtc);
         modal.find(".modal-body #content").val(dwtct);
         modal.find(".modal-body #reason").val(r);
         modal.find(".modal-body #req_status").val(s);
+
+        $("#ReqInboxForm").attr(
+            "action",
+            "/Employee/modules/inbox/update/" + pds_id
+        )
     });
 
     $("#MessageModal").on("show.bs.modal", function(event) {

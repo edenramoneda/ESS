@@ -124,7 +124,7 @@
                 </div>
             </li>&ensp;&ensp;
 
-            <li class="nav-item text-white dropdown" title="RequestNotifs">
+            <li class="nav-item text-white dropdown" title="Requests">
                 <i class="fa fa-recycle" data-toggle="dropdown" id="notifDrop" aria-haspopup="true" aria-expanded="false"></i><sup> <span class="badge badge-danger" id="number_requests">0</span></sup>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notifDrop" style="width: 600px">
                     <div class="card dropdown-item">
@@ -133,7 +133,7 @@
                         </div>
                         <div class="card-body p-0">
                             <div class="list-group" id="request-group" style="overflow-y:auto;height:50vh;">
-                                
+                                <p class="mt-2 text-center">No Requests</p>
                             </div>                    
                         </div>
                     </div>
@@ -155,17 +155,17 @@
                             <div class="card-header">
                                 <b>Messages</b>
                                 <span>
-                                    <i class="fa fa-pencil-alt" title="compose message" style="float:right"></i>
+                                    <i class="fa fa-pencil-alt" title="compose message" style="float:right" data-toggle="modal" data-target="#ComposeMessageModal"></i>
                                 </span>
                             </div>
                             <div class="card-body p-0">
                                 <ul class="list-group">
                                     @if($EmpMessage->isNotEmpty())
                                         @foreach($EmpMessage as $key => $EM)
-                                            <li class="list-group-item">
-                                            <b>{{ $EM->sender }}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
-                                            <p>{{ $EM->message}}</p>
-                                         <a href="" class="f-right text-primary" style="float:right">Reply</a>
+                                            <li class="list-group-item">    
+                                                <b>{{$EM->sender}}</b>&ensp;<i style="font-size:13px;">{{ $EM->title}}<br> {{$EM->date_sent}}</i><br>
+                                                <p>{{ $EM->message}}</p>
+                                                <i class="f-right fa fa-reply text-success" data-replysendername="{{$EM->sender}}" data-replysender="{{ $EM->employee_code }}" data-replysendermessage="{{ $EM->message}}" style="float:right" title="Reply" data-toggle="modal" data-target="#ReplyModalForm"></i>
                                             </li>
                                         @endforeach
                                     @else
@@ -194,3 +194,75 @@
         </nav>
 
         <div id="overlay" style="width: 100%; opacity: 0.9;"></div>
+
+        <div class="modal fade" id="ComposeMessageModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Compose Message</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" id="composeMessageForm">
+                            @csrf
+                            <div class="alert alert-danger form-cmMessage-err alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                All fields are required!
+                            </div>
+                            <div class="alert alert-success form-cmMessage-success alert-dismissible">Message Sent!</div>
+                            <div class="form-group">
+                                <label>Send to</label>
+                                <select name="send_to" id="send_to" class="custom-select">
+                                @foreach($ComposeMessage as $key => $cm)
+                                    <option>{{ $cm->employee}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-control" name="send_message" id="send_message" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Send">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ReplyModalForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <label><strong>Reply To:</strong></label>
+                        <input type="text" class="form-control ml-2" id="sendername" name="sendername">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" id="ReplyForm">
+                            @csrf
+                            <div class="alert alert-danger form-cmMessageReply-err alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                All fields are required!
+                            </div>
+                            <div class="alert alert-success form-cmMessageReply-success alert-dismissible">Message Sent!</div>
+                            <div class="form-group">
+                                <input type="text" id="replyempcode" name="replyempcode" hidden>
+                            </div>
+                            <div class="form-group">
+                                <label>In Reply to:</label>
+                                <textarea id="sender_message" name="sender_message" class="form-control" rows="5" readonly>
+                                </textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Reply</label>
+                                <textarea class="form-control" name="reply_message" id="reply_message" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Send">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

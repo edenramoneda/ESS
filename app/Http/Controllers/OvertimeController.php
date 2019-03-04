@@ -21,7 +21,7 @@ class OvertimeController extends Controller
          ->where('aerolink.tbl_hr4_employee_profiles.employee_code', Auth::user()->employee_code)
          ->get();
 
-         $EmpMessage = EmployeeMessage::select(DB::raw("CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
+         $EmpMessage = EmployeeMessage::select(DB::raw("aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
          'aerolink.tbl_hr4_jobs.title','aerolink.tbl_hr2_ess_message.message','aerolink.tbl_hr2_ess_message.date_sent')
          ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_message.sender','=','aerolink.tbl_hr4_employee_profiles.employee_code')
          ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
@@ -52,8 +52,11 @@ class OvertimeController extends Controller
             ])
             ->orderBy("aerolink.tbl_hr3_overtime.created_at","desc")
             ->get();
+
+            $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+            ->orderBy('lastname','ASC')->get();
        
-         return view('/Employee/modules/overtime',compact('CountMessage','EmpMessage','Overtime','OvertimeHistory','Employee_Profiles'));
+         return view('/Employee/modules/overtime',compact('CountMessage','EmpMessage','Overtime','OvertimeHistory','Employee_Profiles','ComposeMessage'));
     }
     public function store(Request $request){
         $this->validate($request, [
@@ -79,5 +82,29 @@ class OvertimeController extends Controller
             ->get();
        
         return response($OvertimeData);
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
+    }
+    public function replyMessage(Request $request){
+        $this->validate($request, [
+            'replyempcode' => 'required',
+            'reply_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("replyempcode");
+        $SendMessage->message = $request->input("reply_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 }

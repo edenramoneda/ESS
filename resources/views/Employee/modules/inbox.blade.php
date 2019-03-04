@@ -46,7 +46,7 @@
                                 <tbody>
                                     @if($PDSReq->isNotEmpty())
                                         @foreach($PDSReq as $key => $PDSR)
-                                            <tr>    
+                                            <tr>
                                                 <td colspan="5">{{$PDSR->fullname}}</td>
                                                 <td colspan="5">{{$PDSR->fc}}</td>
                                                 <td colspan="5">{{$PDSR->content}}</td>
@@ -54,7 +54,7 @@
                                                 <td colspan="5">{{$PDSR->req_status}}</td>
                                                 <td colspan="5">{{$PDSR->date_req}}</td>
                                                 <td colspan="5">
-                                                    <button class="btn btn-success btn-sm" title="Edit" data-empcode="{{$PDSR->employee_code}}"
+                                                    <button class="btn btn-success btn-sm" title="Edit" data-pdsid="{{$PDSR->pds_id}}" data-empcode="{{$PDSR->employee_code}}"
                                                     data-fullname="{{$PDSR->fullname}}" data-fc="{{$PDSR->fc}}" data-content="{{$PDSR->content}}"
                                                     data-reason="{{$PDSR->reason}}" data-request="{{$PDSR->req_status}}"
                                                     data-toggle="modal" data-target="#InboxModal">
@@ -68,7 +68,7 @@
                                             </tr>
                                         @endforeach
                                     @else
-                                                <td colspan="12">No Results Found</td>
+                                                <td colspan="34">No Results Found</td>
                                     @endif
                                 </tbody>
                             </table>
@@ -78,7 +78,7 @@
             </div>
             <div id="archive_pc" class="container-fluid tab-pane fade"><br>
                 <div class="card">
-                    <div class="card-header"><strong>Your Under Employees</strong>
+                    <div class="card-header"><strong>Archive Requests</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="height:80vh;">
@@ -105,9 +105,6 @@
                                                 <td colspan="5">{{$PDSRA->req_status}}</td>
                                                 <td colspan="5">{{$PDSRA->date_req}}</td>
                                                 <td colspan="5">
-                                                    <a href="" class="btn btn-success btn-sm" title="Edit">
-                                                    <i class="fa fa-pencil-alt"></i>
-                                                    </a>
                                                     <a href="" class="btn btn-info btn-sm " title="Message">
                                                     <i class="fa fa-envelope"></i>
                                                     </a>
@@ -135,9 +132,11 @@
                                 </div>    
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    <form>
+                                    <form method="POST" id="ReqInboxForm">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="hidden" class="form-control" name="empcode" id="empcode" disabled="disabled">
+                                            <input type="hidden" class="form-control" name="pds_id" id="pds_id">
+                                            <input type="hidden" class="form-control" name="empcode" id="empcode">
                                         </div>
                                         <div class="form-group">
                                             <label>Fullname</label>

@@ -39,7 +39,7 @@ class InboxController extends Controller
                ])
            ->get();
 
-           $EmpMessage = EmployeeMessage::select(DB::raw("CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
+           $EmpMessage = EmployeeMessage::select(DB::raw("aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS sender"),
            'aerolink.tbl_hr4_jobs.title','aerolink.tbl_hr2_ess_message.message','aerolink.tbl_hr2_ess_message.date_sent')
            ->join('aerolink.tbl_hr4_employee_profiles','aerolink.tbl_hr2_ess_message.sender','=','aerolink.tbl_hr4_employee_profiles.employee_code')
            ->join('aerolink.tbl_hr4_employee_jobs','aerolink.tbl_hr4_employee_profiles.employee_code','=','aerolink.tbl_hr4_employee_jobs.employee_code')
@@ -48,7 +48,7 @@ class InboxController extends Controller
            ->latest('aerolink.tbl_hr2_ess_message.created_at')
            ->paginate(5);
 
-           $PDSReq = PDSInbox::select(DB::raw("CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status,
+           $PDSReq = PDSInbox::select(DB::raw("*,CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status,
            aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS fullname"),
            'aerolink.tbl_hr2_ess_req_inbox.field_want_to_change as fc','aerolink.tbl_hr2_ess_req_inbox.data_want_to_change_to as content',
            'aerolink.tbl_hr2_ess_req_inbox.reason','aerolink.tbl_hr2_ess_req_inbox.date_req')
@@ -67,7 +67,7 @@ class InboxController extends Controller
            ->orderBy('aerolink.tbl_hr2_ess_req_inbox.req_status_id','desc')
            ->get();
 
-           $PDSReqArchive = PDSInbox::select(DB::raw("CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status,
+           $PDSReqArchive = PDSInbox::select(DB::raw("*,CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status,
            aerolink.tbl_hr4_employee_profiles.employee_code,CONCAT(aerolink.tbl_hr4_employee_profiles.firstname,' ',aerolink.tbl_hr4_employee_profiles.middlename,' ',aerolink.tbl_hr4_employee_profiles.lastname) AS fullname"),
            'aerolink.tbl_hr2_ess_req_inbox.field_want_to_change as fc','aerolink.tbl_hr2_ess_req_inbox.data_want_to_change_to as content',
            'aerolink.tbl_hr2_ess_req_inbox.reason','aerolink.tbl_hr2_ess_req_inbox.date_req')
@@ -86,8 +86,11 @@ class InboxController extends Controller
            ->orderBy('aerolink.tbl_hr2_ess_req_inbox.req_status_id','desc')
            ->get();
 
+           $ComposeMessage = Employee_Profiles::select(DB::raw("CONCAT(employee_code,' - ',lastname,' ',firstname,' ',middlename) as employee"))
+           ->orderBy('lastname','ASC')->get();
+
            $ReqStatus = RequestStatus::select(DB::raw("CONCAT('S00',aerolink.tbl_eis_request_status.req_status_id,' - ',aerolink.tbl_eis_request_status.req_status)as req_status"))->get();
-           return view('/Employee/modules/inbox',compact('Employee_Profiles','CountMessage','EmpMessage','PDSReq','PDSReqArchive','ReqStatus'));
+           return view('/Employee/modules/inbox',compact('Employee_Profiles','CountMessage','EmpMessage','PDSReq','PDSReqArchive','ReqStatus','ComposeMessage'));
     }
     //For Message
     public function store(Request $request){
@@ -101,7 +104,34 @@ class InboxController extends Controller
         $m->save();
     }
     //For Editing Status
-    public function update(){
-        
+    public function updateStatus(Request $request, $id){
+        $ChangeStatus = PDSInbox::where("pds_id",$id)->update([ 
+            "req_status_id" => substr(explode(" - ", $request->input("req_status"))[0], 3)
+        ]);
+        return redirect("/Employee/modules/inbox/");
+    }
+    public function composeMessage(Request $request){
+        $this->validate($request, [
+            'send_to' => 'required',
+            'send_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("send_to");
+        $SendMessage->message = $request->input("send_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
+    }
+    public function replyMessage(Request $request){
+        $this->validate($request, [
+            'replyempcode' => 'required',
+            'reply_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("replyempcode");
+        $SendMessage->message = $request->input("reply_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
+
     }
 }

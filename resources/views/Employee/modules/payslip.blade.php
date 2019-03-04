@@ -32,9 +32,9 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-sm-3 col-md-3 col-lg-9 mt-9 mt-3">
+                            <div class="col-sm-9 col-md-9 col-lg-9 mt-3">
                                 <h5 class="text-center">Payslip Viewer</h5>
-                                <div id="payslip-container" class="row mt-3"></div>
+                                <div id="payslip-container" class="row mt-3 payroll"></div>
                             </div>
                         </div>
                     </div>
