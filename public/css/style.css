@@ -414,7 +414,8 @@ a:hover {
 .form-feedback-err, .form-feedback-success, .form-leave-err, .form-leave-success,
 .form-ot-err, .form-ot-success, .form-reimburse-success, .form-reimburse-err,
 .form-pds-err, .form-pds-success, .form-announcement-err, .form-announcement-success,
-.form-message-err, .form-message-success, .form-cmMessage-success, .form-cmMessage-err {
+.form-message-err, .form-message-success, .form-cmMessage-success, .form-cmMessage-err,
+.form-cmMessageReply-err, .form-cmMessageReply-success {
   display: none;
 }
 
@@ -446,67 +447,10 @@ a:hover {
   font-family: Raleway-Bold;
 }
 
-/* Center the loader */
-#loader {
-  margin: 0 auto;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s;
-}
-
-@-webkit-keyframes animatebottom {
-  from {
-    bottom: -100px;
-    opacity: 0;
-  }
-  to {
-    bottom: 0px;
-    opacity: 1;
-  }
-}
-
-@keyframes animatebottom {
-  from {
-    bottom: -100px;
-    opacity: 0;
-  }
-  to {
-    bottom: 0;
-    opacity: 1;
-  }
+#ReplyModalForm #sendername {
+  width: 70% !important;
+  padding: 0 !important;
+  border: none !important;
 }
 
 #myDiv {

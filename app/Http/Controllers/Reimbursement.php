@@ -97,6 +97,17 @@ class Reimbursement extends Controller
         $SendMessage->message = $request->input("send_message");
         $SendMessage->sender = Auth::user()->employee_code;
         $SendMessage->save();
+    }
+    public function replyMessage(Request $request){
+        $this->validate($request, [
+            'replyempcode' => 'required',
+            'reply_message' => 'required'
+        ]);
+        $SendMessage = new EmployeeMessage;
+        $SendMessage->receiver = $request->input("replyempcode");
+        $SendMessage->message = $request->input("reply_message");
+        $SendMessage->sender = Auth::user()->employee_code;
+        $SendMessage->save();
 
     }
 }

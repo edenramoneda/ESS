@@ -146,10 +146,42 @@ $(document).ready(function() {
             var button = $(e.relatedTarget);
             var empcode = button.data("replysender");
             var sendername = button.data("replysendername");
-            var modal = $(this);    
+            var sendermessage = button.data("replysendermessage");
+            var modal = $(this);
+            
+            /*if(sendermessage.length >=2){
+                console.log("Hoola");
+            }*/
+            
             modal.find(".modal-body #replyempcode").val(empcode);
             modal.find(".modal-header #sendername").val(sendername);
+            modal.find(".modal-body #sender_message").val(sendermessage);
 
+            $("#ReplyForm").submit(function(e){
+                var senderEC = $("#replyempcode").val();
+                var reply = $("#reply_message").val();
+                e.preventDefault();
+
+                if(senderEC == "" || reply == ""){
+                    $(".form-cmMessageReply-err").fadeIn(1000);
+                    $(".form-cmMessageReply-err").fadeOut(3000);   
+                }else{
+                    httpAjax("post","/Employee/modules/admin-dashboard/replyMessage",{
+                        data: {
+                            replyempcode: senderEC,
+                            reply_message: reply,
+                        }
+                    }).then(res => {
+                        $(".form-cmMessageReply-success").fadeIn(1000);
+                        $("#ReplyForm").trigger("reset");
+                        $(".form-cmMessageReply-err").hide();
+                        $(".form-cmMessageReply-success").fadeOut(3000);
+                        setTimeout(() => {
+                            window.location.href = "/Employee/modules/admin-dashboard";
+                        }, 1000);
+                    });
+                }
+            })
         });
 
 
