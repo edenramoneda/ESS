@@ -186,11 +186,11 @@
                         </div>
                         <div class="form-group">
                             <label>Start Date</label>
-                            <input id="start_date" name="start_date" data-provide="datepicker" class="form-control">
+                            <input id="start_date" name="start_date" data-provide="datepicker" class="form-control" disabled>
                         </div>
                         <div class="form-group">
                             <label>End Date</label>
-                            <input class="form-control" name="end_date" id="end_date">
+                            <input class="form-control" name="end_date" id="end_date" readonly>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-success" value="Submit">
