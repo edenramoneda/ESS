@@ -398,10 +398,10 @@ $(document).ready(function() {
         $(".leave-days-error").append("Maximum Vacation Leave: 15");
     }
    });
-    //Leave
+
    $("#start_date").on('change', function(){
         var addDays = parseInt($("#leave_days").val());
-        console.log(Number.isInteger(addDays));
+       // console.log(Number.isInteger(addDays));
         var endDate = $("#start_date").datepicker('getDate');
         endDate.setDate(endDate.getDate() + addDays);
      //   $("#end_date").datepicker('setDate', addDays);
@@ -412,6 +412,7 @@ $(document).ready(function() {
         var formatDate = mm + '/' + dd + "/" + y; 
 
        $("#end_date").val(formatDate); 
+       $("#leave_days").attr("disabled","true");
    });
     $("#leave-form").submit(function(e) {
         e.preventDefault();
