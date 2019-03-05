@@ -114,8 +114,6 @@ $(document).ready(function() {
         });
     });
 
-
-    
     //For Compose Message
         $("#composeMessageForm").submit(function(e){
             var getEmpCode = $("#send_to").val().split(" - ")[0];
@@ -375,8 +373,11 @@ $(document).ready(function() {
         }
     });
     //disable past date datepicker
-   $( "#start_date" ).datepicker({minDate: 0});
-   //validate type of leave 
+    
+   $( "#start_date" ).datepicker({minDate: 1});
+
+   //validate type of leave
+
    $("#type_leaves").on('change',function(){
     var getTypeOfLeave = $("#type_leaves").val();
     if(getTypeOfLeave == "Sick Leave"){
@@ -397,7 +398,22 @@ $(document).ready(function() {
         $(".leave-days-error").append("Maximum Vacation Leave: 15");
     }
    });
-    //Leave
+
+   $("#start_date").on('change', function(){
+        var addDays = parseInt($("#leave_days").val());
+       // console.log(Number.isInteger(addDays));
+        var endDate = $("#start_date").datepicker('getDate');
+        endDate.setDate(endDate.getDate() + addDays);
+     //   $("#end_date").datepicker('setDate', addDays);
+        var dd = endDate.getDate();
+        var mm = endDate.getMonth() + 1;
+        var y = endDate.getFullYear();
+
+        var formatDate = mm + '/' + dd + "/" + y; 
+
+       $("#end_date").val(formatDate); 
+       $("#leave_days").attr("disabled","true");
+   });
     $("#leave-form").submit(function(e) {
         e.preventDefault();
         var type_of_leavex = $("#type_leaves").val();
@@ -599,6 +615,7 @@ $(document).ready(function() {
             }
         });
     });
+
 });
 
 function getNotifColor(cat) {

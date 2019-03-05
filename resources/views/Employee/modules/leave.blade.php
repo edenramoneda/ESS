@@ -181,7 +181,7 @@
                         </div>
                         <div class="form-group">
                             <label>Days of Leave</label>
-                            <input type="number" class="form-control" name="leave_days" id="leave_days" min="1" max="15">
+                            <input type="number" class="form-control" name="leave_days" id="leave_days" min="1" max="15" value="1">
                             <i class="text-success leave-days-error">Maximum Sick Leave: 15</i>
                         </div>
                         <div class="form-group">
@@ -190,7 +190,7 @@
                         </div>
                         <div class="form-group">
                             <label>End Date</label>
-                            <input class="form-control" name="end_date" id="end_date">
+                            <input class="form-control" name="end_date" id="end_date" readonly>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-success" value="Submit">
