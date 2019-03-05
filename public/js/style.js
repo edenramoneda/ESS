@@ -147,10 +147,6 @@ $(document).ready(function() {
             var sendermessage = button.data("replysendermessage");
             var modal = $(this);
             
-            /*if(sendermessage.length >=2){
-                console.log("Hoola");
-            }*/
-            
             modal.find(".modal-body #replyempcode").val(empcode);
             modal.find(".modal-header #sendername").val(sendername);
             modal.find(".modal-body #sender_message").val(sendermessage);
@@ -265,7 +261,6 @@ $(document).ready(function() {
             var emp = $('#emp-filter').val();
             $('#AllEmployeeData').empty();
             for(var allEmp in res) {
-                if(emp != null){
                     $('#AllEmployeeData').append("<tr>" + 
                         "<td colspan='4'>" + res[allEmp].dept_name + "</td>" + 
                         "<td colspan='4'>" + res[allEmp].employee_code + "</td>" + 
@@ -275,7 +270,6 @@ $(document).ready(function() {
                         "<td colspan='4'>" + res[allEmp].datehired + "</td>" + 
                         "<td colspan='4'>" + res[allEmp].designation + "</td>" +
                     +"</tr>");
-                }
             }
             
         });
@@ -476,8 +470,12 @@ $(document).ready(function() {
             });
         }
     });
-
+    
     //reimburse requests
+    $('#expenses').keypress(function(key) {
+        if(key.charCode < 48 || key.charCode > 57) return false;
+    });
+
     $("#reimbursement-form").submit(function(e) {
         e.preventDefault();
         var f_expenses = $("#expenses").val();

@@ -182,7 +182,11 @@
                         <div class="form-group">
                             <label>Days of Leave</label>
                             <input type="number" class="form-control" name="leave_days" id="leave_days" min="1" max="15" value="1">
-                            <i class="text-success leave-days-error">Maximum Sick Leave: 15</i>
+                            <i class="text-success leave-days-error">Maximum Sick Leave: 15</i><br><br>
+                            <i><strong>Note: </strong> 
+                            This field will be disabled if you selected the date of your leave.
+                            Please be make sure that you entered your desired date of your leave.
+                            </i>
                         </div>
                         <div class="form-group">
                             <label>Start Date</label>
